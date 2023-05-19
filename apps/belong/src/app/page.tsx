@@ -8,16 +8,16 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-      <main className="mx-auto max-w-lg px-4 pt-16 pb-16 sm:pt-24 lg:px-8">
+      <main className="prose mx-auto px-4 pt-16 pb-16 sm:pt-24 lg:px-8">
         <div className="mx-auto w-16 pb-14">
           <Logo />
         </div>
-        <h1 className="text-center text-6xl font-sans font-semibold text-grey-500 pb-10">
+        <h1 className="font-sans text-center text-5xl font-semibold text-grey-500">
           Belong Church
         </h1>
-        <div className="prose">
+        <div>
           <p>
-            Belong Church is a welcoming group in Sydney, dedicated to creating
+            Belong Church is a church group in Sydney, dedicated to creating
             inclusive Christian communities that celebrate diversity and embrace
             people from various cultures and languages. Our mission is to foster
             an environment where individuals from all walks of life can find
@@ -44,10 +44,8 @@ export default function Home() {
           </p>
 
           <p>
-            Join us at Belong Church as we strive to create a safe and welcoming
-            space for people of all cultures and languages. Together, we can
-            build bridges of understanding, celebrate diversity, and journey
-            towards a deeper unity in Christ.
+            Together, we can build bridges of understanding, celebrate
+            diversity, and journey towards a deeper unity in Christ.
           </p>
 
           <p>
