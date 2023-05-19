@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "dotenv -- turbo build",
-    "dev": "dotenv -- turbo dev",
+    "dev": "dotenv -e .env.local -- turbo dev",
     "lint": "turbo lint",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
@@ -13,7 +13,7 @@
     "eslint-config-custom": "workspace:*",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11",
-    "turbo": "^1.9.3"
+    "turbo": "^1.9.8"
   },
   "packageManager": "pnpm@7.15.0"
 }

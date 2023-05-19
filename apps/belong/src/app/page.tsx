@@ -1,72 +1,53 @@
 import { Metadata } from "next";
-import { groq } from "next-sanity";
 import { Logo } from "ui";
+import { Author } from "../components/Author";
+import { groq } from "next-sanity";
 import { sanityFetch } from "../lib/sanity";
+import { PortableText } from "@portabletext/react";
+import { SanityImage } from "../components/SanityImage";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Belong Church",
 };
 
-export default function Home() {
+const query = groq`*[_type == "belongSite"][0] { author->{ "name": name.en, "role": role.en, image }, landingPageContent }`;
+
+export default async function Home() {
+  const { author, landingPageContent } = await sanityFetch(query);
+
   return (
     <div>
-      <main className="prose mx-auto px-4 pt-16 pb-16 sm:pt-24 lg:px-8">
-        <div className="mx-auto w-16 pb-14">
+      <main className="mx-auto max-w-xl px-4 pt-16 pb-16 sm:pt-24 lg:px-8 space-y-14">
+        <div className="mx-auto w-16">
           <Logo />
         </div>
-        <h1 className="font-sans text-center text-5xl font-semibold text-grey-500">
-          Belong Church
-        </h1>
-        <div>
-          <p>
-            Belong Church is a church group in Sydney, dedicated to creating
-            inclusive Christian communities that celebrate diversity and embrace
-            people from various cultures and languages. Our mission is to foster
-            an environment where individuals from all walks of life can find
-            acceptance, love, and a sense of belonging.
-          </p>
-
-          <p>
-            With two vibrant churches, St Phil's in Eastwood and St Mark's in
-            Ermington, Belong Church opens its doors to people of different
-            cultural backgrounds, languages, and traditions. We believe in the
-            power of unity and the strength that comes from embracing our
-            differences. At Belong Church, you'll find a warm and accepting
-            community that celebrates the rich tapestry of cultures within our
-            congregation.
-          </p>
-
-          <p>
-            Our churches are committed to breaking down language barriers and
-            ensuring that everyone feels valued and understood. We offer
-            resources and support to help individuals from diverse linguistic
-            backgrounds engage in our services and connect with the wider church
-            community. At Belong Church, language should never be a barrier to
-            experiencing God's love and grace.
-          </p>
-
-          <p>
-            Together, we can build bridges of understanding, celebrate
-            diversity, and journey towards a deeper unity in Christ.
-          </p>
-
-          <Person />
+        <div className="space-y-9">
+          <h1 className="font-sans text-center text-5xl font-semibold text-grey-500">
+            Belong Church
+          </h1>
+          <div className="prose">
+            <PortableText
+              value={landingPageContent}
+              components={{
+                marks: {
+                  link: ({ children, value }) => {
+                    return (
+                      <Link
+                        className="font-semibold text-blue-400 no-underline hover:underline"
+                        href={value.href}
+                      >
+                        {children}
+                      </Link>
+                    );
+                  },
+                },
+              }}
+            />
+          </div>
+          <Author name={author.name} role={author.role} image={author.image} />
         </div>
       </main>
     </div>
-  );
-}
-
-const query = groq`*[_id == "1bb9170e-11ed-40e0-bdcc-a9c00f64496a-migrated
-"]`;
-
-function Person() {
-  const bruce = sanityFetch(query);
-  console.log(bruce);
-  return (
-    <p>
-      <span className="font-semibold">Pastor Bruce Stanley</span> <br /> Senior
-      Pastor, Belong Church
-    </p>
   );
 }
