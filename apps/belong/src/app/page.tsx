@@ -1,5 +1,7 @@
 import { Metadata } from "next";
+import { groq } from "next-sanity";
 import { Logo } from "ui";
+import { sanityFetch } from "../lib/sanity";
 
 export const metadata: Metadata = {
   title: "Belong Church",
@@ -48,12 +50,23 @@ export default function Home() {
             diversity, and journey towards a deeper unity in Christ.
           </p>
 
-          <p>
-            <span className="font-semibold">Pastor Bruce Stanley</span> <br />{" "}
-            Senior Pastor, Belong Church
-          </p>
+          <Person />
         </div>
       </main>
     </div>
+  );
+}
+
+const query = groq`*[_id == "1bb9170e-11ed-40e0-bdcc-a9c00f64496a-migrated
+"]`;
+
+function Person() {
+  const bruce = sanityFetch(query);
+  console.log(bruce);
+  return (
+    <p>
+      <span className="font-semibold">Pastor Bruce Stanley</span> <br /> Senior
+      Pastor, Belong Church
+    </p>
   );
 }
