@@ -1,11 +1,10 @@
+import { PortableText } from "@portabletext/react";
 import { Metadata } from "next";
+import { groq } from "next-sanity";
+import Link from "next/link";
 import { Logo } from "ui";
 import { Author } from "../components/Author";
-import { groq } from "next-sanity";
 import { sanityFetch } from "../lib/sanity";
-import { PortableText } from "@portabletext/react";
-import { SanityImage } from "../components/SanityImage";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Belong Church",
@@ -45,6 +44,7 @@ export default async function Home() {
               }}
             />
           </div>
+          {/* @ts-expect-error Server Component */}
           <Author name={author.name} role={author.role} image={author.image} />
         </div>
       </main>
