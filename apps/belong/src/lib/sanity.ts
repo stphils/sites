@@ -11,7 +11,7 @@ const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false, // to ensure fresh content when the webhook fires
 });
 
 export const sanityFetch: SanityClient["fetch"] = cache(
