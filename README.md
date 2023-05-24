@@ -1,51 +1,74 @@
-# Turborepo Tailwind CSS starter
+# Belong Sites Monorepo
 
-This is an official starter Turborepo.
+This monorepo contains all the Belong Church sites and packages.
 
-## Using this example
+**Why a monorepo?**
 
-Run the following command:
+A monorepo architecture makes it easy to share code between all of our church sites, which share a single UI component library and content fetches.
 
-```sh
-npx create-turbo@latest -e with-tailwind
-```
+## Using this repo
 
-## What's inside?
+> It's recommended to use [pnpm](https://pnpm.io/) as your package manager, as it makes working with monorepos easier
 
-This Turborepo includes the following packages/apps:
+1. Clone the project
 
-### Apps and Packages
+   ```sh
+   git clone https://github.com/stphils/sites.git
+   cd sites
+   ```
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+2. Install the dependencies
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+   ```sh
+   pnpm install
+   ```
 
-### Building packages/ui
+3. Start the development process
 
-This example is setup to build `packages/ui` and output the transpiled source and compiled styles to `dist/`. This was chosen to make sharing one `tailwind.config.js` as easy as possible, and to ensure only the CSS that is used by the current application and its dependencies is generated.
+   ```sh
+   pnpm run dev
+   ```
 
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update your `tailwind.config.js` to be aware of your package locations, so it can find all usages of the `tailwindcss` class names.
+   > You can run commands for a single package by using `--filter`, e.g. `pnpm run dev --filter belong`
 
-For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
+## Apps and Packages
 
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/**/*.{js,ts,jsx,tsx}",
-  ],
-```
+### Apps
 
-### Utilities
+All of our apps, except for out Sanity CMS, are built with NextJs.
 
-This Turborepo has some additional tools already setup for you:
+- `apps/content`
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+  [stphils.sanity.studio](stphils.sanity.studio) \
+  Sanity CMS source.
+
+- `apps/belong`
+
+  [belongchurch.au](https://belongchurch.au) \
+  Landing page for our parent church.
+
+- `apps/stphils`
+
+  [stphils.org.au](https://stphils.org.au) \
+  St Phil's Eastwood church site.
+
+- `apps/stmarks`
+
+  [stmarksanglican.org.au](https://stmarksanglican.org.au) \
+  St Marks Ermington church site.
+
+- `apps/docs`
+
+  [docs.belongchurch.au](https://docs.belongchurch.au) \
+  Church group documentation site.
+
+### Packages
+
+- `packages/eslint-config-custom` Shared ESLint config
+- `packages/tailwind-config` Shared tailwind config
+- `packages/tsconfig` Shared TSConfig
+- `packages/ui` UI component library
+
+## Guides
+
+This repo is based on the [Turborepo Tailwind starter repo](https://github.com/vercel/turbo/tree/main/examples/with-tailwind). More info can be found there on why the `ui` package is compiled rather than imported directly.
