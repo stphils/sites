@@ -36,14 +36,3 @@ const Clock: React.FC = () => {
     </div>
   );
 };
-
-// Main App Component: Renders the Clock component.
-const App: React.FC = () => {
-  return (
-    <React.StrictMode>
-      <Clock />
-    </React.StrictMode>
-  );
-};
-
-export default App;
