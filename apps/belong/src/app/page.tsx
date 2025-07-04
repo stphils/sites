@@ -45,7 +45,7 @@ export default async function Home() {
             />
           </div>
           <div id="root"></div>
-          <script type="module" src="Clock.tsx"></script>
+          <script type="module" src="../components/Clock.tsx"></script>
           <Person>
             <PersonImage>
               <SanityImage
