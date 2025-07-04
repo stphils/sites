@@ -48,13 +48,6 @@ export default async function Home() {
           <script src= "https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
           <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
           <div id="root"></div>
-          <script type="text/babel">
-            function tick() {
-              const element = (<h1>{new Date().toLocaleTimeString()}</h1>);
-              ReactDOM.render(element, document.getElementById('root'));
-            }
-            setInterval(tick, 1000);
-          </script>
           <Person>
             <PersonImage>
               <SanityImage
