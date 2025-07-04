@@ -23,7 +23,7 @@ export default async function Home() {
         </div>
         <div className="space-y-9">
           <h1 className="font-sans text-center text-5xl font-semibold text-grey-500">
-            Belong Church
+            Belong Church ...
           </h1>
           <div className="prose">
             <PortableText
