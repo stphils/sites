@@ -44,6 +44,8 @@ export default async function Home() {
               }}
             />
           </div>
+          <div id="root"></div>
+          <script type="module" src="Clock.tsx"></script> // In a real project, this would point to your compiled JS
           <Person>
             <PersonImage>
               <SanityImage
