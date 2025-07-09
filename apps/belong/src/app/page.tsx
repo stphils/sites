@@ -44,25 +44,6 @@ export default async function Home() {
               }}
             />
           </div>
-          <div className="prose">
-            <PortableText
-              value={testContent}
-              components={{
-                marks: {
-                  link: ({ children, value }) => {
-                    return (
-                      <Link
-                        className="font-semibold text-blue-400 no-underline hover:underline"
-                        href={value.href}
-                      >
-                        {children}
-                      </Link>
-                    );
-                  },
-                },
-              }}
-            />
-          </div>
           <Person>
             <PersonImage>
               <SanityImage
