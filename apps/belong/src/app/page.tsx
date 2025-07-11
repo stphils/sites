@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const query = groq`*[_type == "belongSite"][0] { author->{ "name": name.en, "role": role.en, image }, landingPageContent, specialText }`;
 
 export default async function Home() {
-  const { author, landingPageContent } = await sanityFetch(query);
+  const { author, landingPageContent, specialText } = await sanityFetch(query);
 
   return (
     <div>
