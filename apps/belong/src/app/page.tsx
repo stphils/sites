@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Belong Church",
 };
 
-const query = groq`*[_type == "belongSite"][0] { author->{ "name": name.en, "role": role.en, image }, landingPageContent }`;
+const query = groq`*[_type == "belongSite"][0] { author->{ "name": name.en, "role": role.en, image }, landingPageContent, specialText }`;
 
 export default async function Home() {
   const { author, landingPageContent } = await sanityFetch(query);
@@ -28,6 +28,25 @@ export default async function Home() {
           <div className="prose">
             <PortableText
               value={landingPageContent}
+              components={{
+                marks: {
+                  link: ({ children, value }) => {
+                    return (
+                      <Link
+                        className="font-semibold text-blue-400 no-underline hover:underline"
+                        href={value.href}
+                      >
+                        {children}
+                      </Link>
+                    );
+                  },
+                },
+              }}
+            />
+          </div>
+          <div className="prose">
+            <PortableText
+              value={specialText}
               components={{
                 marks: {
                   link: ({ children, value }) => {
