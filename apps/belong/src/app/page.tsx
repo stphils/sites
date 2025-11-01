@@ -23,7 +23,7 @@ export default async function Home() {
         </div>
         <div className="space-y-9">
           <h1 className="font-sans text-center text-5xl font-semibold text-grey-500">
-            Belong Church ...
+            Belong Church ....
           </h1>
           <div className="prose">
             <PortableText
@@ -45,23 +45,12 @@ export default async function Home() {
             />
           </div>
           <div className="prose">
-            <PortableText
-              value={specialText}
-              components={{
-                marks: {
-                  link: ({ children, value }) => {
-                    return (
-                      <Link
-                        className="font-semibold text-blue-400 no-underline hover:underline"
-                        href={value.href}
-                      >
-                        {children}
-                      </Link>
-                    );
-                  },
-                },
-              }}
-            />
+              {/* Check if specialText exists before rendering */}
+              {specialText && (
+                  <p className="text-xl font-medium italic">
+                    {specialText}
+                  </p>
+               )}
           </div>
           <Person>
             <PersonImage>
