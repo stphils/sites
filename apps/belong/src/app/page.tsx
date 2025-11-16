@@ -1,5 +1,5 @@
 // app/page.tsx
-'use client'; // This is required to use state and interactivity
+'use client'; 
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -271,46 +271,45 @@ export default function Home() {
   // --- 2. USE REACT STATE ---
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [activeSongIndex, setActiveSongIndex] = useState(0);
-  // **NEW**: Add state to track if the menu is open or closed
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Get the data for the currently selected language
   const currentLangData = allLyrics[currentLanguage];
-  // Get the specific song data for the active tab
   const activeSong = currentLangData.songs[activeSongIndex];
 
-  // **NEW**: Create a ref for the menu to detect "click outside"
-  const menuRef = useRef(null);
+  // We change the ref type to allow for null or an HTML element
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // --- 3. CORE FUNCTIONS (The React Way) ---
-  function changeLanguage(newLangKey) {
-    if (newLangKey === currentLanguage) return; // Do nothing if it's the same
+  function changeLanguage(newLangKey: string) {
+    if (newLangKey === currentLanguage) return; 
 
     setCurrentLanguage(newLangKey);
-    setActiveSongIndex(0); // Reset to the first song
-    setIsMenuOpen(false); // Close menu on language change
+    setActiveSongIndex(0); 
+    setIsMenuOpen(false); 
   }
 
-  function handleSongClick(index) {
+  function handleSongClick(index: number) {
     setActiveSongIndex(index);
-    setIsMenuOpen(false); // Close menu after selecting a song
+    setIsMenuOpen(false); 
   }
 
-  // **NEW**: Effect to close the dropdown when clicking outside
+  // --- **START: FIX FOR COMPILATION ERROR** ---
   useEffect(() => {
-    function handleClickOutside(event) {
-      // Check if the click is outside the menuRef element
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    // We give the event a specific type: MouseEvent
+    function handleClickOutside(event: MouseEvent) { 
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        // We cast event.target as a Node to satisfy .contains()
         setIsMenuOpen(false); // Close the menu
       }
     }
-    // Add event listener to the whole document
+    // Add event listener
     document.addEventListener('mousedown', handleClickOutside);
-    // Cleanup function to remove the listener
+    // Cleanup function
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [menuRef]); // Dependency array, re-runs if menuRef changes
+  }, [menuRef]); // Dependency array
+  // --- **END: FIX FOR COMPILATION ERROR** ---
 
   // --- 4. RENDER WITH JSX ---
   return (
@@ -324,10 +323,7 @@ export default function Home() {
         
         <div className="split-pane" id="carols-pane">
           
-          {/* --- **START: NEW DROPDOWN MENU** --- */}
-          {/* We attach the ref here */}
           <div className="song-nav" id="song-nav" ref={menuRef}>
-            {/* This button toggles the menu and shows the active song */}
             <button 
               className={`song-menu-toggle ${isMenuOpen ? 'open' : ''}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle state
@@ -335,9 +331,7 @@ export default function Home() {
               {activeSong.title}
             </button>
             
-            {/* This is the collapsible dropdown list */}
             <div className={`song-menu-dropdown ${isMenuOpen ? 'open' : ''}`}>
-              {/* We loop over the songs to create the links */}
               {currentLangData.songs.map((song, index) => (
                 <button
                   key={song.title}
@@ -349,7 +343,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-          {/* --- **END: NEW DROPDOWN MENU** --- */}
           
           <div className="song-content" id="song-lyrics">
             {activeSong.lyrics}
