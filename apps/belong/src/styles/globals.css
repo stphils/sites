@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add all of this to your styles/globals.css file.
+   Make sure to delete the old .tab-bar and .tab-link styles.
+*/
+
 .carol-page-container {
   display: flex;
   flex-direction: column;
@@ -18,15 +22,12 @@
   width: 100%;
   overflow: hidden; /* Prevents resizing issues */
   
-  /* * DEFAULT: Landscape Mode (Left/Right) 
-   * This will apply to desktop browsers and landscape devices.
-   */
+  /* * DEFAULT: Landscape Mode (Left/Right) */
   flex-direction: row; 
 }
 
 /* Styling for each content pane */
 .split-pane {
-  /* Let the content inside the pane scroll if needed */
   overflow: auto; 
   background-color: #f9f9f9;
 }
@@ -39,78 +40,122 @@
 
 /* --- Sizing --- */
 
-/* This pane gets 1/3 of the space */
 #translate-pane {
   flex: 1; /* 1 part */
-  /* Default (landscape) constraint */
   min-width: 300px; 
-  overflow-y: hidden; /* Hides vertical scrollbar */
+  overflow-y: hidden;
   border-right: 1px solid #ddd;
 }
 
-/* This pane gets 2/3 of the space */
 #carols-pane {
   flex: 2; /* 2 parts */
-  /* The overflow:auto is already set on .split-pane, 
-     which will make the song lyrics scrollable */
 }
 
 
-/* * OVERRIDE: Portrait Mode (Top/Bottom) 
- * This media query applies when the height is greater than the width.
- */
+/* * OVERRIDE: Portrait Mode (Top/Bottom) */
 @media (orientation: portrait) {
   .split-container {
     flex-direction: column; /* Stack top-to-bottom */
   }
 
   #translate-pane {
-    /* Reset landscape constraint */
     min-width: 0; 
-    /* Apply portrait constraint */
-    min-height: 200px; /* Protect this minimum height */
+    min-height: 200px; 
     border-right: none;
     border-bottom: 1px solid #ddd;
   }
 }
 
-/* --- STYLES FOR SONGBOOK --- */
+/* --- STYLES FOR SONGBOOK (NEW) --- */
 
-/* Container for the tab buttons */
-.tab-bar {
-  display: flex;
-  flex-wrap: wrap; /* Allows tabs to wrap on smaller screens */
+/* Container for the song menu */
+.song-nav {
   background-color: #fff;
   border-bottom: 1px solid #ccc;
-  /* Sticky tabs to the top of the pane */
+  /* Sticky menu to the top of the pane */
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
-/* Style for each tab button */
-.tab-link {
-  padding: 12px 18px;
+/* The main button that shows the current song */
+.song-menu-toggle {
+  display: block;
+  width: 100%;
+  padding: 14px 40px 14px 20px; /* Extra padding on right for icon */
+  cursor: pointer;
+  border: none;
+  background-color: #f9f9f9;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #005a9c;
+  text-align: left;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.song-menu-toggle:hover {
+  background-color: #f0f0f0;
+}
+
+/* The 'v' icon on the dropdown button */
+.song-menu-toggle::after {
+  content: '▼';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: #555;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the icon when the menu is open */
+.song-menu-toggle.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* The collapsible dropdown list */
+.song-menu-dropdown {
+  /* This creates the "concertina" effect */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+
+/* The "open" class is added by JS/React to expand the menu */
+.song-menu-dropdown.open {
+  max-height: 60vh; /* Just needs to be taller than the content */
+  overflow-y: auto; /* Add scroll if list is very long */
+}
+
+/* The individual song links inside the menu */
+.song-menu-link {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
   cursor: pointer;
   border: none;
   background-color: transparent;
   font-size: 1rem;
-  color: #555;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s ease;
+  color: #333;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.tab-link:hover {
+.song-menu-link:hover {
   background-color: #f0f0f0;
-  color: #000;
 }
 
-/* Style for the *active* tab button */
-.tab-link.active {
+/* Style for the *active* song in the list */
+.song-menu-link.active {
+  background-color: #e6f0f7;
   color: #005a9c;
-  border-bottom-color: #005a9c;
   font-weight: 600;
 }
+
 
 /* Container for the song lyrics */
 .song-content {
@@ -121,7 +166,7 @@
   white-space: pre-wrap; 
 }
 
-/* --- NEW STYLES FOR FOOTER BAR --- */
+/* --- STYLES FOR FOOTER BAR --- */
 .footer-bar {
   display: flex;
   justify-content: space-around;
