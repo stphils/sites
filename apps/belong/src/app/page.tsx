@@ -1,10 +1,10 @@
 // app/page.tsx
 'use client'; // This is required to use state and interactivity
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // --- 1. DATA AND STATE ---
-// All your song data is now here, inside the component file.
+// All your song data is here.
 const allLyrics = {
   'en': {
     langName: 'English',
@@ -150,7 +150,7 @@ Chains, shall he break for the slave is our brother
 and in his name, all oppression shall cease
 Sweet hymns of joy, in grateful chorus raise we
 Let all within us praise his holy name
-Christ is the Lord, O praise his name forever
+Christ is the Lord, O praise hisF name forever
 His power and glory evermore proclaim
 His power and glory evermore proclaim`
       },
@@ -269,55 +269,89 @@ our Lord Emmanuel`
 export default function Home() {
   
   // --- 2. USE REACT STATE ---
-  // We use React's 'useState' hook to manage the active language and song
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [activeSongIndex, setActiveSongIndex] = useState(0);
+  // **NEW**: Add state to track if the menu is open or closed
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Get the data for the currently selected language
   const currentLangData = allLyrics[currentLanguage];
   // Get the specific song data for the active tab
   const activeSong = currentLangData.songs[activeSongIndex];
 
+  // **NEW**: Create a ref for the menu to detect "click outside"
+  const menuRef = useRef(null);
+
   // --- 3. CORE FUNCTIONS (The React Way) ---
-  // This function updates the state, and React automatically re-renders the page
   function changeLanguage(newLangKey) {
     if (newLangKey === currentLanguage) return; // Do nothing if it's the same
 
     setCurrentLanguage(newLangKey);
-    setActiveSongIndex(0); // Reset to the first song on language change
+    setActiveSongIndex(0); // Reset to the first song
+    setIsMenuOpen(false); // Close menu on language change
   }
 
+  function handleSongClick(index) {
+    setActiveSongIndex(index);
+    setIsMenuOpen(false); // Close menu after selecting a song
+  }
+
+  // **NEW**: Effect to close the dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      // Check if the click is outside the menuRef element
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false); // Close the menu
+      }
+    }
+    // Add event listener to the whole document
+    document.addEventListener('mousedown', handleClickOutside);
+    // Cleanup function to remove the listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuRef]); // Dependency array, re-runs if menuRef changes
+
   // --- 4. RENDER WITH JSX ---
-  // This is the main HTML structure of your page, written in JSX
   return (
     <main className="carol-page-container">
       
       <div className="split-container">
         
         <div className="split-pane" id="translate-pane">
-          {/* The iframe 'src' is now dynamic and updates when state changes */}
           <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
         </div>
         
         <div className="split-pane" id="carols-pane">
           
-          <div className="tab-bar" id="song-tabs">
-            {/* We loop over the songs data to create the tab buttons */}
-            {currentLangData.songs.map((song, index) => (
-              <button
-                key={song.title}
-                // 'onClick' is the React way to add an event listener
-                onClick={() => setActiveSongIndex(index)}
-                // We dynamically add the 'active' class
-                className={`tab-link ${index === activeSongIndex ? 'active' : ''}`}
-              >
-                {song.title}
-              </button>
-            ))}
+          {/* --- **START: NEW DROPDOWN MENU** --- */}
+          {/* We attach the ref here */}
+          <div className="song-nav" id="song-nav" ref={menuRef}>
+            {/* This button toggles the menu and shows the active song */}
+            <button 
+              className={`song-menu-toggle ${isMenuOpen ? 'open' : ''}`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle state
+            >
+              {activeSong.title}
+            </button>
+            
+            {/* This is the collapsible dropdown list */}
+            <div className={`song-menu-dropdown ${isMenuOpen ? 'open' : ''}`}>
+              {/* We loop over the songs to create the links */}
+              {currentLangData.songs.map((song, index) => (
+                <button
+                  key={song.title}
+                  onClick={() => handleSongClick(index)}
+                  className={`song-menu-link ${index === activeSongIndex ? 'active' : ''}`}
+                >
+                  {song.title}
+                </button>
+              ))}
+            </div>
           </div>
+          {/* --- **END: NEW DROPDOWN MENU** --- */}
           
           <div className="song-content" id="song-lyrics">
-            {/* The lyrics are rendered directly from the state */}
             {activeSong.lyrics}
           </div>
 
@@ -325,9 +359,7 @@ export default function Home() {
       </div>
 
       <div className="footer-bar" id="footer-bar">
-        {/* We loop over all available languages to create the footer buttons */}
         {Object.keys(allLyrics).map((langKey) => {
-          // Don't show a button for the currently active language
           if (langKey === currentLanguage) return null;
           
           return (
@@ -341,7 +373,6 @@ export default function Home() {
           );
         })}
         
-        {/* The static "Contact Us" link */}
         <a
           href="https://stphils.org.au/contact"
           target="_blank"
