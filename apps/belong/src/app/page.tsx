@@ -14,7 +14,7 @@ const allLyrics: AllLyrics = {
     songs: [
       {
         title: "Joy to the World",
-        lyrics: `Joy to the world! The Lord is come
+        lyrics: `<h2>Joy to the World</h2>Joy to the world! The Lord is come
 let earth receive her king
 Let every heart prepare him room
 and heaven and nature sing
