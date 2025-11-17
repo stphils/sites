@@ -14,6 +14,14 @@
         body {
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+        }
+        .app-shell {
+                flex: 1; /* Must GROW to fill space below the body */
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                overflow: hidden;
         }
 
         /* The main container */
@@ -62,8 +70,8 @@
             /* FIX 2: Make the pane itself a column flex container */
            display: flex;
            flex-direction: column;
-
-         overflow: hidden;
+           min-height: 0;
+           overflow: hidden;
         }
 
 
@@ -299,15 +307,11 @@
         
         .fab-container {
     /* --- ADD THESE STYLES TO FIX THE POSITIONING --- */
-    position: relative;
+    position: fixed;
     bottom: 20px; /* Adjust this value for desired bottom offset */
     right: 20px; /* Adjust this value for desired right offset */
-    /* ----------------------------------------------- */
-    
     /* Ensure it is on top of other content */
     z-index: 1000; 
-   position: relative; 
-    display: block; /* Ensures container behaves correctly */
 }
 
 .fab-toggle {
