@@ -27,6 +27,7 @@
         /* The main container */
         .split-container {
             flex: 1; /* This makes it take all available space */
+            min-height: 0;
             display: flex;
             width: 100%;
             overflow: hidden; /* Prevents resizing issues */
