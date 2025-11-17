@@ -3,31 +3,31 @@
 @tailwind utilities;
 
  html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Prevents whole page from scrolling */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100vh !important;
+            width: 100% !important;
+            overflow: hidden !important; /* Prevents whole page from scrolling */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
         }
 
         /* Make body a flex container to hold panes + footer */
         body {
-            display: flex;
-            flex-direction: column;
+            display: flex !important;
+            flex-direction: column !important;
         }
 
         /* The main container */
         .split-container {
-            flex: 1; /* This makes it take all available space */
-            display: flex;
-            width: 100%;
-            overflow: hidden; /* Prevents resizing issues */
+            flex: 1 !important; /* This makes it take all available space */
+            display: flex !important;
+            width: 100% !important;
+            overflow: hidden !important; /* Prevents resizing issues */
             
             /* * DEFAULT: Landscape Mode (Left/Right) 
              * This will apply to desktop browsers and landscape devices.
              */
-            flex-direction: row; 
+            flex-direction: row !important; 
         }
 
         /* Styling for each content pane */
@@ -313,21 +313,21 @@
 
 .fab-toggle {
     /* Style to make it a large, circular button */
-    width: 56px; 
-    height: 56px;
-    border-radius: 50%;
+    width: 56px !important; 
+    height: 56px !important;
+    border-radius: 50% !important;
     
     /* Look and feel */
-    background-color: #005a9c; /* Blue color for main action */
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 2rem; /* Size of the '+' sign */
-    line-height: 56px; /* Center the text vertically */
-    text-align: center;
-    border: none;
+    background-color: #005a9c !important; /* Blue color for main action */
+    color: white !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 2rem !important; /* Size of the '+' sign */
+    line-height: 56px! important; /* Center the text vertically */
+    text-align: center !important;
+    border: none !important;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25) !important;
+    transition: transform 0.3s ease, background-color 0.2s ease !important;
 }
 
         /* ADDED: CSS for Google Material Symbols */
