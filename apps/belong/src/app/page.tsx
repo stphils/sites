@@ -368,7 +368,7 @@ export default function Home() {
 
   // --- 6. RENDER WITH JSX ---
   return (
-    <main>
+    <main className="flex flex-col h-full w-full overflow-hidden">
       
       <div className="split-container">
         
