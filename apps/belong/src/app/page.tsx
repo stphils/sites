@@ -377,26 +377,29 @@ export default function Home() {
           
           return (
             <button
-              key={langKey}
-              className="fab-item lang"
-              onClick={() => {
-                changeLanguage(langKey);
-                setIsFabMenuOpen(false);
-              }}
+                        key={langKey}
+                        className="fab-item lang"
+                        onClick={() => {
+                                    changeLanguage(langKey);
+                                    setIsFabMenuOpen(false);
+                        }}
             >
-              {allLyrics[langKey].langName}
+            {/* CRITICAL CHANGE: Wrap the text in a span */}
+            <span className="fab-lang-text">
+                        {allLyrics[langKey].langName}
+            </span>
             </button>
           );
         })}
         {/* Contact Icon Button */}
         <button
-          key="fab-contact-icon"
-          className="fab-item contact"
-          aria-label="Contact Us"
-          onClick={handleFabContactClick}
+                key="fab-contact-icon"
+                className="fab-item contact"
+                aria-label="Contact Us"
+                onClick={handleFabContactClick}
         >
-          <span className="material-symbols-outlined">mail</span>
-        </button>
+        <span className="fab-lang-text material-symbols-outlined">mail</span>
+      </button>
       </>
     );
   };
