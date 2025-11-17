@@ -615,6 +615,6 @@
 
     /* This class is added by JS in Landscape mode */
     .minimize-fab.rotate-fab .material-symbols-outlined {
-        /* Landscape: Rotate 90 degrees clockwise (icon points left) */
-        transform: rotate(90deg);
+        /* Landscape: Rotate 90 degrees anticlockwise (icon points left) */
+        transform: rotate(-90deg);
     }
