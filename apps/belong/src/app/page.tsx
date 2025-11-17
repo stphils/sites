@@ -301,45 +301,34 @@ export default function Home() {
 
   // --- 5. RENDER HELPERS ---
 
-  const renderSongMenuLinks = () => {
-    return ( <
-        div className = "song-fab-menu" > {
-            currentLangData.songs.map((song, index) => ( <
-                button key = {
-                    song.title
-                }
-                onClick = {
-                    () => handleSongClick(index)
-                }
-                className = {
-                    `song-fab-link ${
-              !isContactVisible && index === activeSongIndex ? 'active' : ''
-            }`
-                } >
-                {
-                    song.title
-                } <
-                /button>
-            ))
-        } {
-            /* Contact Link in Song FAB Menu Dropdown */ } <
-        button key = "contact-st-phils"
-        id = "song-menu-contact-link"
-        onClick = {
-            handleContactClick
-        }
-        className = {
-            `song-fab-link contact-link ${
-            isContactVisible ? 'active' : ''
-          }`
-        } >
-        {
-            CONTACT_TITLE
-        } <
-        /button> <
-        /div>
+ const renderSongMenuLinks = () => {
+    return (
+        <div className="song-fab-menu">
+        {currentLangData.songs.map((song, index) => (
+            <button
+            key={song.title}
+            onClick={() => handleSongClick(index)}
+            className={`song-fab-link ${
+                !isContactVisible && index === activeSongIndex ? 'active' : ''
+            }`}
+        >
+        {song.title}
+        </button>
+        ))}
+        {/* Contact Link in Song FAB Menu Dropdown */}
+        <button
+            key="contact-st-phils"
+            id="song-menu-contact-link" 
+            onClick={handleContactClick}
+            className={`song-fab-link contact-link ${
+                isContactVisible ? 'active' : ''
+            }`}
+        >
+        {CONTACT_TITLE}
+        </button>
+    </div>
     );
-};
+  };
 
 
   const renderFabMenuButtons = () => {
