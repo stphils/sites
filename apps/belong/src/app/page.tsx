@@ -405,13 +405,25 @@ export default function Home() {
           )}
         </div>
       </div>
-      {/* FIXED FAB MENU (No Change) */}
+      
       <div 
         className={`fab-container ${isFabMenuOpen ? 'open' : ''}`} 
         id="fab-container"
         ref={fabContainerRef} 
       >
-      {/* ... (rest of language FAB) ... */}
+        {/* Language buttons and Contact icon */}
+        <div className="fab-menu" id="fab-menu">
+          {renderFabMenuButtons()}
+        </div>
+        {/* Main Toggle Button */}
+        <button 
+          className={`fab-toggle ${isFabMenuOpen ? 'open' : ''} font-sans`}
+          id="fab-toggle-button" 
+          aria-label="Toggle menu"
+          onClick={() => setIsFabMenuOpen(!isFabMenuOpen)}
+        >
+          +
+        </button>
       </div>
     </main>
   );
