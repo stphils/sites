@@ -281,7 +281,6 @@
             font-size: 0.95rem;
             font-weight: 600;
             
-            
             /* Animation styles */
             transform: scale(0);
             transition: transform 0.2s ease, background-color 0.2s ease;
