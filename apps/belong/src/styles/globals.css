@@ -300,14 +300,14 @@
         
         .fab-container {
     /* --- ADD THESE STYLES TO FIX THE POSITIONING --- */
-    position: relative;
+    position: fixed;
     bottom: 20px; /* Adjust this value for desired bottom offset */
     right: 20px; /* Adjust this value for desired right offset */
     /* ----------------------------------------------- */
     
     /* Ensure it is on top of other content */
     z-index: 1000; 
-   position: relative; 
+    //position: relative; 
     display: block; /* Ensures container behaves correctly */
 }
 
@@ -320,6 +320,7 @@
     /* Look and feel */
     background-color: #005a9c; /* Blue color for main action */
     color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 2rem; /* Size of the '+' sign */
     line-height: 56px; /* Center the text vertically */
     text-align: center;
