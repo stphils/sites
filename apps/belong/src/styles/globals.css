@@ -280,7 +280,7 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 600;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            
             
             /* Animation styles */
             transform: scale(0);
@@ -485,8 +485,14 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-.song-fab-link.contact-link {
-    background-color: #f7e6e6;
+    .song-fab-link.contact-link {
+        background-color: #f7e6e6;
         color: #c0392b;
         font-weight: 600;
+    }
+    .fab-lang-text {
+        writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            white-space: nowrap; /* Prevents text from wrapping vertically */
+            display: block; /* Ensures the writing mode applies to the content block */
     }
