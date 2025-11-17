@@ -367,59 +367,51 @@ export default function Home() {
 
 
   // --- 6. RENDER WITH JSX ---
-  return (
-    <main className="app-shell">
-      
-      <div className="split-container">
-        
-        {/* LEFT PANE: Translator Iframe (No change) */}
-        <div className="split-pane" id="translate-pane">
-          <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
-        </div>
-        
-        {/* RIGHT PANE: Song Lyrics / Contact Iframe */}
-        <div className="split-pane" id="carols-pane">
-          
-          {/* NEW: Song Selection FAB (Top Right) */}
-          <div className="song-fab-container" ref={songMenuRef}>
-            <button 
-              className={`song-fab-toggle ${isSongMenuOpen ? 'open' : ''}`}
-              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} 
-            >
-              Songs
-            </button>
-            
-            {/* The dropdown menu content */}
-            {renderSongMenuLinks()}
-          </div>
-          
-          {/* MAIN CONTENT AREA (Now gets the full height of the pane) */}
-          {isContactVisible ? (
-            <div 
-              id="contact-iframe-container"
-              className={'visible'}
-            >
-              <iframe 
-                src={CONTACT_IFRAME_SRC} 
-                title="Contact Page"
-              />
-            </div>
-          ) : (
-            <div className={'song-content'} id="song-lyrics">
-              {activeSong.lyrics}
-            </div>
-          )}
-
-        </div>
-      </div>
-
-      {/* FIXED FAB MENU (No Change) */}
-      <div 
-          className={`fab-container ${isFabMenuOpen ? 'open' : ''}`} 
-          id="fab-container"
-          ref={fabContainerRef} 
-      >
-        {/* ... (rest of language FAB) ... */}
-      </div>
-    </main>
-  );
+  return (
+    <main className="app-shell">
+      <div className="split-container">
+        {/* LEFT PANE: Translator Iframe (No change) */}
+        <div className="split-pane" id="translate-pane">
+          <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
+        </div>
+        {/* RIGHT PANE: Song Lyrics / Contact Iframe */}
+        <div className="split-pane" id="carols-pane">
+          {/* NEW: Song Selection FAB (Top Right) */}
+          <div className="song-fab-container" ref={songMenuRef}>
+            <button 
+              className={`song-fab-toggle ${isSongMenuOpen ? 'open' : ''}`}
+              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} 
+            >
+              Songs
+            </button>
+            {/* The dropdown menu content */}
+            {renderSongMenuLinks()}
+          </div>
+          {/* MAIN CONTENT AREA (Now gets the full height of the pane) */}
+          {isContactVisible ? (
+            <div 
+              id="contact-iframe-container"
+              className={'visible'}
+            >
+              <iframe 
+                src={CONTACT_IFRAME_SRC} 
+                title="Contact Page"
+              />
+            </div>
+          ) : (
+            <div className={'song-content'} id="song-lyrics">
+              {activeSong.lyrics}
+            </div>
+          )}
+        </div>
+      </div>
+      {/* FIXED FAB MENU (No Change) */}
+      <div 
+        className={`fab-container ${isFabMenuOpen ? 'open' : ''}`} 
+        id="fab-container"
+        ref={fabContainerRef} 
+      >
+      {/* ... (rest of language FAB) ... */}
+      </div>
+    </main>
+  );
