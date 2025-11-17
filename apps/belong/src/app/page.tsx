@@ -4,18 +4,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 
 // --- 1. DATA STRUCTURES ---
-interface Song {
-  title: string;
-  lyrics: string;
-}
-interface LanguageData {
-  langName: string;
-  translateUrl: string;
-  songs: Song[];
-}
-interface AllLyrics {
-  [key: string]: LanguageData;
-}
+interface Song { title: string; lyrics: string; }
+interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
+interface AllLyrics { [key: string]: LanguageData; }
 
 // NOTE: Using the internal data from your previous HTML code.
 const allLyrics: AllLyrics = {
@@ -94,7 +85,6 @@ our Lord Emmanuel`
       }
     ]
   },
-  // ... (zh-Hans, zh-HK, ko languages data truncated for brevity)
   'zh-Hans': {
     langName: '简体',
     translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans',
@@ -103,7 +93,7 @@ our Lord Emmanuel`
   'zh-HK': {
     langName: '繁體',
     translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK',
-    songs: [{ title: "Joy to the World", lyrics: "Cantonese version of Joy to the world!" }, /*...*/ ]
+    songs: [{ title: "Joy to the World", lyrics: "Cantonese version of Hark! The Herald Angels Sing" }, /*...*/ ]
   },
   'ko': {
     langName: '한국어',
@@ -112,69 +102,55 @@ our Lord Emmanuel`
   }
 };
 
-// Define constants for the Contact link content
 const CONTACT_TITLE = 'Contact St Phils';
 const CONTACT_IFRAME_SRC = 'https://stphilseastwood.elvanto.com.au/form/2840a4a4-1e93-454e-890b-5e358d69b811';
 
 
-// This is your new React page component
 export default function Home() {
   
   // --- 2. USE REACT STATE ---
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [activeSongIndex, setActiveSongIndex] = useState(0);
-  
-  // Dropdown menu state (Song Selection Menu)
   const [isSongMenuOpen, setIsSongMenuOpen] = useState(false); 
-
-  // FAB menu state (Language/Contact Menu)
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
-
-  // State to track if the Contact form should be displayed instead of lyrics
   const [isContactVisible, setIsContactVisible] = useState(false);
 
   const songMenuRef = useRef<HTMLDivElement>(null);
-  const fabContainerRef = useRef<HTMLDivElement>(null); // Ref for closing FAB menu
+  const fabContainerRef = useRef<HTMLDivElement>(null);
 
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
 
-
   // --- 3. CORE FUNCTIONS ---
 
-  // Function to switch language and revert to lyrics view
   const changeLanguage = useCallback((newLangKey: string) => {
     if (newLangKey === currentLanguage) return;
 
     setCurrentLanguage(newLangKey);
     setActiveSongIndex(0);
     setIsSongMenuOpen(false);
-    setIsContactVisible(false); // Switch back to song lyrics view
+    setIsContactVisible(false);
   }, [currentLanguage]);
 
-  // Function to handle clicking a song link
   const handleSongClick = useCallback((index: number) => {
     setActiveSongIndex(index);
     setIsSongMenuOpen(false);
-    setIsContactVisible(false); // Display lyrics content
+    setIsContactVisible(false);
   }, []);
 
-  // Function to handle clicking the Contact link in the Song Menu
   const handleContactClick = useCallback(() => {
-    setIsContactVisible(true); // Display contact iframe content
-    setIsSongMenuOpen(false); 
+    setIsContactVisible(true);
+    setIsSongMenuOpen(false);
   }, []);
 
-  // Function to handle clicking the Contact icon in the FAB Menu
   const handleFabContactClick = useCallback(() => {
-    // 1. Trigger the display change (same as clicking the Contact button in the Song Menu)
+    // FAB Contact icon redirects to the contact view
     handleContactClick();
-    // 2. Close the FAB menu
     setIsFabMenuOpen(false);
   }, [handleContactClick]);
 
 
-  // --- 4. CLOSE MENUS ON OUTSIDE CLICK ---
+  // --- 4. CLOSE MENUS ON OUTSIDE CLICK (Standard React pattern) ---
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -197,7 +173,7 @@ export default function Home() {
   }, []);
 
 
-  // --- 5. RENDER HELPER COMPONENTS (for JSX structure) ---
+  // --- 5. RENDER HELPERS ---
 
   const renderSongMenuLinks = () => {
     return (
@@ -243,7 +219,7 @@ export default function Home() {
               className="fab-item lang"
               onClick={() => {
                 changeLanguage(langKey);
-                setIsFabMenuOpen(false); // Close FAB when language selected
+                setIsFabMenuOpen(false);
               }}
             >
               {allLyrics[langKey].langName}
@@ -255,7 +231,7 @@ export default function Home() {
           key="fab-contact-icon"
           className="fab-item contact"
           aria-label="Contact Us"
-          onClick={handleFabContactClick} // Calls the combined handler
+          onClick={handleFabContactClick}
         >
           <span className="material-symbols-outlined">mail</span>
         </button>
@@ -282,7 +258,7 @@ export default function Home() {
           <div className="song-nav" id="song-nav" ref={songMenuRef}>
             <button 
               className={`song-menu-toggle ${isSongMenuOpen ? 'open' : ''}`}
-              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} // Toggle state
+              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)}
             >
               {isContactVisible ? CONTACT_TITLE : activeSong.title}
             </button>
@@ -292,26 +268,23 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Content Containers (Conditionally Rendered) */}
-
-          {/* Contact Iframe Content Area */}
-          {/* Note: Added flex: 1 and overflow: auto to the CSS for the visible container */}
-          <div 
-            id="contact-iframe-container"
-            className={isContactVisible ? 'visible' : ''}
-            // Hiding and showing elements in React should be done with CSS class/display: none 
-            // to maintain Flex context, which is covered by your Global.css 
-          >
-            <iframe 
-              src={CONTACT_IFRAME_SRC} 
-              title="Contact Page"
-            />
-          </div>
-
-          {/* Song Lyrics Content Area */}
-          <div className={`song-content ${isContactVisible ? 'hidden' : ''}`} id="song-lyrics">
-            {activeSong.lyrics}
-          </div>
+          {/* Contact Iframe Content Area - CONDITIONALLY RENDERED */}
+          {isContactVisible ? (
+            <div 
+              id="contact-iframe-container"
+              className={'visible'}
+            >
+              <iframe 
+                src={CONTACT_IFRAME_SRC} 
+                title="Contact Page"
+              />
+            </div>
+          ) : (
+            {/* Song Lyrics Content Area - CONDITIONALLY RENDERED */}
+            <div className={'song-content'} id="song-lyrics">
+              {activeSong.lyrics}
+            </div>
+          )}
 
         </div>
       </div>
@@ -320,9 +293,9 @@ export default function Home() {
       <div 
           className={`fab-container ${isFabMenuOpen ? 'open' : ''}`} 
           id="fab-container"
-          ref={fabContainerRef} // Use ref here for outside click handling
+          ref={fabContainerRef} 
       >
-        {/* Language buttons and Contact icon (visible only when open) */}
+        {/* Language buttons and Contact icon (visible via CSS animation) */}
         <div className="fab-menu" id="fab-menu">
           {renderFabMenuButtons()}
         </div>
