@@ -605,3 +605,16 @@
         border-right: none !important;
     }
 
+    /* Base rotation for the icon to handle landscape mode */
+    .minimize-fab .material-symbols-outlined {
+        /* Initial state (Portrait): no rotation (icon points up) */
+        transform: rotate(0deg);
+        transition: transform 0.3s ease; /* Smooth rotation transition */
+        display: block; /* Ensures rotation works correctly */
+    }
+
+    /* This class is added by JS in Landscape mode */
+    .minimize-fab.rotate-fab .material-symbols-outlined {
+        /* Landscape: Rotate 90 degrees clockwise (icon points left) */
+        transform: rotate(90deg);
+    }
