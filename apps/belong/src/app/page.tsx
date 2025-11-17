@@ -301,9 +301,9 @@ export default function Home() {
 
   // --- 5. RENDER HELPERS ---
 
- const renderSongMenuLinks = () => {
+ const renderSongMenuLinks = (isMenuOpen: boolean) => {
     return (
-        <div className="song-fab-menu">
+        <div className={`song-fab-menu ${isMenuOpen ? 'open' : ''}`}>
         {currentLangData.songs.map((song, index) => (
             <button
             key={song.title}
@@ -385,7 +385,7 @@ export default function Home() {
               Songs
             </button>
             {/* The dropdown menu content */}
-            {renderSongMenuLinks()}
+            {renderSongMenuLinks(isSongMenuOpen)}
           </div>
           {/* MAIN CONTENT AREA (Now gets the full height of the pane) */}
           {isContactVisible ? (
