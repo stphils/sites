@@ -99,6 +99,45 @@
                 border-right: none;
                 border-bottom: 1px solid #ddd;
             }
+
+            .split-container.minimized-portrait {
+                        flex-direction: column; /* Ensure correct column stacking */
+            }
+            .split-container.minimized-portrait .split-pane#translate-pane.minimized {
+                        height: 50px !important; /* Small bar height for portrait */
+                        min-height: 50px !important; /* Lock the height */
+                        width: 100% !important; /* Full width */
+                        border-bottom: none !important;
+                        /* Need to reset min-width from the main media query */
+                        min-width: 0 !important;
+            }
+
+            .split-container.minimized-portrait #translate-pane:not(.minimized) {
+            /* Revert to original portrait size */
+                        flex: 1;
+                        min-height: 200px !important;
+                        border-bottom: 1px solid #ddd !important;
+            }
+        }
+
+        /* Text for minimized bar */
+        .translation-placeholder {
+                color: white;
+                font-size: 1rem;
+                font-weight: 600;
+                text-align: center;
+        }
+
+        /* Rotation for landscape minimized text */
+        .split-container:not(.minimized-portrait) .translation-placeholder {
+                /* Default (Landscape) - Rotate text 90 degrees to read sideways */
+                transform: rotate(-90deg);
+                white-space: nowrap; /* Prevent wrapping */
+        }
+
+        /* Maximized Carols Pane - Shared Styles */
+        .split-pane.maximized {
+                flex: 1 !important; /* Take up all remaining space */
         }
 
         /* --- STYLES FOR SONGBOOK --- */
@@ -514,3 +553,54 @@
             white-space: nowrap; /* Prevents text from wrapping vertically */
             display: block; /* Ensures the writing mode applies to the content block */
     }
+    /* The new green FAB for minimizing the translate pane */
+    .minimize-fab {
+        position: absolute;
+        bottom: 20px; /* Aligned with the bottom offset in page.tsx */
+        right: 20px; /* Aligned with the right offset in page.tsx */
+        z-index: 100;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: #27ae60; /* Green color */
+        color: white;
+        font-size: 1.5rem;
+        line-height: 48px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
+    }
+
+    .minimize-fab:hover {
+        background-color: #2ecc71;
+    }
+
+    .minimize-fab.hidden {
+        opacity: 0;
+        pointer-events: none; /* Disable clicks when hidden */
+    }
+
+    /* Minimized Translation Pane - Shared Styles */
+    .split-pane.minimized {
+        /* Override flex for minimized state */
+        flex: 0 0 auto !important; /* Prevents it from growing/shrinking */
+        background-color: #34495e !important; /* Dark bar color */
+        cursor: pointer;
+        border: none !important;
+        display: flex !important; /* Important for centering text */
+        justify-content: center;
+        align-items: center;
+        transition: flex-basis 0.3s ease, width 0.3s ease, height 0.3s ease;
+    }
+
+    /* Minimized Translation Pane - Landscape (Horizontal) Mode */
+    /* Default flex-direction is row, so this minimizes width */
+    .split-container .split-pane#translate-pane.minimized {
+        width: 50px; /* Small bar width for landscape */
+        min-width: 50px !important; /* Lock the width */
+        height: 100% !important; /* Full height */
+        border-right: none !important;
+    }
+
