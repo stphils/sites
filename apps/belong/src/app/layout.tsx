@@ -33,7 +33,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Split Screen Layout</title>
       </head>
-      <body style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
+      <body>
         {/* This is the most important part.
           This renders your actual pages (e.g., app/page.tsx) 
         */}
