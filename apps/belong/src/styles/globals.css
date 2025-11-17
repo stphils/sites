@@ -1,28 +1,33 @@
 /*@tailwind base;*/
 /*@tailwind components;*/
 /*@tailwind utilities;*/
-
  html, body {
-    height: 100% !important; /* Use 100% or 100vh */
-    width: 100% !important;
-    overflow: hidden !important; 
-    margin: 0 !important;
-    padding: 0 !important;
-}
-body {
-    display: flex !important;
-    flex-direction: column !important;
-    position: relative; /* Remove other absolute/fixed contexts */
-}
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevents whole page from scrolling */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-       .split-container {
-    flex: 1 !important; /* CRITICAL: Must take up all vertical space in body/main */
-    display: flex !important;
-    width: 100% !important;
-    overflow: hidden !important; 
-    /* This defines the default (landscape) layout */
-    flex-direction: row !important; 
-}
+        /* Make body a flex container to hold panes + footer */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* The main container */
+        .split-container {
+            flex: 1; /* This makes it take all available space */
+            display: flex;
+            width: 100%;
+            overflow: hidden; /* Prevents resizing issues */
+            
+            /* * DEFAULT: Landscape Mode (Left/Right) 
+             * This will apply to desktop browsers and landscape devices.
+             */
+            flex-direction: row; 
+        }
 
         /* Styling for each content pane */
         .split-pane {
@@ -294,34 +299,33 @@ body {
         
         .fab-container {
     /* --- ADD THESE STYLES TO FIX THE POSITIONING --- */
-    position: fixed;
+    position: relative;
     bottom: 20px; /* Adjust this value for desired bottom offset */
     right: 20px; /* Adjust this value for desired right offset */
     /* ----------------------------------------------- */
     
     /* Ensure it is on top of other content */
     z-index: 1000; 
-    //position: relative; 
+   position: relative; 
     display: block; /* Ensures container behaves correctly */
 }
 
 .fab-toggle {
     /* Style to make it a large, circular button */
-    width: 56px !important; 
-    height: 56px !important;
-    border-radius: 50% !important;
+    width: 56px; 
+    height: 56px;
+    border-radius: 50%;
     
     /* Look and feel */
-    background-color: #005a9c !important; /* Blue color for main action */
-    color: white !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-    font-size: 2rem !important; /* Size of the '+' sign */
-    line-height: 56px! important; /* Center the text vertically */
-    text-align: center !important;
-    border: none !important;
+    background-color: #005a9c; /* Blue color for main action */
+    color: white;
+    font-size: 2rem; /* Size of the '+' sign */
+    line-height: 56px; /* Center the text vertically */
+    text-align: center;
+    border: none;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25) !important;
-    transition: transform 0.3s ease, background-color 0.2s ease !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, background-color 0.2s ease;
 }
 
         /* ADDED: CSS for Google Material Symbols */
