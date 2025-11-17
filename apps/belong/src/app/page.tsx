@@ -279,13 +279,31 @@ export default function Home() {
   const [isSongMenuOpen, setIsSongMenuOpen] = useState(false); 
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
   const [isContactVisible, setIsContactVisible] = useState(false);
+  const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
 
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
+  const splitContainerRef = useRef<HTMLDivElement>(null);
 
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
+  const [isPortrait, setIsPortrait] = useState(false);
 
+  useEffect(() => {
+    const checkOrientation = () => {
+      // Check if the window object exists and if height > width
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+    if (typeof window !== 'undefined') {
+      checkOrientation(); // Check on mount
+      window.addEventListener('resize', checkOrientation);
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', checkOrientation);
+      }
+    };
+  }, []);
 
   // --- 3. CORE LOGIC ---
 
@@ -312,6 +330,11 @@ export default function Home() {
     handleContactClick();
     setIsFabMenuOpen(false);
   }, [handleContactClick]);
+
+  const toggleTranslateMinimize = useCallback(() => {
+    setIsTranslateMinimized(prev => !prev);
+    setIsFabMenuOpen(false); // Close the main FAB menu when toggling
+  }, []);
 
   // --- 4. CLOSE MENUS ON OUTSIDE CLICK ---
 
@@ -406,12 +429,40 @@ export default function Home() {
 
 
   // --- 6. RENDER WITH JSX ---
+
+  // Add dynamic class names based on state
+  const translatePaneClass = isTranslateMinimized ? 'split-pane minimized' : 'split-pane';
+  const carolsPaneClass = isTranslateMinimized ? 'split-pane maximized' : 'split-pane';
+  // Add class to the split-container for portrait mode to handle minimization properly
+  const splitContainerClass = isTranslateMinimized && isPortrait
+    ? 'split-container minimized-portrait'
+    : 'split-container';
+      
   return (
     <main className="app-shell">
-      <div className="split-container">
-        {/* LEFT PANE: Translator Iframe (No change) */}
-        <div className="split-pane" id="translate-pane">
-          <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
+        <div className={splitContainerClass} ref={splitContainerRef}>
+            {/* LEFT PANE: Translator Iframe */}
+        <div className={translatePaneClass} id="translate-pane" onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}>
+            {isTranslateMinimized ? (
+                <span className="translation-placeholder">For translation services</span>
+            ) : (
+                <>
+                <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
+                {/* NEW GREEN MINIMIZE FAB BUTTON */}
+                <button
+                    className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''}`}
+                    id="minimize-fab-button"
+                    aria-label="Minimize translation pane"
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent the click from triggering the parent div's onClick
+                        toggleTranslateMinimize();
+                    }}
+                >
+                    {/* The 'expand_less' icon is similar to '^' */}
+                    <span className="material-symbols-outlined">expand_less</span>
+                </button>
+            </>
+            )}
         </div>
         {/* RIGHT PANE: Song Lyrics / Contact Iframe */}
         <div className="split-pane" id="carols-pane">
