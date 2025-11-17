@@ -1,4 +1,3 @@
-// app/page.tsx
 'use client'; 
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -8,7 +7,6 @@ interface Song { title: string; lyrics: string; }
 interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
 interface AllLyrics { [key: string]: LanguageData; }
 
-// NOTE: Using the internal data from your previous HTML code.
 const allLyrics: AllLyrics = {
   'en': {
     langName: 'English',
@@ -44,7 +42,150 @@ and wonders of his love
 and wonders of his love
 and wonders, wonders of his love`
       },
-      // ... (Rest of the 'en' songs data truncated for brevity)
+      {
+        title: "O Come All Ye Faithful",
+        lyrics: `O come all ye faithful, joyful and triumphant
+O come ye, o come ye to bethlehem
+Come and behold him, born the king of angels
+O come let us adore him
+O come let us adore him
+O come let us adore him
+Christ the Lord!
+
+True God of true God, Light of Light eternal
+Lo, he abhors not the virgin’s womb
+Son of the Father, begotten, not created
+O come let us adore him
+O come let us adore him
+O come let us adore him
+Christ the Lord!
+
+Sing choirs of angels, sing in exultation
+Sing all ye citizens of heaven above
+‘Glory to God, glory in the highest’
+O come let us adore him
+O come let us adore him
+O come let us adore him
+Christ the Lord!
+
+Yea, Lord we greet thee, born this happy morning
+Jesus, to thee be glory given
+Word of the Father now in flesh appearing
+O come let us adore him
+O come let us adore him
+O come let us adore him
+Christ the Lord!`
+      },
+      {
+        title: "Hark! The Herald Angels Sing",
+        lyrics: `Hark! The herald angels sing
+glory to the newborn king
+peace on earth and mercy mild
+God and sinners reconciled
+Joyful all ye nations rise
+join the triumph of the skies
+with the angelic host proclaim
+‘Christ is born in Bethlehem’
+Hark! The heralds angels sing 
+glory to the newborn king
+
+Christ, by highest heaven adored
+Christ, the everlasting Lord
+late in time behold him come
+offspring of the virgin’s womb!
+Veild in flesh the Godhead see
+hail the incarnate Deity!
+Pleased as man with men to dwell
+Jesus, our Immanuel
+Hark! The heralds angels sing 
+glory to the newborn king
+
+Mild he lays his glory by
+born that man no more may die
+born to raise the sons of earth
+born to give them second birth
+Hail the heaven-born Prince of Peace!
+Hail the Sun of Righteousness!
+Light and life to all he brings
+risen with healing in his wings
+Hark! The heralds angels sing 
+glory to the newborn king`
+      },
+      {
+        title: "Silent Night",
+        lyrics: `Silent night, holy night
+all is calm, all is bright
+round young virgin, mother and child
+holy infant so tender and mild
+sleep in heavenly peace
+sleep in heavenly peace
+
+Silent night, holy night
+shepherds quake at the sight
+glories stream from heaven afar
+heavenly hosts sing, ‘Alleluia
+Christ the Savior is born
+Christ the savior is born’
+
+Silent night, holy night
+wonderous star, lend your light
+with the angels let us sing
+Alleluia to our King
+Christ our Saviour is born
+Christ our Saviour is born`
+      },
+      {
+        title: "O Holy Night",
+        lyrics: `O holy night, the stars are brightly shining
+it is the night of our dear saviour’s birth
+Long laid the world in sin and error pining
+till he appeared and the soul felt its worth
+A thrill of hope, the weary world rejoices
+For yonder breaks, a new and glorious morn
+Fall on your knees, O hear the angel voices
+O night divine, O night when Christ was born
+O night divine, O night, O night divine
+
+Truely he taught us to love oneanothers
+His law is love and his gospel is peace
+Chains, shall he break for the slave is our brother
+and in his name, all oppression shall cease
+Sweet hymns of joy, in grateful chorus raise we
+Let all within us praise his holy name
+Christ is the Lord, O praise hisname forever
+His power and glory evermore proclaim
+His power and glory evermore proclaim`
+      },
+      {
+        title: "The First Noel",
+        lyrics: `The first nowell the angel did say
+was the certain poor shepherds in fields as they lay
+in fields where they lay keeping their sheep
+on a cold winder’s night that was so deep
+Nowell, nowell, nowell, nowell
+born is the King of Israel
+
+When they looked up they saw a star
+shining in the east, beyond them far
+and to the earth it gave great light
+and so it continued both day and night
+Nowell, nowell, nowell, nowell
+born is the King of Israel
+
+This star drew nigh to the north-west
+over Bethlehem it took its rest
+and there it did both stop and stay
+right over the place where Jesus lay
+Nowell, nowell, nowell, nowell
+born is the King of Israel
+
+Now let us all with one accord
+sing praises to our heavenly Lord
+who brought forth heaven and earth from nought
+and with his blood mankind has bought
+Nowell, nowell, nowell, nowell
+born is the King of Israel`
+      },
       {
         title: "O Little Town of Bethlehem",
         lyrics: `O little town of Bethlehem
@@ -85,21 +226,9 @@ our Lord Emmanuel`
       }
     ]
   },
-  'zh-Hans': {
-    langName: '简体',
-    translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans',
-    songs: [{ title: "Joy to the World", lyrics: "Mandarin version of Joy to the world!" }, /*...*/ ]
-  },
-  'zh-HK': {
-    langName: '繁體',
-    translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK',
-    songs: [{ title: "Joy to the World", lyrics: "Cantonese version of Hark! The Herald Angels Sing" }, /*...*/ ]
-  },
-  'ko': {
-    langName: '한국어',
-    translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/ko',
-    songs: [{ title: "Joy to the World", lyrics: "Korean version of Joy to the world!" }, /*...*/ ]
-  }
+  'zh-Hans': { langName: '简体', translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans', songs: [{ title: "Joy to the World", lyrics: "Mandarin version of Joy to the world!" }, ] },
+  'zh-HK': { langName: '繁體', translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK', songs: [{ title: "Joy to the World", lyrics: "Cantonese version of Hark! The Herald Angels Sing" }, ] },
+  'ko': { langName: '한국어', translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/ko', songs: [{ title: "Joy to the World", lyrics: "Korean version of Joy to the world!" }, ] }
 };
 
 const CONTACT_TITLE = 'Contact St Phils';
@@ -108,7 +237,7 @@ const CONTACT_IFRAME_SRC = 'https://stphilseastwood.elvanto.com.au/form/2840a4a4
 
 export default function Home() {
   
-  // --- 2. USE REACT STATE ---
+  // --- 2. STATE AND REFS ---
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [activeSongIndex, setActiveSongIndex] = useState(0);
   const [isSongMenuOpen, setIsSongMenuOpen] = useState(false); 
@@ -121,11 +250,11 @@ export default function Home() {
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
 
-  // --- 3. CORE FUNCTIONS ---
+
+  // --- 3. CORE LOGIC ---
 
   const changeLanguage = useCallback((newLangKey: string) => {
     if (newLangKey === currentLanguage) return;
-
     setCurrentLanguage(newLangKey);
     setActiveSongIndex(0);
     setIsSongMenuOpen(false);
@@ -140,27 +269,24 @@ export default function Home() {
 
   const handleContactClick = useCallback(() => {
     setIsContactVisible(true);
-    setIsSongMenuOpen(false);
+    setIsSongMenuOpen(false); 
   }, []);
 
   const handleFabContactClick = useCallback(() => {
-    // FAB Contact icon redirects to the contact view
     handleContactClick();
     setIsFabMenuOpen(false);
   }, [handleContactClick]);
 
-
-  // --- 4. CLOSE MENUS ON OUTSIDE CLICK (Standard React pattern) ---
+  // --- 4. CLOSE MENUS ON OUTSIDE CLICK ---
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
-
-      // Close Song Menu if clicking outside
+      // Close Song Menu
       if (songMenuRef.current && !songMenuRef.current.contains(target)) {
         setIsSongMenuOpen(false);
       }
-      // Close FAB Menu if clicking outside
+      // Close FAB Menu
       if (fabContainerRef.current && !fabContainerRef.current.contains(target)) {
         setIsFabMenuOpen(false);
       }
@@ -258,7 +384,7 @@ export default function Home() {
           <div className="song-nav" id="song-nav" ref={songMenuRef}>
             <button 
               className={`song-menu-toggle ${isSongMenuOpen ? 'open' : ''}`}
-              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} // Toggle state
+              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} 
             >
               {isContactVisible ? CONTACT_TITLE : activeSong.title}
             </button>
@@ -268,9 +394,7 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Content Containers (Conditionally Rendered) */}
-
-          {/* Contact Iframe Content Area */}
+          {/* Conditional Content Area */}
           {isContactVisible ? (
             <div 
               id="contact-iframe-container"
@@ -282,7 +406,6 @@ export default function Home() {
               />
             </div>
           ) : (
-            {/* Song Lyrics Content Area - CONDITIONALLY RENDERED */}
             <div className={'song-content'} id="song-lyrics">
               {activeSong.lyrics}
             </div>
@@ -297,7 +420,7 @@ export default function Home() {
           id="fab-container"
           ref={fabContainerRef} 
       >
-        {/* Language buttons and Contact icon (visible via CSS animation) */}
+        {/* Language buttons and Contact icon */}
         <div className="fab-menu" id="fab-menu">
           {renderFabMenuButtons()}
         </div>
