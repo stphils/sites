@@ -258,7 +258,7 @@ export default function Home() {
           <div className="song-nav" id="song-nav" ref={songMenuRef}>
             <button 
               className={`song-menu-toggle ${isSongMenuOpen ? 'open' : ''}`}
-              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)}
+              onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} // Toggle state
             >
               {isContactVisible ? CONTACT_TITLE : activeSong.title}
             </button>
@@ -268,7 +268,9 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Contact Iframe Content Area - CONDITIONALLY RENDERED */}
+          {/* Content Containers (Conditionally Rendered) */}
+
+          {/* Contact Iframe Content Area */}
           {isContactVisible ? (
             <div 
               id="contact-iframe-container"
