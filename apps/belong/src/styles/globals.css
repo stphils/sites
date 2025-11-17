@@ -214,7 +214,7 @@
 
 #contact-iframe-container.visible {
     display: flex; /* FIX: Use flex to make the iframe fill the container */
-    flex-direction: column;
+    flex-direction: column;
 }
 
 #contact-iframe-container iframe {
