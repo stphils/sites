@@ -427,12 +427,12 @@ export default function Home() {
         
         {/* Main Toggle Button */}
         <button 
-          className={`fab-toggle ${isFabMenuOpen ? 'open' : ''}`} 
-          id="fab-toggle-button" 
-          aria-label="Toggle menu"
-          onClick={() => setIsFabMenuOpen(!isFabMenuOpen)}
-        >
-            +
+                className={`fab-toggle ${isFabMenuOpen ? 'open' : ''} font-sans`} // <-- ADD font-sans
+                id="fab-toggle-button" 
+                aria-label="Toggle menu"
+                onClick={() => setIsFabMenuOpen(!isFabMenuOpen)}
+        >
+                +
         </button>
       </div>
     </main>
