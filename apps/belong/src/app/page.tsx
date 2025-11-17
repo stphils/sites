@@ -44,7 +44,7 @@ and wonders, wonders of his love`
       },
       {
         title: "O Come All Ye Faithful",
-        lyrics: `O come all ye faithful, joyful and triumphant
+        lyrics: `<h2>O Come All Ye Faithful</h2>O come all ye faithful, joyful and triumphant
 O come ye, o come ye to bethlehem
 Come and behold him, born the king of angels
 O come let us adore him
@@ -78,7 +78,7 @@ Christ the Lord!`
       },
       {
         title: "Hark! The Herald Angels Sing",
-        lyrics: `Hark! The herald angels sing
+        lyrics: `<h2>Hark! The Herald Angels Sing</h2>Hark! The herald angels sing
 glory to the newborn king
 peace on earth and mercy mild
 God and sinners reconciled
@@ -113,7 +113,7 @@ glory to the newborn king`
       },
       {
         title: "Silent Night",
-        lyrics: `Silent night, holy night
+        lyrics: `<h2>Silent Night</h2>Silent night, holy night
 all is calm, all is bright
 round young virgin, mother and child
 holy infant so tender and mild
@@ -136,7 +136,7 @@ Christ our Saviour is born`
       },
       {
         title: "O Holy Night",
-        lyrics: `O holy night, the stars are brightly shining
+        lyrics: `<h2>O Holy Night</h2>O holy night, the stars are brightly shining
 it is the night of our dear saviour’s birth
 Long laid the world in sin and error pining
 till he appeared and the soul felt its worth
@@ -158,7 +158,7 @@ His power and glory evermore proclaim`
       },
       {
         title: "The First Noel",
-        lyrics: `The first nowell the angel did say
+        lyrics: `<h2>The First Noel</h2>The first nowell the angel did say
 was the certain poor shepherds in fields as they lay
 in fields where they lay keeping their sheep
 on a cold winder’s night that was so deep
@@ -188,7 +188,7 @@ born is the King of Israel`
       },
       {
         title: "O Little Town of Bethlehem",
-        lyrics: `O little town of Bethlehem
+        lyrics: `<h2>O Little Town of Bethlehem</h2>O little town of Bethlehem
 how still we see thee lie!
 above thy deep and dreamless sleep
 the silent stars go by
