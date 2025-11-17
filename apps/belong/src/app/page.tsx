@@ -450,7 +450,7 @@ export default function Home() {
                 <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
                 {/* NEW GREEN MINIMIZE FAB BUTTON */}
                 <button
-                    className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''}`}
+                    className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
                     id="minimize-fab-button"
                     aria-label="Minimize translation pane"
                     onClick={(e) => {
