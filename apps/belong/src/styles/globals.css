@@ -109,7 +109,7 @@
         .song-menu-toggle {
             display: block;
             width: 100%;
-            padding: 14px 40px 14px 20px; /* Extra padding on right for icon */
+            padding: 4px 40px 4px 20px; /* Extra padding on right for icon */
             cursor: pointer;
             border: none;
             background-color: #f9f9f9;
