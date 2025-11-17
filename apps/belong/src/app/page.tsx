@@ -439,7 +439,7 @@ export default function Home() {
             </div>
           ) : (
             <div className={'song-content'} id="song-lyrics">
-              {activeSong.lyrics}
+                  dangerouslySetInnerHTML={{ __html: activeSong.lyrics }}
             </div>
           )}
         </div>
