@@ -226,10 +226,46 @@ our Lord Emmanuel`
       }
     ]
   },
-  'zh-Hans': { langName: '简体', translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans', songs: [{ title: "Joy to the World", lyrics: "Mandarin version of Joy to the world!" }, ] },
-  'zh-HK': { langName: '繁體', translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK', songs: [{ title: "Joy to the World", lyrics: "Cantonese version of Hark! The Herald Angels Sing" }, ] },
-  'ko': { langName: '한국어', translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/ko', songs: [{ title: "Joy to the World", lyrics: "Korean version of Joy to the world!" }, ] }
-};
+  'zh-Hans': { 
+      langName: '简体', 
+      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans', 
+      songs: [
+        { title: "Joy to the World", lyrics: "Mandarin version of Joy to the world! (Placeholder)" },
+        { title: "O Come All Ye Faithful", lyrics: "Mandarin placeholder lyrics." },
+        { title: "Hark! The Herald Angels Sing", lyrics: "Mandarin placeholder lyrics." },
+        { title: "Silent Night", lyrics: "Mandarin placeholder lyrics." },
+        { title: "O Holy Night", lyrics: "Mandarin placeholder lyrics." },
+        { title: "The First Noel", lyrics: "Mandarin placeholder lyrics." },
+        { title: "O Little Town of Bethlehem", lyrics: "Mandarin placeholder lyrics." }
+      ] 
+    },
+    'zh-HK': { 
+      langName: '繁體', 
+      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK', 
+      songs: [
+        { title: "Joy to the World", lyrics: "Cantonese version of Joy to the world! (Placeholder)" },
+        { title: "O Come All Ye Faithful", lyrics: "Cantonese placeholder lyrics." },
+        { title: "Hark! The Herald Angels Sing", lyrics: "Cantonese placeholder lyrics." },
+        { title: "Silent Night", lyrics: "Cantonese placeholder lyrics." },
+        { title: "O Holy Night", lyrics: "Cantonese placeholder lyrics." },
+        { title: "The First Noel", lyrics: "Cantonese placeholder lyrics." },
+        { title: "O Little Town of Bethlehem", lyrics: "Cantonese placeholder lyrics." }
+      ] 
+    },
+    'ko': { 
+      langName: '한국어', // Reverted to Korean
+      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/ko', 
+      songs: [
+        { title: "Joy to the World", lyrics: "Korean version of Joy to the world! (Placeholder)" },
+        { title: "O Come All Ye Faithful", lyrics: "Korean placeholder lyrics." },
+        { title: "Hark! The Herald Angels Sing", lyrics: "Korean placeholder lyrics." },
+        { title: "Silent Night", lyrics: "Korean placeholder lyrics." },
+        { title: "O Holy Night", lyrics: "Korean placeholder lyrics." },
+        { title: "The First Noel", lyrics: "Korean placeholder lyrics." },
+        { title: "O Little Town of Bethlehem", lyrics: "Korean placeholder lyrics." }
+      ]
+    }
+  };
 
 const CONTACT_TITLE = 'Contact St Phils';
 const CONTACT_IFRAME_SRC = 'https://stphilseastwood.elvanto.com.au/form/2840a4a4-1e93-454e-890b-5e358d69b811';
