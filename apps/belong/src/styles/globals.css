@@ -290,8 +290,8 @@
         }
 
         .fab-item.lang {
-                writing-mode: horizontal-tb; /* Forces horizontal text */
-                text-orientation: mixed;
+                writing-mode: horizontal-tb !important; /* Forces horizontal text */
+                text-orientation: mixed !important;
         }
 
         .fab-item:hover {
@@ -438,7 +438,7 @@
         transition: max - height 0.3s ease - out;
         margin-top: 10px; /* Space between button and menu items */
 
-        background-color: #fff;
+        background-color: transparent;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
