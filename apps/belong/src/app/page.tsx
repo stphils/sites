@@ -10,7 +10,7 @@ interface AllLyrics { [key: string]: LanguageData; }
 const allLyrics: AllLyrics = {
   'en': {
     langName: 'English',
-    translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/en-US',
+    translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/en-US?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false',
     songs: [
       {
         title: "Joy to the World",
@@ -228,7 +228,7 @@ our Lord Emmanuel`
   },
   'zh-Hans': { 
       langName: '简体', 
-      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans', 
+      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-Hans?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false', 
       songs: [
         { title: "Joy to the World", lyrics: "Mandarin version of Joy to the world! (Placeholder)" },
         { title: "O Come All Ye Faithful", lyrics: "Mandarin placeholder lyrics." },
@@ -241,7 +241,7 @@ our Lord Emmanuel`
     },
     'zh-HK': { 
       langName: '繁體', 
-      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK', 
+      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/zh-HK?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false', 
       songs: [
         { title: "Joy to the World", lyrics: "Cantonese version of Joy to the world! (Placeholder)" },
         { title: "O Come All Ye Faithful", lyrics: "Cantonese placeholder lyrics." },
@@ -254,7 +254,7 @@ our Lord Emmanuel`
     },
     'ko': { 
       langName: '한국어', // Reverted to Korean
-      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/ko', 
+      translateUrl: 'https://beta.sunflowerai.io/audience/DQ8Q36/ko?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false', 
       songs: [
         { title: "Joy to the World", lyrics: "Korean version of Joy to the world! (Placeholder)" },
         { title: "O Come All Ye Faithful", lyrics: "Korean placeholder lyrics." },
