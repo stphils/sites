@@ -284,6 +284,7 @@ export default function Home() {
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
   const splitContainerRef = useRef<HTMLDivElement>(null);
+  const songContentRef = useRef<HTMLDivElement>(null);
 
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
@@ -356,6 +357,13 @@ export default function Home() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  // NEW: Scroll the song content back to the top when the active song changes
+  useEffect(() => {
+    // Ensure we are viewing a song and the element exists
+    if (!isContactVisible && songContentRef.current) {
+      songContentRef.current.scrollTop = 0;
+    }
+  }, [activeSongIndex, isContactVisible]); // Rerun whenever song changes or contact visibility changes
 
 
   // --- 5. RENDER HELPERS ---
@@ -491,6 +499,7 @@ export default function Home() {
           ) : (
             <div className={'song-content'} 
                   id="song-lyrics"
+                  ref={songContentRef}
                   dangerouslySetInnerHTML={{ __html: activeSong.lyrics }}
             >
             </div>
