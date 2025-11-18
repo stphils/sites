@@ -15,13 +15,7 @@ const allLyrics: AllLyrics = {
       {
         title: "Welcome ...",
         lyrics: `<h2>Welcome to St Phils</h2>Thank you for joining us to celebrate Christmas together. 
-        Christmas is a season of great joy. It is when God showed His great love for us. 
-        It is when we celebrate the birth of Jesus Christ, God's son, born into our world. 
-        So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. 
-        They knew this was no ordinary baby. However, this baby's birth had a purpose: 
-        Billy Graham once said, "The very purpose of Christ's coming into the world was 
-        that he might offer up his life as a sacrifice for the sins of the world. 
-        He came to die. That is the heart of Christmas."`
+Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, "The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas."`
       },
       {
         title: "Joy to the World",
@@ -243,14 +237,7 @@ our Lord Emmanuel`
       songs: [
         {
         title: "Welcome ...",
-        lyrics: `<h2>欢迎来到圣菲尔教堂</h2>感谢大家加入我们，一起庆祝圣诞节。
-圣诞节是一个充满喜悦的季节。这是上帝向我们展示祂伟大爱的时刻。
-这是我们庆祝耶稣基督诞生的时候——上帝的儿子，降生到我们的世界中。
-因此，这个诞生给世界带来了巨大的喜悦。天使、牧羊人和贤士们都参与了这一重要事件。
-他们知道这不是普通的婴儿。然而，这个婴儿的诞生有其目的：
-比利·格雷厄姆曾说：“基督降临世界的根本目的就是
-为世人的罪而献出自己的生命作为牺牲。
-他来到世上是为了受难。这就是圣诞节的核心。”`
+        lyrics: `<h2>欢迎来到圣菲尔教堂</h2>感谢大家加入我们，一起庆祝圣诞节。圣诞节是一个充满喜悦的季节。这是上帝向我们展示祂伟大爱的时刻。这是我们庆祝耶稣基督诞生的时候——上帝的儿子，降生到我们的世界中。因此，这个诞生给世界带来了巨大的喜悦。天使、牧羊人和贤士们都参与了这一重要事件。他们知道这不是普通的婴儿。然而，这个婴儿的诞生有其目的：比利·格雷厄姆曾说：“基督降临世界的根本目的就是为世人的罪而献出自己的生命作为牺牲。他来到世上是为了受难。这就是圣诞节的核心。”`
         },
         { title: "Joy to the World", lyrics: "Mandarin version of Joy to the world! (Placeholder)" },
         { title: "O Come All Ye Faithful", lyrics: "Mandarin placeholder lyrics." },
