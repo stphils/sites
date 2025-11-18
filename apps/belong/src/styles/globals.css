@@ -119,6 +119,13 @@
                         min-height: 200px !important;
                         border-bottom: 1px solid #ddd !important;
             }
+
+            .minimize-fab {
+                        /* Reset bottom position */
+                        bottom: auto; 
+                        /* Set top position */
+                        top: 20px; 
+            }
         }
 
         /* Text for minimized bar */
