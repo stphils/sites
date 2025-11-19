@@ -630,7 +630,7 @@
         /* Positioning: Top Right, fixed to viewport */
         position: fixed;
         top: 20px; /* Offset from top */
-        right: 20px; /* Offset from right */
+        left: 20px; /* Offset from right */
         z-index: 1001; /* Ensure it is above ALL other content (main FAB is 1000) */
 
         /* Style: Charcoal, Circular, Transparent */
