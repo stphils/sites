@@ -1,6 +1,6 @@
 'use client'; 
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
 
 // --- 1. DATA STRUCTURES ---
 interface Song { title: string; lyrics: string; }
@@ -305,7 +305,12 @@ export default function Home() {
 
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
-  const [isPortrait, setIsPortrait] = useState(false);
+        
+  // Tracks if the app is currently in native fullscreen mode
+  const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
+
+  // To target the main element for native fullscreen
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const checkOrientation = () => {
@@ -321,6 +326,20 @@ export default function Home() {
         window.removeEventListener('resize', checkOrientation);
       }
     };
+  }, []);
+
+  // Effect to listen for fullscreen change events
+  // This correctly updates the icon state when the user presses ESC.
+  useLayoutEffect(() => {
+    if (typeof document === 'undefined') return;
+    function handleFullscreenChange() {
+        // Check if the element currently in fullscreen is our main element
+        setIsNativeFullscreen(document.fullscreenElement === mainRef.current);
+    }
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };  
   }, []);
 
   // --- 3. CORE LOGIC ---
@@ -356,6 +375,22 @@ export default function Home() {
 
   const toggleAppWindowed = useCallback(() => {
     setIsAppWindowed(prev => !prev);
+  }, []);
+
+  const toggleNativeFullscreen = useCallback(() => {
+    if (!mainRef.current) return;
+    if (document.fullscreenElement) {
+        // Currently fullscreen, request exit
+      document.exitFullscreen().catch(err => {
+          console.error(`Error attempting to exit fullscreen mode: ${err.message}`);
+      });
+    } else {
+        // Currently windowed, request fullscreen on the main element
+        mainRef.current.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
+      });
+    }
+    // State update is handled by the useLayoutEffect listener
   }, []);
 
   // --- 4. CLOSE MENUS ON OUTSIDE CLICK ---
@@ -467,18 +502,21 @@ export default function Home() {
     ? 'split-container minimized-portrait'
     : 'split-container';
 
-  // App Shell class depends on the isAppWindowed state
-  const appShellClass = isAppWindowed ? 'app-shell windowed' : 'app-shell';
-  
+  const appShellClass = 'app-shell';
+
+  // Determine the correct icon based on the native fullscreen state
+  // We want the 'maximize' icon ('fullscreen') when we are NOT fullscreen (i.e., windowed)
+  const fullscreenIcon = isNativeFullscreen ? 'close_fullscreen' : 'fullscreen';
+
   // Determine the correct icon based on the state
   const fullscreenIcon = isAppWindowed ? 'fullscreen' : 'close_fullscreen'; // 'fullscreen' when windowed, 'close_fullscreen' when fullscreen
       
   return (
-    <main className={appShellClass}>
+    <main className={appShellClass} ref={mainRef}>
         <button
             className="fullscreen-fab"
-            aria-label={isAppWindowed ? "Maximize window" : "Minimize window"}
-            onClick={toggleAppWindowed}
+            aria-label={isNativeFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            onClick={toggleNativeFullscreen}
         >
             <span className="material-symbols-outlined">
                 {fullscreenIcon}
