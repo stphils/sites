@@ -126,6 +126,17 @@
                         /* Set top position */
                         top: 20px; 
             }
+
+            /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
+            .fab-container {
+                        bottom: 76px !important; 
+            }
+
+            /* Update content padding to match the new FAB position (76px + FAB Height 56px = 132px) */
+            #contact-iframe-container.visible,
+            .song-content {
+                        padding-bottom: 140px !important; /* Use 140px for clean rounding and extra buffer */
+            }
         }
 
         /* Text for minimized bar */
