@@ -507,10 +507,7 @@ export default function Home() {
   // Determine the correct icon based on the native fullscreen state
   // We want the 'maximize' icon ('fullscreen') when we are NOT fullscreen (i.e., windowed)
   const fullscreenIcon = isNativeFullscreen ? 'close_fullscreen' : 'fullscreen';
-
-  // Determine the correct icon based on the state
-  const fullscreenIcon = isAppWindowed ? 'fullscreen' : 'close_fullscreen'; // 'fullscreen' when windowed, 'close_fullscreen' when fullscreen
-      
+     
   return (
     <main className={appShellClass} ref={mainRef}>
         <button
