@@ -129,7 +129,7 @@
 
             /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
             .fab-container {
-                        bottom: 76px !important; 
+                        bottom: 20px !important; 
             }
 
             /* Update content padding to match the new FAB position  */
