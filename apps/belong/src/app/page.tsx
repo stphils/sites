@@ -547,7 +547,7 @@ export default function Home() {
               className={`song-fab-toggle ${isSongMenuOpen ? 'open' : ''}`}
               onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} 
             >
-              Songs
+              <i className="material-symbols-outlined">music_note</i>
             </button>
             {/* The dropdown menu content */}
             {renderSongMenuLinks(isSongMenuOpen)}
