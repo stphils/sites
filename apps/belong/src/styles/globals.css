@@ -514,7 +514,7 @@
         padding: 10px 0; /* Internal padding for the list */
         display: flex;
         flex-direction: column;
-        gap: 8px; /* Spacing between pill items */
+        gap: 4px; /* Spacing between pill items */
     }
 
     /* Individual song links/buttons inside the Song FAB menu */
