@@ -296,6 +296,7 @@ export default function Home() {
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
+  const [isAppWindowed, setIsAppWindowed] = useState(true);
 
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
@@ -351,6 +352,10 @@ export default function Home() {
   const toggleTranslateMinimize = useCallback(() => {
     setIsTranslateMinimized(prev => !prev);
     setIsFabMenuOpen(false); // Close the main FAB menu when toggling
+  }, []);
+
+  const toggleAppWindowed = useCallback(() => {
+    setIsAppWindowed(prev => !prev);
   }, []);
 
   // --- 4. CLOSE MENUS ON OUTSIDE CLICK ---
@@ -461,9 +466,24 @@ export default function Home() {
   const splitContainerClass = isTranslateMinimized && isPortrait
     ? 'split-container minimized-portrait'
     : 'split-container';
+
+  // App Shell class depends on the isAppWindowed state
+  const appShellClass = isAppWindowed ? 'app-shell windowed' : 'app-shell';
+  
+  // Determine the correct icon based on the state
+  const fullscreenIcon = isAppWindowed ? 'fullscreen' : 'close_fullscreen'; // 'fullscreen' when windowed, 'close_fullscreen' when fullscreen
       
   return (
-    <main className="app-shell">
+    <main className={appShellClass}>
+        <button
+            className="fullscreen-fab"
+            aria-label={isAppWindowed ? "Maximize window" : "Minimize window"}
+            onClick={toggleAppWindowed}
+        >
+            <span className="material-symbols-outlined">
+                {fullscreenIcon}
+            </span>
+        </button>
         <div className={splitContainerClass} ref={splitContainerRef}>
             {/* LEFT PANE: Translator Iframe */}
         <div className={translatePaneClass} id="translate-pane" onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}>
