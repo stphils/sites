@@ -505,6 +505,8 @@
         overflow: hidden; /* Crucial to clip content when max-height is 0 */
         transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out;
 
+        gap: 4px;
+     
         background-color: transparent; /* ADDED: Make the container background transparent */
         box-shadow: none; /* ADDED: Ensure no shadow */
         border-radius: 0; /* ADDED: Remove container corner rounding */
