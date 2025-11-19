@@ -296,8 +296,7 @@ export default function Home() {
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
-  const [isAppWindowed, setIsAppWindowed] = useState(true);
-
+  
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
   const splitContainerRef = useRef<HTMLDivElement>(null);
@@ -305,6 +304,7 @@ export default function Home() {
 
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
+  const [isPortrait, setIsPortrait] = useState(false);
         
   // Tracks if the app is currently in native fullscreen mode
   const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
@@ -371,10 +371,6 @@ export default function Home() {
   const toggleTranslateMinimize = useCallback(() => {
     setIsTranslateMinimized(prev => !prev);
     setIsFabMenuOpen(false); // Close the main FAB menu when toggling
-  }, []);
-
-  const toggleAppWindowed = useCallback(() => {
-    setIsAppWindowed(prev => !prev);
   }, []);
 
   const toggleNativeFullscreen = useCallback(() => {
