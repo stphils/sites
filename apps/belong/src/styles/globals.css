@@ -132,10 +132,10 @@
                         bottom: 76px !important; 
             }
 
-            /* Update content padding to match the new FAB position (76px + FAB Height 56px = 132px) */
+            /* Update content padding to match the new FAB position  */
             #contact-iframe-container.visible,
             .song-content {
-                        padding-bottom: 140px !important; /* Use 140px for clean rounding and extra buffer */
+                        padding-bottom: 56px !important;
             }
         }
 
