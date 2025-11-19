@@ -14,7 +14,7 @@ const allLyrics: AllLyrics = {
     songs: [
       {
         title: "Welcome ...",
-        lyrics: `<h2>Welcome to St Phils</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, "The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas."`
+        lyrics: `<h2>Welcome to St Phils</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, "The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas."<p>Maybe you've got questions about God or what's the point of Christianity? Why not ask your questions and find answers at <a href="https://christianity.net.au" target="_newtab">Christianity.net.au</a>?</p>`
       },
       {
         title: "Joy to the World",
