@@ -235,7 +235,7 @@ our Lord Emmanuel`
       translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/zh-Hans?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false', 
       songs: [
         {
-        title: "Welcome ...",
+        title: "欢迎 ...",
         lyrics: `<h2>欢迎来到圣菲尔教堂</h2>感谢大家加入我们，一起庆祝圣诞节。圣诞节是一个充满喜悦的季节。这是上帝向我们展示祂伟大爱的时刻。这是我们庆祝耶稣基督诞生的时候——上帝的儿子，降生到我们的世界中。因此，这个诞生给世界带来了巨大的喜悦。天使、牧羊人和贤士们都参与了这一重要事件。他们知道这不是普通的婴儿。然而，这个婴儿的诞生有其目的：比利·格雷厄姆曾说：“基督降临世界的根本目的就是为世人的罪而献出自己的生命作为牺牲。他来到世上是为了受难。这就是圣诞节的核心。”`
         },
         { title: "Joy to the World", lyrics: "Mandarin version of Joy to the world! (Placeholder)" },
@@ -252,7 +252,7 @@ our Lord Emmanuel`
       translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/zh-HK?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0', 
       songs: [
         {
-        title: "Welcome ...",
+        title: "歡迎 ...",
         lyrics: `<h2>歡迎來到聖菲爾斯</h2>感謝你加入我們，一起慶祝聖誕節。聖誕節是一個充滿喜悅的季節。這是上帝向我們顯示祂偉大愛意的時刻。這是我們慶祝耶穌基督誕生的時候，祂是上帝的兒子，降生到我們的世界。因此，這個誕生給世界帶來了極大的喜悅。天使、牧羊人和智者都參與了這個重要的時刻。他們知道這不是一個普通的嬰兒。然而，這個嬰兒的誕生是有目的的：比利·格雷厄姆曾說：“基督來到世界的目的，就是要將自己的生命作為犧牲，為世界的罪贖罪。他來是為了死去。這就是聖誕節的核心。”`
         },
         { title: "Joy to the World", lyrics: "Cantonese version of Joy to the world! (Placeholder)" },
@@ -269,7 +269,7 @@ our Lord Emmanuel`
       translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/ko?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0', 
       songs: [
         {
-        title: "Welcome ...",
+        title: "환영 ...",
         lyrics: `<h2>세인트 필스에 오신 것을 환영합니다</h2>함께 크리스마스를 축하하기 위해 참석해 주셔서 감사합니다. 크리스마스는 큰 기쁨의 계절입니다. 하나님께서 우리를 향한 큰 사랑을 보여주신 때이기도 합니다. 바로 하나님의 아들 예수 그리스도의 탄생을 축하하는 시기이기 때문입니다. 이 탄생으로 세상에 큰 기쁨이 찾아왔습니다. 천사들, 목자들, 동방 박사들 모두 이 중대한 사건을 함께 나누었습니다. 그들은 이 아기가 평범한 아기가 아님을 알았습니다. 그러나 이 아기의 탄생에는 목적이 있었습니다. 빌리 그래함은 한때 이렇게 말했습니다. “그리스도께서 세상에 오신 아주 큰 목적은 그가 세상의 죄를 위해 자신의 생명을 희생으로 드리려는 것이었습니다. 그분은 죽기 위해 오셨습니다. 그것이 바로 크리스마스의 핵심입니다.”`
         },
         { title: "Joy to the World", lyrics: "Korean version of Joy to the world! (Placeholder)" },
