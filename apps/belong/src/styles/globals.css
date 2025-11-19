@@ -625,3 +625,64 @@
         /* Landscape: Rotate 90 degrees anticlockwise (icon points left) */
         transform: rotate(-90deg);
     }
+
+    .fullscreen-fab {
+        /* Positioning: Top Right, fixed to viewport */
+        position: fixed;
+        top: 20px; /* Offset from top */
+        right: 20px; /* Offset from right */
+        z-index: 1001; /* Ensure it is above ALL other content (main FAB is 1000) */
+
+        /* Style: Charcoal, Circular, Transparent */
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+
+        /* Charcoal color with 10% opacity: rgba(30, 30, 30, 0.9) - or a standard dark gray */
+        background-color: rgba(52, 58, 64, 0.9); /* #343a40 is a dark charcoal, 0.9 for 10% transparency */
+        color: white; /* White icon/text */
+        font-size: 1.5rem; /* Icon size */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        transition: background-color 0.2s ease;
+    }
+
+    .fullscreen-fab:hover {
+        /* Slightly darker on hover */
+        background-color: rgba(30, 30, 30, 0.95);
+    }
+
+    /* When .app-shell is in fullscreen mode, we need to apply constraints */
+    .app-shell.fullscreen {
+        /* By default, app-shell is 100%/100% and overflow: hidden.     
+        This class is added by JS to define the 'windowed' view's size. */
+        /* If the app is launched within an iframe (e.g., Sanity.io Studio), this    
+        will define its 'windowed' state when it's NOT fullscreen.
+        Since the requirement is to toggle the *main app shell*, we assume
+        the parent container provides the space, and this defines the inner view. */
+    }
+
+    /* The .app-shell starts as 100%/100% (which is 'windowed' relative to the browser, 
+       but 'fullscreen' relative to its container in Sanity). 
+       We will treat the default state (no class) as FULLSCREEN (occupies all available space)
+       and apply the 'windowed' styles when the `windowed` class is *added*. */
+
+    .app-shell.windowed {    
+         /* A good default 'windowed' size for an embedded app */
+        width: 80vw;
+        height: 80vh;
+        max-width: 1200px;
+        max-height: 800px;
+        position: fixed; /* Fix the app shell in the center of the screen */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        border-radius: 8px; /* Optional: adds a nice window look */
+        /* Ensure only the internal content scrolls, not the window itself */
+        overflow: hidden; 
+    }
