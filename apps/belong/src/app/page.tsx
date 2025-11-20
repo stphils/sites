@@ -506,24 +506,6 @@ export default function Home() {
      
   return (
      <main className={appShellClass} ref={mainRef}>
-          <div
-               style={{
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '50vmin',  // Responsive size (50% of viewport smaller dimension)
-                    height: '50vmin',          
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    opacity: 0.1,         // Faded effect
-                    pointerEvents: 'none', // Allows clicks to pass through to the app
-                    zIndex: 50,            // Sits above content visually
-               }}
-          >          
-              <Logo />
-          </div>
         <button
             className="fullscreen-fab"
             aria-label={isNativeFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
@@ -559,7 +541,26 @@ export default function Home() {
         </div>
         {/* RIGHT PANE: Song Lyrics / Contact Iframe */}
         <div className="split-pane" id="carols-pane">
-          {/* NEW: Song Selection FAB (Top Right) */}
+          <div
+               style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '50vmin',  // Responsive size (50% of viewport smaller dimension)
+                    height: '50vmin',          
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    opacity: 0.075,         // Faded effect
+                    pointerEvents: 'none', // Allows clicks to pass through to the app
+                    zIndex: 10,            // Sits above content visually
+               }}
+          >          
+              <Logo />
+          </div>
+
+          {/* Song Selection FAB (Top Right) */}
           <div className="song-fab-container" ref={songMenuRef}>
             <button 
               className={`song-fab-toggle ${isSongMenuOpen ? 'open' : ''}`}
