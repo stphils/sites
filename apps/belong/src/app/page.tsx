@@ -1,7 +1,7 @@
 'use client'; 
 
 import { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
-
+import { Logo } from "ui";
 // --- 1. DATA STRUCTURES ---
 interface Song { title: string; lyrics: string; }
 interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
@@ -505,7 +505,25 @@ export default function Home() {
   const fullscreenIcon = isNativeFullscreen ? 'close_fullscreen' : 'fullscreen';
      
   return (
-    <main className={appShellClass} ref={mainRef}>
+     <main className={appShellClass} ref={mainRef}>
+          <div
+               style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '50vmin',  // Responsive size (50% of viewport smaller dimension)
+                    height: '50vmin',          
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    opacity: 0.1,         // Faded effect
+                    pointerEvents: 'none', // Allows clicks to pass through to the app
+                    zIndex: 50,            // Sits above content visually
+               }}
+          >          
+              <Logo />
+          </div>
         <button
             className="fullscreen-fab"
             aria-label={isNativeFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
