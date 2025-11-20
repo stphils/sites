@@ -238,7 +238,59 @@ our Lord Emmanuel`
         title: "欢迎 ...",
         lyrics: `<h2>欢迎来到圣菲尔教堂</h2>感谢大家加入我们，一起庆祝圣诞节。圣诞节是一个充满喜悦的季节。这是上帝向我们展示祂伟大爱的时刻。这是我们庆祝耶稣基督诞生的时候——上帝的儿子，降生到我们的世界中。因此，这个诞生给世界带来了巨大的喜悦。天使、牧羊人和贤士们都参与了这一重要事件。他们知道这不是普通的婴儿。然而，这个婴儿的诞生有其目的：比利·格雷厄姆曾说：“基督降临世界的根本目的就是为世人的罪而献出自己的生命作为牺牲。他来到世上是为了受难。这就是圣诞节的核心。”`
         },
-        { title: "Joy to the World", lyrics: "Mandarin version of Joy to the world! (Placeholder)" },
+        { title: "Joy to the World - 普世欢腾", lyrics: "<h2>Joy to the World — 普世欢腾</h2>
+Joy to the world! The Lord is come
+普世欢腾，救主下降
+let earth receive her King
+大地接她君王
+Let every heart prepare Him room
+愿众心为主预备地方
+and heaven and nature sing
+诸天万物歌唱
+and heaven and nature sing
+诸天万物歌唱
+and heaven, and heaven and nature sing
+诸天，诸天万物歌唱
+
+Joy to the world! The Savior reigns
+普世欢腾，主治万方
+let men their songs employ
+万民守主法则
+while fields and floods, rocks, hills, and plains
+田野江河，山石与平原
+repeat the sounding joy
+重复主恩浩荡
+repeat the sounding joy
+重复主恩浩荡
+repeat, repeat the sounding joy
+重复，重复主恩浩荡
+
+No more let sins and sorrows grow
+罪恶忧愁不再生长
+nor thorns infest the ground
+地上不再受伤
+He comes to make His blessings flow
+主来使万民得祂恩惠
+far as the curse is found
+直到远方万邦
+far as the curse is found
+直到远方万邦
+far as, far as the curse is found
+直到，直到远方万邦
+
+He rules the world with truth and grace
+主以真理恩慈统治
+and makes the nations prove
+使万国得证明
+the glories of His righteousness
+主之公义，无比的荣耀
+and wonders of His love
+主爱无穷无尽
+and wonders of His love
+主爱无穷无尽
+and wonders, wonders of His love
+主爱，主爱无穷无尽
+" },
         { title: "O Come All Ye Faithful", lyrics: "Mandarin placeholder lyrics." },
         { title: "Hark! The Herald Angels Sing", lyrics: "Mandarin placeholder lyrics." },
         { title: "Silent Night", lyrics: "Mandarin placeholder lyrics." },
