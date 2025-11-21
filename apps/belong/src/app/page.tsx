@@ -328,12 +328,6 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {  
-    if (typeof window !== 'undefined' && window.location.pathname === '/carols') {
-      window.history.replaceState(null, '', '/');
-    }
-  }, []);
-
   // Effect to listen for fullscreen change events
   // This correctly updates the icon state when the user presses ESC.
   useLayoutEffect(() => {
