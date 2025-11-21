@@ -20,7 +20,18 @@ module.exports = {
       },
     ],
   },
-
+  // --- PREVENT 404 ON /carols URL ---
+  async rewrites() {
+    return [
+      {
+        // When the app sees "/carols" in the browser URL bar,
+        // load the homepage content ("/") instead of showing a 404 error.
+        source: '/carols',
+        destination: '/',
+      },
+    ];
+  },
+  // -----------------------------------------------
   // --- 2. Fix Security/Blocking issues (CORS) ---
   // This allows the Main Site to access the fonts and scripts
   // hosted on this Carols app.
