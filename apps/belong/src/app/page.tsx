@@ -523,19 +523,18 @@ export default function Home() {
             ) : (
                 <>
                 <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
-                {/* NEW GREEN MINIMIZE FAB BUTTON */}
-                <button
-                    className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
-                    id="minimize-fab-button"
-                    aria-label="Minimize translation pane"
-                    onClick={(e) => {
-                        e.stopPropagation(); // Prevent the click from triggering the parent div's onClick
-                        toggleTranslateMinimize();
-                    }}
-                >
-                    {/* The 'expand_less' icon is similar to '^' */}
-                    <span className="material-symbols-outlined">expand_less</span>
-                </button>
+                <div className="minimize-fab-wrapper"> 
+                    <button
+                        className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
+                        id="minimize-fab-button"
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            toggleTranslateMinimize();
+                        }}
+                    >
+                        <span className="material-symbols-outlined">expand_less</span>
+                    </button>
+                </div>
             </>
             )}
         </div>
