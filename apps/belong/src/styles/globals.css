@@ -107,7 +107,16 @@
                 top: auto; /* Reset */
                 position: absolute;
             }
-         
+
+            .minimize-fab.rotate-fab {
+                position: fixed !important; 
+                bottom: 20px !important;
+                /* CALCULATION: (1/3 pane width) - (FAB width: 48px) - (Margin: 20px) */
+                left: calc(33.333% - 48px - 20px) !important;
+                right: auto !important; /* Must be auto to let left take effect */
+                top: auto !important;
+            }
+
             .split-container.minimized-portrait {
                         flex-direction: column; /* Ensure correct column stacking */
             }
