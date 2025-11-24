@@ -121,11 +121,12 @@
             }
 
             .minimize-fab {
-                        right: auto;
+                        position: absolute;
+                        right: 20px;
                         /* Reset bottom position */
-                        bottom: auto; 
+                        bottom: 20px; 
                         /* Set top position */
-                        top: 20px; 
+                        top: auto; 
             }
 
             /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
@@ -593,7 +594,7 @@
     }
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
-        position: fixed;
+        position: absolute;
         bottom: 20px; /* Aligned with the bottom offset in page.tsx */
         right: calc(66.666% + 20px);
         z-index: 100;
