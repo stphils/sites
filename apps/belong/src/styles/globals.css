@@ -121,6 +121,7 @@
             }
 
             .minimize-fab {
+                        right: auto;
                         /* Reset bottom position */
                         bottom: auto; 
                         /* Set top position */
@@ -592,9 +593,9 @@
     }
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
-        position: absolute;
+        position: fixed;
         bottom: 20px; /* Aligned with the bottom offset in page.tsx */
-        right: 20px; /* Aligned with the right offset in page.tsx */
+        right: calc(66.666% + 20px);
         z-index: 100;
         width: 48px;
         height: 48px;
