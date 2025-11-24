@@ -102,25 +102,13 @@
             }
 
             .minimize-fab {
-                bottom: 20px; 
-                right: 20px;
-                top: auto; /* Reset */
-                position: absolute;
-            }
-
-            .minimize-fab.rotate-fab {
-                position: fixed !important; 
+                position: absolute !important;
                 bottom: 20px !important;
-                /* CALCULATION: (1/3 pane width) - (FAB width: 48px) - (Margin: 20px) */
-                left: calc(33.333% - 48px - 20px) !important;
-                right: auto !important; /* Must be auto to let left take effect */
+                right: 20px !important;
                 top: auto !important;
+                left: auto !important;
             }
-            /* When the app is centered and resized (Windowed mode) */
-            .app-shell.windowed .minimize-fab.rotate-fab {
-                left: calc(36.666vw - 68px) !important;
-            }
-
+         
             .split-container.minimized-portrait {
                         flex-direction: column; /* Ensure correct column stacking */
             }
@@ -625,6 +613,19 @@
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
+    }
+
+    .minimize-fab.rotate-fab {
+        position: fixed !important; /* Fixed to solve the scrolling bug */
+        bottom: 20px !important;
+        right: calc(66.666% + 20px) !important; 
+        left: auto !important; /* Ensure left is auto */
+        top: auto !important; /* Ensure top is auto */
+    }
+    
+    .app-shell.windowed .minimize-fab.rotate-fab {
+        left: calc(36.666vw - 68px) !important;
+        right: auto !important;
     }
 
     .minimize-fab:hover {
