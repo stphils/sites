@@ -101,6 +101,13 @@
                 border-bottom: 1px solid #ddd;
             }
 
+            .minimize-fab {
+                bottom: 20px; 
+                right: 20px;
+                top: auto; /* Reset */
+                position: absolute;
+            }
+         
             .split-container.minimized-portrait {
                         flex-direction: column; /* Ensure correct column stacking */
             }
@@ -585,7 +592,9 @@
     }
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
-        position: static;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
         /* Ensure no interference from portrait styles */
         top: auto;
         left: auto;
