@@ -122,11 +122,10 @@
 
             .minimize-fab {
                         position: absolute;
-                        right: 20px;
-                        /* Reset bottom position */
-                        bottom: 20px; 
-                        /* Set top position */
-                        top: auto; 
+                        bottom: 20px;  /* Correctly positions at the bottom */
+                        right: 20px; /* Correctly positions at the right */
+                        top: auto; /* Ensure top is not set */
+                        left: auto; /* Ensure left is not set */
             }
 
             /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
@@ -594,9 +593,15 @@
     }
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
-        position: absolute;
-        bottom: 20px; /* Aligned with the bottom offset in page.tsx */
-        right: calc(66.666% + 20px);
+        position: fixed;
+        /* LANDSCAPE POSITIONING (Fixed to the 1/3 panel divider) */
+        bottom: 20px; 
+        right: calc(66.666% + 20px); /* 2/3 width (carols pane) + 20px offset */
+
+        /* Ensure no interference from portrait styles */
+        top: auto;
+        left: auto;
+        
         z-index: 100;
         width: 48px;
         height: 48px;
