@@ -120,14 +120,6 @@
                         border-bottom: 1px solid #ddd !important;
             }
 
-            .minimize-fab {
-                position: absolute;
-                bottom: 20px;  /* Correctly positions at the bottom */
-                right: 20px; /* Correctly positions at the right */
-                top: auto; /* Ensure top is not set */
-                left: auto; /* Ensure left is not set */
-            }
-
             /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
             .fab-container {
                         bottom: 20px !important; 
@@ -593,10 +585,7 @@
     }
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
-        position: fixed;
-        /* LANDSCAPE POSITIONING (Fixed to the 1/3 panel divider) */
-        bottom: 20px; 
-        right: calc(66.666% + 20px); /* 2/3 width (carols pane) + 20px offset */    
+        position: static;
         /* Ensure no interference from portrait styles */
         top: auto;
         left: auto;
@@ -684,6 +673,14 @@
         box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         transition: background-color 0.2s ease;
     }
+
+.minimize-fab-wrapper {
+    /* PINS THE FAB TO THE BOTTOM-RIGHT OF THE RELATIVE PARENT (#translate-pane) */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
 
     .fullscreen-fab:hover {
         /* Slightly darker on hover */
