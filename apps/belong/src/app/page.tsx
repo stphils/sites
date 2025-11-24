@@ -522,7 +522,6 @@ export default function Home() {
                 <span className="translation-placeholder">For translation services</span>
             ) : (
                 <>
-                <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
                 <div className="minimize-fab-wrapper"> 
                     <button
                         className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
@@ -535,6 +534,7 @@ export default function Home() {
                         <span className="material-symbols-outlined">expand_less</span>
                     </button>
                 </div>
+                <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
             </>
             )}
         </div>
