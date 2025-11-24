@@ -116,6 +116,10 @@
                 right: auto !important; /* Must be auto to let left take effect */
                 top: auto !important;
             }
+            /* When the app is centered and resized (Windowed mode) */
+            .app-shell.windowed .minimize-fab.rotate-fab {
+                left: calc(36.666vw - 68px) !important;
+            }
 
             .split-container.minimized-portrait {
                         flex-direction: column; /* Ensure correct column stacking */
