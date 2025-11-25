@@ -851,6 +851,7 @@
 
 /* 6. Idle State */
 .nav-tab.idle-hide {
+    animation: none !important;
     /* Override animation and hover to hide */
     opacity: 0 !important;
     pointer-events: none;
