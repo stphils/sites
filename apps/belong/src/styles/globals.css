@@ -686,6 +686,7 @@
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
+        pointer-events: auto;
     }
 
     .minimize-fab.rotate-fab {
@@ -779,6 +780,10 @@
     bottom: 20px;
     right: 20px;
     z-index: 100;
+    width: 48px;
+    height: 48px;
+    /* Ensure the empty corners of the wrapper don't block clicks */
+    pointer-events: none;
 }
 
 /* --- Navigation Tabs (Previous / Next) --- */
