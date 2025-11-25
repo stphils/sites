@@ -203,7 +203,7 @@
              height: 100%; /* Take full height */
              width: 100%; /* Take full width */
              padding: 20px 0 0 0; /* Add top padding */
-             justify-content: flex-start; /* Align contents to the top */
+             justify-content: center;
         }
 
         /* Re-style the text for the vertical minimized bar */
