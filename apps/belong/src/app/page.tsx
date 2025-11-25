@@ -6,7 +6,12 @@ import { Logo } from "ui";
 interface Song { title: string; lyrics: string; }
 interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
 interface AllLyrics { [key: string]: LanguageData; }
-
+const CONTACT_INTERNAL_HTML = `
+  <h2>Contact Us</h2>
+  <p>Thank you for your interest! We have opened our contact form in a new tab for you.</p>
+  <p>If the form did not open automatically, please <a href="${CONTACT_IFRAME_SRC}" target="_blank" style="text-decoration: underline; color: blue;">click here</a>.</p>
+  <p>We look forward to hearing from you.</p>
+`;
 const allLyrics: AllLyrics = {
   'en': {
     langName: 'English',
@@ -417,9 +422,18 @@ export default function Home() {
     setIsContactVisible(false);
   }, []);
 
+  //const handleContactClick = useCallback(() => {
+  //  setIsContactVisible(true);
+  //  setIsSongMenuOpen(false); 
+  //}, []);
   const handleContactClick = useCallback(() => {
     setIsContactVisible(true);
-    setIsSongMenuOpen(false); 
+    setIsSongMenuOpen(false);
+    
+    // Open the external URL in a new tab
+    if (typeof window !== 'undefined') {
+      window.open(CONTACT_IFRAME_SRC, '_blank');
+    }
   }, []);
 
   const handleFabContactClick = useCallback(() => {
@@ -440,20 +454,35 @@ export default function Home() {
     }
   }, [isContactVisible, activeSongIndex]);
 
+  //const handleNext = useCallback(() => {
+  //  // If we are NOT on contact page
+  //  if (!isContactVisible) {
+  //    const totalSongs = currentLangData.songs.length;
+  //    
+  //    // If we are at the last song, show contact
+  //    if (activeSongIndex === totalSongs - 1) {
+  //      setIsContactVisible(true);
+  //    } else {
+  //      // Otherwise go to next song
+  //      setActiveSongIndex((prev) => prev + 1);
+  //    }
+  //  }
+  //}, [isContactVisible, activeSongIndex, currentLangData.songs.length]);
+
   const handleNext = useCallback(() => {
     // If we are NOT on contact page
     if (!isContactVisible) {
       const totalSongs = currentLangData.songs.length;
       
-      // If we are at the last song, show contact
+      // If we are at the last song, trigger the Contact logic
       if (activeSongIndex === totalSongs - 1) {
-        setIsContactVisible(true);
+        handleContactClick(); // Call the shared function to open tab + show view
       } else {
         // Otherwise go to next song
         setActiveSongIndex((prev) => prev + 1);
       }
     }
-  }, [isContactVisible, activeSongIndex, currentLangData.songs.length]);
+  }, [isContactVisible, activeSongIndex, currentLangData.songs.length, handleContactClick]);
 
   // --- DERIVED STATE FOR TABS ---
   
@@ -714,14 +743,12 @@ export default function Home() {
           </div>
           {/* MAIN CONTENT AREA (Now gets the full height of the pane) */}
           {isContactVisible ? (
-            <div 
-              id="contact-iframe-container"
-              className={'visible'}
+            <div 
+               className={'song-content'} 
+               id="contact-internal-view"
+               // We reuse the song styling so it scrolls and looks consistent
+               dangerouslySetInnerHTML={{ __html: CONTACT_INTERNAL_HTML }}
             >
-              <iframe 
-                src={CONTACT_IFRAME_SRC} 
-                title="Contact Page"
-              />
             </div>
           ) : (
             <div className={'song-content'} 
