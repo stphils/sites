@@ -307,6 +307,7 @@ export default function Home() {
 
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
+  const isLastSong = activeSongIndex === currentLangData.songs.length - 1;
   const [isPortrait, setIsPortrait] = useState(false);
         
   // Tracks if the app is currently in native fullscreen mode
