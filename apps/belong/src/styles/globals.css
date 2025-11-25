@@ -706,6 +706,23 @@
     z-index: 100;
 }
 
+/* --- FAB Idle/Invisibility Styling --- */
+/* This style applies to all FAB elements to prepare for the transition */
+.fab-container,
+.song-fab-container,
+.fullscreen-fab,
+.minimize-fab {
+    /* Add opacity transition for smooth fading */
+    transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s ease-in-out; 
+    /* The existing transition for the main FAB already includes transform, let's ensure opacity is covered. The key is that the transition property must be on the element itself, not just the idle-hide class. */
+}
+
+
+/* Class to apply when the user is idle */
+.idle-hide {
+    opacity: 0 !important; /* Make it invisible */
+    pointer-events: none !important; /* Crucial: Prevents clicks on the invisible element */
+}
     .fullscreen-fab:hover {
         /* Slightly darker on hover */
         background-color: rgba(30, 30, 30, 0.95);
