@@ -418,6 +418,47 @@ export default function Home() {
     setIsFabMenuOpen(false);
   }, [handleContactClick]);
 
+
+  // --- NAVIGATION LOGIC ---
+
+  const handlePrevious = useCallback(() => {
+    if (isContactVisible) {
+      // If on Contact page, go back to the last song
+      setIsContactVisible(false);
+    } else if (activeSongIndex > 0) {
+      // If on a song, go to previous song
+      setActiveSongIndex((prev) => prev - 1);
+    }
+  }, [isContactVisible, activeSongIndex]);
+
+  const handleNext = useCallback(() => {
+    // If we are NOT on contact page
+    if (!isContactVisible) {
+      const totalSongs = currentLangData.songs.length;
+      
+      // If we are at the last song, show contact
+      if (activeSongIndex === totalSongs - 1) {
+        setIsContactVisible(true);
+      } else {
+        // Otherwise go to next song
+        setActiveSongIndex((prev) => prev + 1);
+      }
+    }
+  }, [isContactVisible, activeSongIndex, currentLangData.songs.length]);
+
+  // --- DERIVED STATE FOR TABS ---
+  
+  // Show Previous if: We are on Contact page OR we are past the first song
+  const showPrevTab = isContactVisible || activeSongIndex > 0;
+  
+  // Show Next if: We are NOT on the Contact page
+  const showNextTab = !isContactVisible;
+
+  // Label for Next button: "Contact" if last song, otherwise "Next"
+  const nextLabel = (activeSongIndex === currentLangData.songs.length - 1) 
+    ? "Contact" 
+    : "Next";
+        
   const toggleTranslateMinimize = useCallback(() => {
     setIsTranslateMinimized(prev => !prev);
     setIsFabMenuOpen(false); // Close the main FAB menu when toggling
@@ -605,6 +646,25 @@ export default function Home() {
         </div>
         {/* RIGHT PANE: Song Lyrics / Contact Iframe */}
         <div className="split-pane" id="carols-pane">
+          {showPrevTab && (
+            <button
+              className={`nav-tab prev ${isIdle ? 'idle-hide' : ''}`}
+              onClick={handlePrevious}
+              aria-label="Previous Song"
+            >
+              <span className="nav-tab-text">Previous</span>
+            </button>
+          )}
+
+          {showNextTab && (
+            <button
+              className={`nav-tab next ${isIdle ? 'idle-hide' : ''}`}
+              onClick={handleNext}
+              aria-label="Next Song"
+            >
+              <span className="nav-tab-text">{nextLabel}</span>
+            </button>
+          )}
           <div
                style={{
                     position: 'absolute',
