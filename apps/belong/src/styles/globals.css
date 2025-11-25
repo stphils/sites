@@ -105,14 +105,6 @@
                 border-right: none;
                 border-bottom: 1px solid #ddd;
             }
-
-            .minimize-fab {
-                position: absolute !important;
-                bottom: 20px !important;
-                right: 20px !important;
-                top: auto !important;
-                left: auto !important;
-            }
          
             .split-container.minimized-portrait {
                         flex-direction: column; /* Ensure correct column stacking */
@@ -232,6 +224,7 @@
              width: 100%; /* Full width */
              margin-top: auto; /* Push it to the bottom */
              transform: rotate(270deg);
+             margin-bottom: 25px;
         }
 
         /* Maximized Carols Pane - Shared Styles */
@@ -673,10 +666,10 @@
     }
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        top: auto;
+        /*position: absolute;*/
+        /*bottom: 20px;*/
+        /*right: 20px;*/
+        /*top: auto;*/
         left: auto;
         z-index: 100;
         width: 48px;
