@@ -660,7 +660,7 @@ export default function Home() {
 
           {showNextTab && (
             <button
-              key={`prev-${activeSongIndex}`}
+              key={`next-${activeSongIndex}`}
               className={`nav-tab next ${isIdle ? 'idle-hide' : ''}`}
               onClick={handleNext}
               aria-label={isLastSong ? "Contact Us" : "Next Song"}
