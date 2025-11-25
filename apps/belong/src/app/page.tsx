@@ -557,10 +557,10 @@ export default function Home() {
   return (
      <main className={appShellClass} ref={mainRef}>
         <button
-            className="fullscreen-fab"
-            aria-label={isNativeFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-            onClick={toggleNativeFullscreen}
-        >
+            className={`fullscreen-fab ${isIdle ? 'idle-hide' : ''}`}
+            aria-label={isNativeFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            onClick={toggleNativeFullscreen}
+        >
             <span className="material-symbols-outlined">
                 {fullscreenIcon}
             </span>
@@ -574,7 +574,7 @@ export default function Home() {
                 <>
                 <div className="minimize-fab-wrapper"> 
                     <button
-                        className={`minimize-fab ${isTranslateMinimized ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
+                        className={`minimize-fab ${isTranslateMinimized || isIdle ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
                         id="minimize-fab-button"
                         onClick={(e) => {
                             e.stopPropagation(); 
@@ -610,7 +610,7 @@ export default function Home() {
           </div>
 
           {/* Song Selection FAB (Top Right) */}
-          <div className="song-fab-container" ref={songMenuRef}>
+          <div className={`song-fab-container ${isIdle ? 'idle-hide' : ''}`} ref={songMenuRef}>
             <button 
               className={`song-fab-toggle ${isSongMenuOpen ? 'open' : ''}`}
               onClick={() => setIsSongMenuOpen(!isSongMenuOpen)} 
@@ -643,10 +643,10 @@ export default function Home() {
       </div>
       
       <div 
-        className={`fab-container ${isFabMenuOpen ? 'open' : ''}`} 
-        id="fab-container"
-        ref={fabContainerRef} 
-      >
+        className={`fab-container ${isFabMenuOpen ? 'open' : ''} ${isIdle ? 'idle-hide' : ''}`}
+        id="fab-container"
+        ref={fabContainerRef} 
+      >
         {/* Language buttons and Contact icon */}
         <div className="fab-menu" id="fab-menu">
           {renderFabMenuButtons()}
