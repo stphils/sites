@@ -308,7 +308,14 @@ export default function Home() {
   const currentLangData = allLyrics[currentLanguage];
   const activeSong = currentLangData.songs[activeSongIndex];
   const isLastSong = activeSongIndex === currentLangData.songs.length - 1;
-  const [isPortrait, setIsPortrait] = useState(false);
+  //const [isPortrait, setIsPortrait] = useState(false);
+  // Initialize with a safe check for window existence
+  const [isPortrait, setIsPortrait] = useState(() => {
+    if (typeof window !== 'undefined') {  
+      return window.innerHeight > window.innerWidth;
+    }
+    return false; 
+  });
         
   // Tracks if the app is currently in native fullscreen mode
   const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
@@ -316,13 +323,14 @@ export default function Home() {
   // To target the main element for native fullscreen
   const mainRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => { // Use useLayoutEffect for layout-critical updates
     const checkOrientation = () => {
-      // Check if the window object exists and if height > width
       setIsPortrait(window.innerHeight > window.innerWidth);
     };
+
     if (typeof window !== 'undefined') {
-      checkOrientation(); // Check on mount
+      // Check immediately on mount/resize
+      checkOrientation();
       window.addEventListener('resize', checkOrientation);
     }
     return () => {
