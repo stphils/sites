@@ -810,9 +810,12 @@
     align-items: center;
 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    /* ANIMATION: Apply the flash effect on mount */
-    opacity: 0.5; /* Default resting state */
-    animation: flashFade 2s ease-out;
+    /* ANIMATION LOGIC */
+    opacity: 0.5; /* Final resting state */
+    animation: flashFade 2s ease-out; /* Run animation once */
+
+    /* TRANSITION: Only animate background and transform. DO NOT animate opacity here. */
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .nav-tab:hover {
@@ -850,8 +853,9 @@
 
 /* Ensure the button hides cleanly when idle (uses your existing .idle-hide class) */
 .nav-tab.idle-hide {
-    opacity: 0; 
+    opacity: 0 !important;
     pointer-events: none;
+    transition: opacity 0.5s ease-in-out; /* Only transition opacity when hiding */
 }
 
 /* --- FAB Idle/Invisibility Styling --- */
