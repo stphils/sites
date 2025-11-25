@@ -812,6 +812,7 @@
 .nav-tab.prev {
     left: 0;
     border-radius: 0 8px 8px 0; /* Round the right corners only */
+    opacity: 0.5;
 }
 
 /* Next Tab (Right Side) */
