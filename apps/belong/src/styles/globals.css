@@ -42,6 +42,7 @@
 
         /* Styling for each content pane */
         .split-pane {
+            position: relative;
             /* Let the content inside the pane scroll if needed */
             overflow: auto; 
             background-color: #f9f9f9;
@@ -58,7 +59,7 @@
 
         /* This pane gets 1/3 of the space */
         #translate-pane {
-            z-index: 1;
+            z-index: 10;
             flex: 1; /* 1 part */
             /* Default (landscape) constraint */
             min-width: 300px; 
@@ -71,7 +72,7 @@
 
         /* This pane gets 2/3 of the space */
         #carols-pane {
-            z-index: 5;
+            z-index: 20;
             flex: 2; /* 2 parts */
             /* The overflow:auto is already set on .split-pane, 
                which will make the song lyrics scrollable */
@@ -89,11 +90,18 @@
          * This media query applies when the height is greater than the width.
          */
         @media (orientation: portrait) {
+            .minimize-fab.rotate-fab {
+                position: absolute !important; /* Force it back to absolute */
+                bottom: 20px !important;
+                right: 20px !important;                
+                transform: none !important; /* Reset rotation */
+            }
             .split-container {
                 flex-direction: column; /* Stack top-to-bottom */
             }
 
             #translate-pane {
+                z-index: 10;
                 /* Reset landscape constraint */
                 flex:1;
                 min-width: 0; 
@@ -800,7 +808,7 @@
     color: white;
     border: none;
     cursor: pointer;
-    z-index: 90;
+    z-index: 50;
     
     min-width: 30px;
     padding: 20px 8px;
