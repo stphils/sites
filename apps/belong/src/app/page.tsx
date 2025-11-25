@@ -753,6 +753,22 @@ export default function Home() {
           <span className="material-symbols-outlined">language</span>
         </button>
       </div>
+      {isIdle && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 900, /* Sits above iframes (z-20) but below FABs (z-1000) */
+            cursor: 'pointer',
+            backgroundColor: 'transparent' 
+          }}
+          onClick={() => setIsIdle(false)}
+          onTouchStart={() => setIsIdle(false)}
+        />
+      )}
     </main>
   );
 };
