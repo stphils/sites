@@ -311,9 +311,9 @@ export default function Home() {
   //const [isPortrait, setIsPortrait] = useState(false);
   // Initialize with a safe check for window existence
   const [isPortrait, setIsPortrait] = useState(() => {
-    if (typeof window !== 'undefined') {  
+    if (typeof window !== 'undefined') {
       return window.innerHeight > window.innerWidth;
-    }
+    }    
     return false; 
   });
         
