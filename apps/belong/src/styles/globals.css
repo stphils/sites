@@ -806,6 +806,14 @@
 
 .nav-tab:hover {
     background-color: #c0392b; /* Darker red on hover */
+    opacity: 1 !important; 
+    /* Cancel the animation so it doesn't fight the hover state */
+    animation: none;
+}
+
+@keyframes fadeInToHalf {
+    from { opacity: 0; }
+    to { opacity: 0.5; }
 }
 
 /* Previous Tab (Left Side) */
@@ -813,12 +821,17 @@
     left: 0;
     border-radius: 0 8px 8px 0; /* Round the right corners only */
     opacity: 0.5;
+    /* Apply the animation on mount: 0% -> 50% over 2 seconds */
+    animation: fadeInToHalf 2s ease-out forwards;
 }
 
 /* Next Tab (Right Side) */
 .nav-tab.next {
     right: 0;
     border-radius: 8px 0 0 8px; /* Round the left corners only */
+    opacity: 0.5;
+    /* Apply the animation on mount: 0% -> 50% over 2 seconds */
+    animation: fadeInToHalf 2s ease-out forwards;
 }
 
 /* Text Rotation */
