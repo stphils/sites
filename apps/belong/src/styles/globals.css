@@ -208,8 +208,7 @@
 
         /* Re-style the text for the vertical minimized bar */
         .split-container:not(.minimized-portrait) .translation-placeholder {
-             /* Keep existing rotation from global styles for sideways text, but center it vertically */
-             /* The transform: rotate(-90deg) is already set, we just need the alignment here. */
+             transform: rotate(-90deg);
              text-align: center;
              flex-grow: 0; /* Don't grow to force the button to the bottom */
              max-width: 100%;
