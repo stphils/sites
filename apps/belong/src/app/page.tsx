@@ -649,6 +649,7 @@ export default function Home() {
         <div className="split-pane" id="carols-pane">
           {showPrevTab && (
             <button
+              key={`prev-${activeSongIndex}`}
               className={`nav-tab prev ${isIdle ? 'idle-hide' : ''}`}
               onClick={handlePrevious}
               aria-label="Previous Song"
@@ -659,6 +660,7 @@ export default function Home() {
 
           {showNextTab && (
             <button
+              key={`prev-${activeSongIndex}`}
               className={`nav-tab next ${isIdle ? 'idle-hide' : ''}`}
               onClick={handleNext}
               aria-label={isLastSong ? "Contact Us" : "Next Song"}
