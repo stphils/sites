@@ -90,7 +90,21 @@
          * This media query applies when the height is greater than the width.
          */
         @media (orientation: portrait) {
-            
+            /* --- FORCE REDRAW IN PORTRAIT MODE --- */
+    /* This overrides all JS classes and wrapper logic to ensure the button appears */
+    .minimize-fab {
+        position: absolute !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        
+        /* Reset any Landscape/Fixed properties */
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 !important;
+        opacity: 1; /* Ensure it's not hidden by transition glitches */
+        pointer-events: auto !important;
+            }
             .split-container {
                 flex-direction: column; /* Stack top-to-bottom */
             }
@@ -686,7 +700,6 @@
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
-        pointer-events: auto;
     }
 
     .minimize-fab.rotate-fab {
@@ -915,3 +928,10 @@
         /* Ensure only the internal content scrolls, not the window itself */
         overflow: hidden; 
     }
+
+
+.minimize-fab-wrapper {
+    /* Make the wrapper invisible to layout so it can't break positioning */
+    display: contents; 
+    pointer-events: none;
+}
