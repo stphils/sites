@@ -750,7 +750,7 @@ export default function Home() {
           aria-label="Toggle menu"
           onClick={() => setIsFabMenuOpen(!isFabMenuOpen)}
         >
-          +
+          <span className="material-symbols-outlined">language</span>
         </button>
       </div>
     </main>
