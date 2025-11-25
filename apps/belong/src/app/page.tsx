@@ -569,7 +569,22 @@ export default function Home() {
             {/* LEFT PANE: Translator Iframe */}
         <div className={translatePaneClass} id="translate-pane" onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}>
             {isTranslateMinimized ? (
-                <span className="translation-placeholder">For translation services</span>
+                <div className="minimized-placeholder-bar">
+                    {/* Left Side: Text */}
+                    <span className="translation-placeholder">For translation services</span>
+                    {/* Right Side: Green Expand Button (Always visible when minimized) */}
+                    <button
+                                className="translation-expand-fab" // New class for styling
+                                aria-label="Expand Translation Panel"
+                                // The click handler is already on the parent div, but adding it here too is good for accessibility
+                                onClick={(e) => {                                
+                                        e.stopPropagation(); 
+                                        toggleTranslateMinimize();
+                                }}
+                    >
+                    <span className="material-symbols-outlined">expand_more</span>
+                    </button>
+                </div>
             ) : (
                 <>
                 <div className="minimize-fab-wrapper"> 
