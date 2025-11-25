@@ -145,7 +145,73 @@
                 color: white;
                 font-size: 1rem;
                 font-weight: 600;
-                text-align: center;
+                flex-grow: 1;
+                text-align: left; /* Adjust text to the left */
+        }
+
+        .translation-expand-fab {
+             background-color: #27ae60; 
+             color: white;
+             /* Dimensions: 100px wide, 100% height of the bar (50px in portrait) */
+             width: 100px;
+             height: 100%;
+             border: none;
+             cursor: pointer;
+             /* Align icon inside the button */
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             transition: background-color 0.2s ease;
+             border-radius: 0;
+             z-index: 10;
+         }
+        .minimized-placeholder-bar {
+            /* Set the container to occupy all space in the minimized pane */
+            width: 100%;
+            height: 100%;
+            /* Use Flexbox to align text left and button right */
+            display: flex; 
+            justify-content: space-between; /* Pushes text and button apart */
+            align-items: center;
+            /* Add padding for text/button clearance from the edges */
+            padding: 0 0 0 20px; /* Only needs left padding, right space is taken by the FAB */
+        }
+       .translation-expand-fab:hover {
+             background-color: #2ecc71; /* Lighter green on hover */
+       }
+
+       /* Style the icon inside the button */
+       .translation-expand-fab .material-symbols-outlined {
+             font-size: 30px; 
+             /* If in landscape mode, the text is rotated -90deg, so rotate the icon +90deg so it points UP (for expand_less) or DOWN (for expand_more) */
+             /* Since we are using expand_more (down chevron), we might need to adjust rotation if in landscape. */
+             /* For a standard down arrow (expand_more), no rotation is typically needed */
+             transform: none; 
+        }
+
+        /* --- Landscape Mode Overrides (for the Minimized Bar) --- */
+        /* Re-style the minimized placeholder bar for the vertical layout in landscape */
+        .split-container:not(.minimized-portrait) .minimized-placeholder-bar {
+             flex-direction: column; /* Stack text and button vertically */        
+             height: 100%; /* Take full height */
+             width: 100%; /* Take full width */
+             padding: 20px 0 0 0; /* Add top padding */
+             justify-content: flex-start; /* Align contents to the top */
+        }
+
+        /* Re-style the text for the vertical minimized bar */
+        .split-container:not(.minimized-portrait) .translation-placeholder {
+             /* Keep existing rotation from global styles for sideways text, but center it vertically */
+             /* The transform: rotate(-90deg) is already set, we just need the alignment here. */
+             text-align: center;
+             flex-grow: 0; /* Don't grow to force the button to the bottom */
+        }
+
+        /* Re-style the expand FAB for the vertical minimized bar */
+        .split-container:not(.minimized-portrait) .translation-expand-fab {
+             height: 100px; /* 100px high in the vertical bar */
+             width: 100%; /* Full width */
+             margin-top: auto; /* Push it to the bottom */
         }
 
         /* Rotation for landscape minimized text */
@@ -657,6 +723,7 @@
         min-width: 50px !important; /* Lock the width */
         height: 100% !important; /* Full height */
         border-right: none !important;
+        flex-direction: column !important;
     }
 
     /* Base rotation for the icon to handle landscape mode */
