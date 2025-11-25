@@ -161,6 +161,9 @@
             .song-content {
                         padding-bottom: 56px !important;
             }
+            .minimize-fab-wrapper {
+                display: contents !important;
+            }
         }
 
         /* Text for minimized bar */
@@ -712,6 +715,7 @@
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
+        pointer-events: auto;
     }
 
     .minimize-fab.rotate-fab {
