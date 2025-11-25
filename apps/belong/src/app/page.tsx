@@ -660,9 +660,15 @@ export default function Home() {
             <button
               className={`nav-tab next ${isIdle ? 'idle-hide' : ''}`}
               onClick={handleNext}
-              aria-label="Next Song"
+              aria-label={isLastSong ? "Contact Us" : "Next Song"}
             >
-              <span className="nav-tab-text">{nextLabel}</span>
+              {isLastSong ? (
+                /* Icon for Contact (Upright) */
+                <span className="material-symbols-outlined">mail</span>
+              ) : (
+                /* Text for Next (Rotated) */
+                <span className="nav-tab-text">Next</span>
+              )}
             </button>
           )}
           <div
