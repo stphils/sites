@@ -170,6 +170,8 @@
              z-index: 10;
          }
         .minimized-placeholder-bar {
+            flex: 1; 
+            box-sizing: border-box;
             /* Set the container to occupy all space in the minimized pane */
             width: 100%;
             height: 100%;
@@ -720,6 +722,7 @@
         justify-content: center;
         align-items: center;
         transition: flex-basis 0.3s ease, width 0.3s ease, height 0.3s ease;
+        overflow: hidden !important;
     }
 
     /* Minimized Translation Pane - Landscape (Horizontal) Mode */
@@ -781,6 +784,12 @@
 
 /* --- Navigation Tabs (Previous / Next) --- */
 
+@keyframes flashFade {
+    0%   { opacity: 0; }
+    30%  { opacity: 1; } /* Flash full visibility quickly */
+    100% { opacity: 0.5; } /* Settle at semi-transparent */
+}
+
 .nav-tab {
     position: absolute;
     top: 50%;
@@ -800,8 +809,10 @@
     justify-content: center;
     align-items: center;
 
-    transition: background-color 0.2s ease, opacity 0.3s ease-in-out;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    /* ANIMATION: Apply the flash effect on mount */
+    opacity: 0.5; /* Default resting state */
+    animation: flashFade 2s ease-out forwards;
 }
 
 .nav-tab:hover {
