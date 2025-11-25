@@ -822,10 +822,6 @@
     animation: none;
 }
 
-@keyframes fadeInToHalf {
-    from { opacity: 0; }
-    to { opacity: 0.5; }
-}
 
 /* Previous Tab (Left Side) */
 .nav-tab.prev {
