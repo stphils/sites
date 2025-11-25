@@ -652,7 +652,7 @@ export default function Home() {
               onClick={handlePrevious}
               aria-label="Previous Song"
             >
-              <span className="nav-tab-text">Previous</span>
+              <span className="nav-tab-text">Prev</span>
             </button>
           )}
 
