@@ -564,7 +564,7 @@
 
     /* Rotate icon when menu is open */
     .song-fab-toggle.open::after {
-        transform: translateY(-50 % ) rotate(180 deg);
+      transform: translateY(-50 % ) rotate(180 deg);
     }
 
     /* The song dropdown menu (Same style as the FAB menu items) */
@@ -812,7 +812,7 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     /* ANIMATION: Apply the flash effect on mount */
     opacity: 0.5; /* Default resting state */
-    animation: flashFade 2s ease-out forwards;
+    animation: flashFade 2s ease-out;
 }
 
 .nav-tab:hover {
