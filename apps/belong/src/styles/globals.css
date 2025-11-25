@@ -211,7 +211,8 @@
              transform: rotate(-90deg);
              text-align: center;
              flex-grow: 0; /* Don't grow to force the button to the bottom */
-             max-width: 100%;
+             width: 400px;
+             max-width: none;
              margin-bottom: 20px;
              white-space: nowrap; /* Prevent wrapping which might confuse the max-width calculation */
              overflow: hidden; /* Hide any overflowing text */
