@@ -831,18 +831,12 @@
 .nav-tab.prev {
     left: 0;
     border-radius: 0 8px 8px 0; /* Round the right corners only */
-    opacity: 0.5;
-    /* Apply the animation on mount: 0% -> 50% over 2 seconds */
-    animation: fadeInToHalf 2s ease-out forwards;
 }
 
 /* Next Tab (Right Side) */
 .nav-tab.next {
     right: 0;
     border-radius: 8px 0 0 8px; /* Round the left corners only */
-    opacity: 0.5;
-    /* Apply the animation on mount: 0% -> 50% over 2 seconds */
-    animation: fadeInToHalf 2s ease-out forwards;
 }
 
 /* Text Rotation */
