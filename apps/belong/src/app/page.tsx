@@ -288,7 +288,7 @@ const CONTACT_IFRAME_SRC = 'https://stphilseastwood.elvanto.com.au/form/2840a4a4
 
 
 export default function Home() {
-  const IDLE_TIMEOUT_MS = 5000; // 5 seconds
+  const IDLE_TIMEOUT_MS = 2000; // 2 seconds
   const [isIdle, setIsIdle] = useState(false);
   const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
 
