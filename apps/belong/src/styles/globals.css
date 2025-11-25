@@ -779,6 +779,66 @@
     z-index: 100;
 }
 
+/* --- Navigation Tabs (Previous / Next) --- */
+
+.nav-tab {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #e74c3c; /* Matches Song FAB Red */
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 90; /* Below FABs (1000) but above content */
+    
+    /* Sizing */
+    min-width: 30px;
+    padding: 20px 8px; /* Vertical padding becomes horizontal length due to rotation visual */
+    
+    /* Flex to center the text span */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.2s ease, opacity 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-tab:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Previous Tab (Left Side) */
+.nav-tab.prev {
+    left: 0;
+    border-radius: 0 8px 8px 0; /* Round the right corners only */
+}
+
+/* Next Tab (Right Side) */
+.nav-tab.next {
+    right: 0;
+    border-radius: 8px 0 0 8px; /* Round the left corners only */
+}
+
+/* Text Rotation */
+.nav-tab-text {
+    display: block;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Rotate -90 degrees as requested */
+    transform: rotate(-90deg);
+}
+
+/* Ensure the button hides cleanly when idle (uses your existing .idle-hide class) */
+.nav-tab.idle-hide {
+    opacity: 0; 
+    pointer-events: none;
+}
+
 /* --- FAB Idle/Invisibility Styling --- */
 /* This style applies to all FAB elements to prepare for the transition */
 .fab-container,
