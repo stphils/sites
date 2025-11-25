@@ -90,12 +90,7 @@
          * This media query applies when the height is greater than the width.
          */
         @media (orientation: portrait) {
-            .minimize-fab.rotate-fab {
-                position: absolute !important; /* Force it back to absolute */
-                bottom: 20px !important;
-                right: 20px !important;                
-                transform: none !important; /* Reset rotation */
-            }
+            
             .split-container {
                 flex-direction: column; /* Stack top-to-bottom */
             }
