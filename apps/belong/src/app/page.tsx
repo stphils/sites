@@ -7,6 +7,10 @@ interface Song { title: string; lyrics: string; }
 interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
 interface AllLyrics { [key: string]: LanguageData; }
 
+const IDLE_TIMEOUT_MS = 5000; // 5 seconds
+const [isIdle, setIsIdle] = useState(false);
+const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
+
 const allLyrics: AllLyrics = {
   'en': {
     langName: 'English',
@@ -341,6 +345,53 @@ export default function Home() {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };  
   }, []);
+
+  // --- NEW: Idle/Activity Detection Logic (Add this useEffect) ---
+  useEffect(() => {
+    // Function to hide the FABs
+    const startTimer = () => {
+      // Clear any existing timer first
+      if (idleTimerRef.current) {
+        clearTimeout(idleTimerRef.current);
+      }
+      // Set a new timer to set isIdle to true after 5 seconds
+      idleTimerRef.current = setTimeout(() => {
+        // Only hide if menus are closed to avoid immediate re-hide after interaction
+        if (!isFabMenuOpen && !isSongMenuOpen) {
+          setIsIdle(true);
+        }
+      }, IDLE_TIMEOUT_MS);
+    };
+
+    // Function to show the FABs and restart the timer
+    const handleUserActivity = () => {
+      // 1. Show FABs
+      if (isIdle) {
+          setIsIdle(false);
+      }
+      // 2. Restart the timer
+      startTimer();
+    };
+
+    // Start the initial timer on mount
+    startTimer();
+
+    // Add event listeners for user activity on the whole document/window
+    // 'mousemove' for mouse, 'touchstart' for touch screens
+    document.addEventListener('mousemove', handleUserActivity);
+    document.addEventListener('touchstart', handleUserActivity);
+    document.addEventListener('scroll', handleUserActivity); // Also useful for activity
+
+    // Clean up: remove listeners and clear the final timer when the component unmounts
+    return () => {
+      if (idleTimerRef.current) {
+        clearTimeout(idleTimerRef.current);
+      }
+      document.removeEventListener('mousemove', handleUserActivity);
+      document.removeEventListener('touchstart', handleUserActivity);
+      document.removeEventListener('scroll', handleUserActivity);
+    };
+  }, [isFabMenuOpen, isSongMenuOpen, isIdle]); // Re-run if menu states change, or if isIdle changes to re-check the hide condition.
 
   // --- 3. CORE LOGIC ---
 
