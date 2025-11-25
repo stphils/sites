@@ -7,10 +7,6 @@ interface Song { title: string; lyrics: string; }
 interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
 interface AllLyrics { [key: string]: LanguageData; }
 
-const IDLE_TIMEOUT_MS = 5000; // 5 seconds
-const [isIdle, setIsIdle] = useState(false);
-const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
-
 const allLyrics: AllLyrics = {
   'en': {
     langName: 'English',
@@ -292,7 +288,10 @@ const CONTACT_IFRAME_SRC = 'https://stphilseastwood.elvanto.com.au/form/2840a4a4
 
 
 export default function Home() {
-  
+  const IDLE_TIMEOUT_MS = 5000; // 5 seconds
+  const [isIdle, setIsIdle] = useState(false);
+  const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
+
   // --- 2. STATE AND REFS ---
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [activeSongIndex, setActiveSongIndex] = useState(0);
