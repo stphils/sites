@@ -783,62 +783,62 @@
 }
 
 /* --- Navigation Tabs (Previous / Next) --- */
-
 @keyframes flashFade {
     0%   { opacity: 0; }
-    30%  { opacity: 1; } /* Flash full visibility quickly */
-    100% { opacity: 0.5; } /* Settle at semi-transparent */
+    30%  { opacity: 1; }   
+    100% { opacity: 0.5; } 
 }
 
+/* 2. Base Tab Style */
 .nav-tab {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #e74c3c; /* Matches Song FAB Red */
+    background-color: #e74c3c;
     color: white;
     border: none;
     cursor: pointer;
-    z-index: 90; /* Below FABs (1000) but above content */
+    z-index: 90;
     
-    /* Sizing */
     min-width: 30px;
-    padding: 20px 8px; /* Vertical padding becomes horizontal length due to rotation visual */
+    padding: 20px 8px;
     
-    /* Flex to center the text span */
     display: flex;
     justify-content: center;
     align-items: center;
 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    /* ANIMATION LOGIC */
-    opacity: 0.5; /* Final resting state */
-    animation: flashFade 2s ease-out; /* Run animation once */
 
-    /* TRANSITION: Only animate background and transform. DO NOT animate opacity here. */
+    /* NUCLEAR FIX FOR STACKING: */
+    /* Start completely invisible. Only the animation makes it visible. */
+    opacity: 0; 
+    
+    /* Run animation and HOLD (forwards) the final 0.5 value */
+    animation: flashFade 2s ease-out forwards;
+
+    /* Only transition background/transform. Never transition opacity here to avoid conflicts. */
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+/* 3. Hover State */
 .nav-tab:hover {
-    background-color: #c0392b; /* Darker red on hover */
+    background-color: #c0392b;
+    /* !important is required to override the 'forwards' state of the animation */
     opacity: 1 !important; 
-    /* Cancel the animation so it doesn't fight the hover state */
-    animation: none;
 }
 
-
-/* Previous Tab (Left Side) */
+/* 4. Positioning */
 .nav-tab.prev {
     left: 0;
-    border-radius: 0 8px 8px 0; /* Round the right corners only */
+    border-radius: 0 8px 8px 0;
 }
 
-/* Next Tab (Right Side) */
 .nav-tab.next {
     right: 0;
-    border-radius: 8px 0 0 8px; /* Round the left corners only */
+    border-radius: 8px 0 0 8px;
 }
 
-/* Text Rotation */
+/* 5. Text Rotation */
 .nav-tab-text {
     display: block;
     white-space: nowrap;
@@ -846,16 +846,16 @@
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* Rotate -90 degrees as requested */
     transform: rotate(-90deg);
 }
 
-/* Ensure the button hides cleanly when idle (uses your existing .idle-hide class) */
+/* 6. Idle State */
 .nav-tab.idle-hide {
+    /* Override animation and hover to hide */
     opacity: 0 !important;
     pointer-events: none;
-    transition: opacity 0.5s ease-in-out; /* Only transition opacity when hiding */
+    /* We only want to transition opacity when fading OUT to idle */
+    transition: opacity 0.5s ease-in-out; 
 }
 
 /* --- FAB Idle/Invisibility Styling --- */
