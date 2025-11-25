@@ -146,7 +146,11 @@
                 font-size: 1rem;
                 font-weight: 600;
                 flex-grow: 1;
-                text-align: left; /* Adjust text to the left */
+                text-align: left !important; /* Adjust text to the left */
+                max-width: calc(100% - 100px); /* 100% minus the fixed width of the green button */
+                white-space: nowrap; /* Prevent wrapping which might confuse the max-width calculation */
+                overflow: hidden; /* Hide any overflowing text */
+                text-overflow: ellipsis; /* Optional: adds "..." if text is too long */
         }
 
         .translation-expand-fab {
@@ -175,6 +179,9 @@
             align-items: center;
             /* Add padding for text/button clearance from the edges */
             padding: 0 0 0 20px; /* Only needs left padding, right space is taken by the FAB */
+
+            max-width: 100%; /* Important for overflow context */
+            overflow: hidden; /* Hides horizontal overflow within this bar */
         }
        .translation-expand-fab:hover {
              background-color: #2ecc71; /* Lighter green on hover */
@@ -203,8 +210,12 @@
         .split-container:not(.minimized-portrait) .translation-placeholder {
              /* Keep existing rotation from global styles for sideways text, but center it vertically */
              /* The transform: rotate(-90deg) is already set, we just need the alignment here. */
-             text-align: center;
+             text-align: left;
              flex-grow: 0; /* Don't grow to force the button to the bottom */
+             max-width: calc(100% - 100px); /* 100% minus the fixed width of the green button */
+             white-space: nowrap; /* Prevent wrapping which might confuse the max-width calculation */
+             overflow: hidden; /* Hide any overflowing text */
+             text-overflow: ellipsis; /* Optional: adds "..." if text is too long */
         }
 
         /* Re-style the expand FAB for the vertical minimized bar */
@@ -212,6 +223,7 @@
              height: 100px; /* 100px high in the vertical bar */
              width: 100%; /* Full width */
              margin-top: auto; /* Push it to the bottom */
+             transform: rotate(270deg);
         }
 
         /* Rotation for landscape minimized text */
@@ -219,6 +231,10 @@
                 /* Default (Landscape) - Rotate text 90 degrees to read sideways */
                 transform: rotate(-90deg);
                 white-space: nowrap; /* Prevent wrapping */
+                max-width: calc(100% - 100px); /* 100% minus the fixed width of the green button */
+                white-space: nowrap; /* Prevent wrapping which might confuse the max-width calculation */
+                overflow: hidden; /* Hide any overflowing text */
+                text-overflow: ellipsis; /* Optional: adds "..." if text is too long */
         }
 
         /* Maximized Carols Pane - Shared Styles */
