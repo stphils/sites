@@ -396,8 +396,8 @@
 
         /* This is the correct CSS for "roll upwards" */
         .fab-menu {
-    /* REMOVE: margin-bottom: 16px; */
-    /* ADD: Absolute positioning relative to fab-container */
+           pointer-events: none;
+         /* ADD: Absolute positioning relative to fab-container */
     position: absolute;
     bottom: 0; /* Anchor to the bottom edge of the container */
     right: 0; /* Anchor to the right edge of the container */
@@ -420,6 +420,7 @@
 }
 
         .fab-item {
+            pointer-events: auto;
             /* Pill-shape style */
             height: 40px;
             width: auto;
