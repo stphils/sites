@@ -306,7 +306,7 @@ export default function Home() {
   const [transTouchEndX, setTransTouchEndX] = useState<number | null>(null);
   const [transTouchStartY, setTransTouchStartY] = useState<number | null>(null);
   const [transTouchEndY, setTransTouchEndY] = useState<number | null>(null);
-  const minSwipeDistance = 50; // Minimum pixel distance to count as a swipe
+  const minSwipeDistance = 40; // Minimum pixel distance to count as a swipe
   
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
