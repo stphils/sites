@@ -300,12 +300,17 @@ export default function Home() {
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+        
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchEndY, setTouchEndY] = useState<number | null>(null);
+        
   const [transTouchStartX, setTransTouchStartX] = useState<number | null>(null);
   const [transTouchEndX, setTransTouchEndX] = useState<number | null>(null);
   const [transTouchStartY, setTransTouchStartY] = useState<number | null>(null);
   const [transTouchEndY, setTransTouchEndY] = useState<number | null>(null);
+        
   const minSwipeDistance = 40; // Minimum pixel distance to count as a swipe
   
   const songMenuRef = useRef<HTMLDivElement>(null);
@@ -593,30 +598,43 @@ export default function Home() {
     );
   };
   
-  // --- SWIPE HANDLERS ---
+  // --- SWIPE HANDLERS (Song Pane) ---
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null); // Reset end position
+    setTouchEnd(null); 
+    setTouchEndY(null); // Reset Y end
     setTouchStart(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY); // Capture Y start
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
+    setTouchEndY(e.targetTouches[0].clientY); // Capture Y move
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    // Ensure we have data for X AND Y
+    if (!touchStart || !touchEnd || !touchStartY || !touchEndY) return;
     
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    const distanceX = touchStart - touchEnd;
+    const distanceY = touchStartY - touchEndY;
+    
+    // LOGIC: Is the movement mostly Horizontal?
+    // If they moved 100px Down and 50px Left, they are scrolling (ignore swipe).
+    // If they moved 10px Down and 50px Left, they are swiping (trigger Next).
+    const isHorizontal = Math.abs(distanceX) > Math.abs(distanceY);
 
-    // Swipe Left (Finger moves <--) = Go Next
-    if (isLeftSwipe) {
-      handleNext();
-    }
-    // Swipe Right (Finger moves -->) = Go Prev
-    if (isRightSwipe) {
-      handlePrevious();
+    if (isHorizontal) {
+        const isLeftSwipe = distanceX > minSwipeDistance;
+        const isRightSwipe = distanceX < -minSwipeDistance;
+
+        // Swipe Left (Finger moves <--) = Go Next
+        if (isLeftSwipe) {
+          handleNext();
+        }
+        // Swipe Right (Finger moves -->) = Go Prev
+        if (isRightSwipe) {
+          handlePrevious();
+        }
     }
   };
 
