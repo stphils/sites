@@ -766,11 +766,12 @@ export default function Home() {
                  <div 
                     style={{
                         position: 'absolute',
-                        bottom: 0,
-                        right: 0,
-                        width: '60px', 
-                        height: '60px', 
-                        zIndex: 50,
+                        bottom: isPortrait ? 0 : undefined, // Stick to bottom in Portrait
+                        top: isPortrait ? undefined : 0,    // Stick to top in Landscape (so it covers full height)
+                        right: 0,                           // Always stick to right
+                        width: isPortrait ? '100%' : '40px',  // Full width vs Narrow strip
+                        height: isPortrait ? '40px' : '100%', // Narrow strip vs Full height
+                        zIndex: 50, 
                         backgroundColor: 'transparent',
                     }}
                     onTouchStart={onTransTouchStart}
