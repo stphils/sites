@@ -302,6 +302,10 @@ export default function Home() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [transTouchStartX, setTransTouchStartX] = useState<number | null>(null);
+  const [transTouchEndX, setTransTouchEndX] = useState<number | null>(null);
+  const [transTouchStartY, setTransTouchStartY] = useState<number | null>(null);
+  const [transTouchEndY, setTransTouchEndY] = useState<number | null>(null);
   const minSwipeDistance = 50; // Minimum pixel distance to count as a swipe
   
   const songMenuRef = useRef<HTMLDivElement>(null);
@@ -616,6 +620,59 @@ export default function Home() {
     }
   };
 
+  // --- SMART TRANSLATION PANE HANDLERS ---
+  const onTransTouchStart = (e: React.TouchEvent) => {
+    // Reset ends
+    setTransTouchEndX(null);
+    setTransTouchEndY(null);
+    // Capture starts
+    setTransTouchStartX(e.targetTouches[0].clientX);
+    setTransTouchStartY(e.targetTouches[0].clientY);
+  };
+
+  const onTransTouchMove = (e: React.TouchEvent) => {
+    setTransTouchEndX(e.targetTouches[0].clientX);
+    setTransTouchEndY(e.targetTouches[0].clientY);
+  };
+
+  const onTransTouchEnd = () => {
+    // Ensure we have all coordinates
+    if (transTouchStartX === null || transTouchEndX === null || 
+        transTouchStartY === null || transTouchEndY === null) return;
+
+    const distX = transTouchStartX - transTouchEndX;
+    const distY = transTouchStartY - transTouchEndY;
+
+    // PORTRAIT MODE (Vertical Stack)
+    if (isPortrait) {
+        const isSwipeUp = distY > minSwipeDistance;     // Finger moves Bottom -> Top
+        const isSwipeDown = distY < -minSwipeDistance;  // Finger moves Top -> Bottom
+
+        if (isSwipeUp && !isTranslateMinimized) {
+            setIsTranslateMinimized(true); // Push up to close
+            setIsFabMenuOpen(false);
+        }
+        if (isSwipeDown && isTranslateMinimized) {
+            setIsTranslateMinimized(false); // Pull down to open
+            setIsFabMenuOpen(false);
+        }
+    } 
+    // LANDSCAPE MODE (Horizontal Side-by-Side)
+    else {
+        const isSwipeLeft = distX > minSwipeDistance;    // Finger moves Right -> Left
+        const isSwipeRight = distX < -minSwipeDistance;  // Finger moves Left -> Right
+
+        if (isSwipeLeft && !isTranslateMinimized) {
+            setIsTranslateMinimized(true); // Push left to close
+            setIsFabMenuOpen(false);
+        }
+        if (isSwipeRight && isTranslateMinimized) {
+            setIsTranslateMinimized(false); // Pull right to open
+            setIsFabMenuOpen(false);
+        }
+    }
+  };
+
   // --- 6. RENDER WITH JSX ---
 
   // Add dynamic class names based on state
@@ -645,7 +702,13 @@ export default function Home() {
         </button>
         <div className={splitContainerClass} ref={splitContainerRef}>
             {/* LEFT PANE: Translator Iframe */}
-        <div className={translatePaneClass} id="translate-pane" onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}>
+        <div className={translatePaneClass} 
+                id="translate-pane" 
+                onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}
+                onTouchStart={onTransTouchStart}
+                onTouchMove={onTransTouchMove}
+                onTouchEnd={onTransTouchEnd}
+        >
             {isTranslateMinimized ? (
                 <div className="minimized-placeholder-bar">
                     {/* Left Side: Text */}
