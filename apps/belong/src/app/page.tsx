@@ -366,8 +366,25 @@ export default function Home() {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };  
   }, []);
+  
+  // --- Auto-minimize translation pane ONLY on startup in portrait mode ---
+  useEffect(() => {
+    // 1. Check direct window dimensions to determine orientation at the exact moment of mount.
+    // We do not use the 'isPortrait' state variable here to avoid dependency array issues.
+    const isPortraitOnMount = typeof window !== 'undefined' && window.innerHeight > window.innerWidth;
 
-  // --- NEW: Idle/Activity Detection Logic (Add this useEffect) ---
+    // 2. If it is portrait, set a timer to minimize.
+    if (isPortraitOnMount) {
+      const timer = setTimeout(() => {
+        setIsTranslateMinimized(true);
+      }, 2000); // 2000ms = 2 seconds
+
+      // Cleanup: clear timer if user leaves page instantly
+      return () => clearTimeout(timer);
+    }
+  }, []);
+  
+  // --- Idle/Activity Detection Logic (Add this useEffect) ---
   useEffect(() => {
     // Function to hide the FABs
     const startTimer = () => {
