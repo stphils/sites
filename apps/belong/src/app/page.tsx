@@ -702,23 +702,21 @@ export default function Home() {
         </button>
         <div className={splitContainerClass} ref={splitContainerRef}>
             {/* LEFT PANE: Translator Iframe */}
-        <div className={translatePaneClass} 
-                id="translate-pane" 
-                onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}
-                onTouchStart={onTransTouchStart}
-                onTouchMove={onTransTouchMove}
-                onTouchEnd={onTransTouchEnd}
+        {/* LEFT PANE: Translator Iframe */}
+        <div 
+            className={translatePaneClass} 
+            id="translate-pane" 
+            onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}
+            // REMOVE TOUCH HANDLERS FROM HERE (They are blocked by iframe)
         >
             {isTranslateMinimized ? (
                 <div className="minimized-placeholder-bar">
-                    {/* Left Side: Text */}
+                    {/* ... (Existing minimized content remains exactly the same) ... */}
                     <span className="translation-placeholder">For translation services</span>
-                    {/* Right Side: Green Expand Button (Always visible when minimized) */}
                     <button
-                                className="translation-expand-fab" // New class for styling
+                                className="translation-expand-fab" 
                                 aria-label="Expand Translation Panel"
-                                // The click handler is already on the parent div, but adding it here too is good for accessibility
-                                onClick={(e) => {                                
+                                onClick={(e) => {                                 
                                         e.stopPropagation(); 
                                         toggleTranslateMinimize();
                                 }}
@@ -729,18 +727,56 @@ export default function Home() {
             ) : (
                 <>
                 <div className="minimize-fab-wrapper"> 
-                    <button
-                        className={`minimize-fab ${isTranslateMinimized || isIdle ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
-                        id="minimize-fab-button"
-                        onClick={(e) => {
-                            e.stopPropagation(); 
-                            toggleTranslateMinimize();
-                        }}
-                    >
-                        <span className="material-symbols-outlined">expand_less</span>
-                    </button>
-                </div>
+                    <button
+                        className={`minimize-fab ${isTranslateMinimized || isIdle ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
+                        id="minimize-fab-button"
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            toggleTranslateMinimize();
+                        }}
+                    >
+                        <span className="material-symbols-outlined">expand_less</span>
+                    </button>
+                </div>
+                
                 <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
+
+                {/* --- INVISIBLE SWIPE OVERLAYS --- */}
+                {/* These sit ON TOP of the iframe to capture gestures */}
+                
+                {/* 1. Vertical Swipe Zone (Right Edge in Landscape, Bottom in Portrait) */}
+                <div 
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        width: isPortrait ? '100%' : '40px', // Full width in portrait, strip in landscape
+                        height: isPortrait ? '40px' : '100%', // Strip in portrait, full height in landscape
+                        zIndex: 50, // Above iframe
+                        // Debug color: backgroundColor: 'rgba(255,0,0,0.2)', 
+                        backgroundColor: 'transparent',
+                    }}
+                    // Attach Touch Handlers Here
+                    onTouchStart={onTransTouchStart}
+                    onTouchMove={onTransTouchMove}
+                    onTouchEnd={onTransTouchEnd}
+                />
+
+                 {/* 2. Extra Zone for the Green Button Area (Bottom Right) */}
+                 <div 
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        right: 0,
+                        width: '60px', 
+                        height: '60px', 
+                        zIndex: 50,
+                        backgroundColor: 'transparent',
+                    }}
+                    onTouchStart={onTransTouchStart}
+                    onTouchMove={onTransTouchMove}
+                    onTouchEnd={onTransTouchEnd}
+                />
             </>
             )}
         </div>
