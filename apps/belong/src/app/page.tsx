@@ -4,12 +4,13 @@ import { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react
 import { Logo } from "ui";
 // --- 1. DATA STRUCTURES ---
 interface Song { title: string; lyrics: string; }
-interface LanguageData { langName: string; translateUrl: string; songs: Song[]; }
+interface LanguageData { langName: string; translateUrl: string; serviceLabel: string; songs: Song[]; }
 interface AllLyrics { [key: string]: LanguageData; }
 const allLyrics: AllLyrics = {
   'en': {
     langName: 'English',
     translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/en-US?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0',
+    serviceLabel: 'For translation services',
     songs: [
       {
         title: "Welcome ...",
@@ -231,7 +232,8 @@ our Lord Emmanuel`
   },
   'zh-Hans': { 
       langName: '简体', 
-      translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/zh-Hans?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false', 
+      translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/zh-Hans?lines=0&bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false',
+      serviceLabel: '翻译服务',
       songs: [
         {
         title: "欢迎 ...",
@@ -248,7 +250,8 @@ our Lord Emmanuel`
     },
     'zh-HK': { 
       langName: '繁體', 
-      translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/zh-HK?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0', 
+      translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/zh-HK?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0',
+      serviceLabel: '翻譯服務',
       songs: [
         {
         title: "歡迎 ...",
@@ -265,7 +268,8 @@ our Lord Emmanuel`
     },
     'ko': { 
       langName: '한국어', 
-      translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/ko?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0', 
+      translateUrl: 'https://beta.sunflowerai.io/caption/DQ8Q36/ko?bg=true&color=51.5%2C0%2C100&size=1&width=true&font=ar-one-sans&green=false&lines=0',
+      serviceLabel: '번역 서비스',
       songs: [
         {
         title: "환영 ...",
@@ -738,7 +742,9 @@ export default function Home() {
             {isTranslateMinimized ? (
                 <div className="minimized-placeholder-bar">
                     {/* ... (Existing minimized content remains exactly the same) ... */}
-                    <span className="translation-placeholder">For translation services</span>
+                    <span className="translation-placeholder">
+                        {currentLangData.serviceLabel}
+                    </span>
                     <button
                                 className="translation-expand-fab" 
                                 aria-label="Expand Translation Panel"
