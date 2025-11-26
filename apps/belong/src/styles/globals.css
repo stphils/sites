@@ -357,7 +357,7 @@
         /* Container for the song lyrics */
         .song-content {
             flex: 1; 
-            /* FIX 2: Enable scrolling when contents overflow */
+            touch-action: pan-y; /* Forces browser to release horizontal swipes to JS */
             overflow: auto;
             padding: 24px;
             padding-bottom: 76px; /* FAB height (56px) + FAB bottom offset (20px) = 76px */
