@@ -364,7 +364,19 @@
             font-size: 1.1rem;
             line-height: 1.6;
             /* This is ESSENTIAL for preserving newlines from the JS string */
-            white-space: pre-wrap; 
+            white-space: pre-wrap;
+            /* 1. Disable text highlighting so swipes don't get stuck selecting text */
+            -webkit-user-select: none;
+            user-select: none;
+            /* 2. Tell browser to handle vertical scrolls but pass horizontal swipes to JS */
+            touch-action: pan-y; 
+            /* 3. Ensure smooth scrolling */
+            -webkit-overflow-scrolling: touch;
+        }
+        .song-content * {
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: pan-y;
         }
 
         /* Hide the song content area */
