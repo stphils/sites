@@ -17,36 +17,6 @@ const allLyrics: AllLyrics = {
         lyrics: `<h2>Welcome to St Phils</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, "The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas."<p>Maybe you've got questions about God or you're wondering what's the point of Christianity? Why not ask your questions and find answers at <a href="https://christianity.net.au" target="_newtab">Christianity.net.au</a>?</p>`
       },
       {
-        title: "Joy to the World",
-        lyrics: `<h2>Joy to the World</h2>Joy to the world! The Lord is come
-let earth receive her king
-Let every heart prepare him room
-and heaven and nature sing
-and heaven and nature sing
-and heaven, and heaven and nature sing
-
-Joy to the world! The Savior reigns
-let men their song employ
-while fields and floods, rocks, hills, and plains
-repeat the sounding joy
-repeat the sounding joy
-repeat, repeat the sounding joy
-
-No more let sin and sorrow grow
-nor thorns infest the ground
-He comes to make his blessing flow
-far as the curse is found
-far as the curse is found
-far as, far as the curse is found
-
-He rules the world with truth and grace
-and makes the nations prove
-the glories of his righteousness
-and wonders of his love
-and wonders of his love
-and wonders, wonders of his love`
-      },
-      {
         title: "O Come All Ye Faithful",
         lyrics: `<h2>O Come All Ye Faithful</h2>O come all ye faithful, joyful and triumphant
 O come ye, o come ye to bethlehem
@@ -79,6 +49,59 @@ O come let us adore him
 O come let us adore him
 O come let us adore him
 Christ the Lord!`
+      },
+      {
+        title: "The First Nowell",
+        lyrics: `<h2>The First Nowell</h2>The first nowell the angel did say
+was the certain poor shepherds in fields as they lay
+in fields where they lay keeping their sheep
+on a cold winder’s night that was so deep
+Nowell, nowell, nowell, nowell
+born is the King of Israel
+
+When they looked up they saw a star
+shining in the east, beyond them far
+and to the earth it gave great light
+and so it continued both day and night
+Nowell, nowell, nowell, nowell
+born is the King of Israel
+
+This star drew nigh to the north-west
+over Bethlehem it took its rest
+and there it did both stop and stay
+right over the place where Jesus lay
+Nowell, nowell, nowell, nowell
+born is the King of Israel
+
+Now let us all with one accord
+sing praises to our heavenly Lord
+who brought forth heaven and earth from nought
+and with his blood mankind has bought
+Nowell, nowell, nowell, nowell
+born is the King of Israel`
+      },
+      {
+        title: "Silent Night",
+        lyrics: `<h2>Silent Night</h2>Silent night, holy night
+all is calm, all is bright
+round young virgin, mother and child
+holy infant so tender and mild
+sleep in heavenly peace
+sleep in heavenly peace
+
+Silent night, holy night
+shepherds quake at the sight
+glories stream from heaven afar
+heavenly hosts sing, ‘Alleluia
+Christ the Savior is born
+Christ the savior is born’
+
+Silent night, holy night
+wonderous star, lend your light
+with the angels let us sing
+Alleluia to our King
+Christ our Saviour is born
+Christ our Saviour is born`
       },
       {
         title: "Hark! The Herald Angels Sing",
@@ -116,29 +139,6 @@ Hark! The heralds angels sing 
 glory to the newborn king`
       },
       {
-        title: "Silent Night",
-        lyrics: `<h2>Silent Night</h2>Silent night, holy night
-all is calm, all is bright
-round young virgin, mother and child
-holy infant so tender and mild
-sleep in heavenly peace
-sleep in heavenly peace
-
-Silent night, holy night
-shepherds quake at the sight
-glories stream from heaven afar
-heavenly hosts sing, ‘Alleluia
-Christ the Savior is born
-Christ the savior is born’
-
-Silent night, holy night
-wonderous star, lend your light
-with the angels let us sing
-Alleluia to our King
-Christ our Saviour is born
-Christ our Saviour is born`
-      },
-      {
         title: "O Holy Night",
         lyrics: `<h2>O Holy Night</h2>O holy night, the stars are brightly shining
 it is the night of our dear saviour’s birth
@@ -159,37 +159,7 @@ Let all within us praise his holy name
 Christ is the Lord, O praise hisname forever
 His power and glory evermore proclaim
 His power and glory evermore proclaim`
-      },
-      {
-        title: "The First Nowell",
-        lyrics: `<h2>The First Nowell</h2>The first nowell the angel did say
-was the certain poor shepherds in fields as they lay
-in fields where they lay keeping their sheep
-on a cold winder’s night that was so deep
-Nowell, nowell, nowell, nowell
-born is the King of Israel
-
-When they looked up they saw a star
-shining in the east, beyond them far
-and to the earth it gave great light
-and so it continued both day and night
-Nowell, nowell, nowell, nowell
-born is the King of Israel
-
-This star drew nigh to the north-west
-over Bethlehem it took its rest
-and there it did both stop and stay
-right over the place where Jesus lay
-Nowell, nowell, nowell, nowell
-born is the King of Israel
-
-Now let us all with one accord
-sing praises to our heavenly Lord
-who brought forth heaven and earth from nought
-and with his blood mankind has bought
-Nowell, nowell, nowell, nowell
-born is the King of Israel`
-      },
+      },      
       {
         title: "O Little Town of Bethlehem",
         lyrics: `<h2>O Little Town of Bethlehem</h2>O little town of Bethlehem
@@ -227,6 +197,36 @@ We hear the Christmas angels
 the great glad tidings tells
 O come to us, abide with us
 our Lord Emmanuel`
+      },
+      {
+        title: "Joy to the World",
+        lyrics: `<h2>Joy to the World</h2>Joy to the world! The Lord is come
+let earth receive her king
+Let every heart prepare him room
+and heaven and nature sing
+and heaven and nature sing
+and heaven, and heaven and nature sing
+
+Joy to the world! The Savior reigns
+let men their song employ
+while fields and floods, rocks, hills, and plains
+repeat the sounding joy
+repeat the sounding joy
+repeat, repeat the sounding joy
+
+No more let sin and sorrow grow
+nor thorns infest the ground
+He comes to make his blessing flow
+far as the curse is found
+far as the curse is found
+far as, far as the curse is found
+
+He rules the world with truth and grace
+and makes the nations prove
+the glories of his righteousness
+and wonders of his love
+and wonders of his love
+and wonders, wonders of his love`
       }
     ]
   },
