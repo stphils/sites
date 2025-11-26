@@ -238,7 +238,7 @@ our Lord Emmanuel`
         lyrics: `<h2>欢迎来到圣菲尔教堂</h2>感谢大家加入我们，一起庆祝圣诞节。圣诞节是一个充满喜悦的季节。这是上帝向我们展示祂伟大爱的时刻。这是我们庆祝耶稣基督诞生的时候——上帝的儿子，降生到我们的世界中。因此，这个诞生给世界带来了巨大的喜悦。天使、牧羊人和贤士们都参与了这一重要事件。他们知道这不是普通的婴儿。然而，这个婴儿的诞生有其目的：比利·格雷厄姆曾说：“基督降临世界的根本目的就是为世人的罪而献出自己的生命作为牺牲。他来到世上是为了受难。这就是圣诞节的核心。”`
         },
         { title: "Joy to the World - 普世欢腾", lyrics: "<h2>Joy to the World — 普世欢腾</h2><p>Joy to the world! The Lord is come<br>普世欢腾，救主下降<br>let earth receive her King<br>大地接她君王<br>Let every heart prepare Him room<br>愿众心为主预备地方<br>and heaven and nature sing<br>诸天万物歌唱<br>and heaven and nature sing<br>诸天万物歌唱<br>and heaven, and heaven and nature sing<br>诸天，诸天万物歌唱</p><p>Joy to the world! The Savior reigns<br>普世欢腾，主治万方<br>let men their songs employ<br>万民守主法则<br>while fields and floods, rocks, hills, and plains<br>田野江河，山石与平原<br>repeat the sounding joy<br>重复主恩浩荡<br>repeat the sounding joy<br>重复主恩浩荡<br>repeat, repeat the sounding joy<br>重复，重复主恩浩荡</p><p>No more let sins and sorrows grow<br>罪恶忧愁不再生长<br>nor thorns infest the ground<br>地上不再受伤<br>He comes to make His blessings flow<br>主来使万民得祂恩惠<br>far as the curse is found<br>直到远方万邦<br>far as the curse is found<br>直到远方万邦<br>far as, far as the curse is found<br>直到，直到远方万邦</p><p>He rules the world with truth and grace<br>主以真理恩慈统治<br>and makes the nations prove<br>使万国得证明<br>the glories of His righteousness<br>主之公义，无比的荣耀<br>and wonders of His love<br>主爱无穷无尽<br>and wonders of His love<br>主爱无穷无尽<br>and wonders, wonders of His love<br>主爱，主爱无穷无尽</p>" },
-        { title: "O Come All Ye Faithful — 齐来崇拜", lyrics: "<h2>O Come All Ye Faithful — 齐来崇拜</h2><p>O come all ye faithful, joyful and triumphant<齐来，宗主信徒，欢欣快乐歌唱<br>O come ye, O come ye to Bethlehem<br>齐来，齐来，往伯利恒去<br>Come and behold Him, born the King of angels<br>来朝见基督，天使之王降生<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p><p>True God of true God, Light of Light eternal<br>真神的真神，荣耀光明无尽<br>Lo, He abhors not the virgin’s womb<br>甘愿降生于童贞女腹<br>Son of the Father, begotten, not created<br>父之独生子，非受造而生<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p><p>Sing choirs of angels, sing in exultation<br>天上众天军齐来欢呼歌唱<br>Sing all ye citizens of heaven above<br>天堂万民同声颂扬<br>‘Glory to God, glory in the highest’<br>荣耀归真神，至高上帝当受赞美<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p><p>Yea, Lord we greet Thee, born this happy morning<br>救主，我们敬拜，今晨快乐迎祢<br>Jesus, to Thee be glory given<br>耶稣荣耀全归于祢<br>Word of the Father, now in flesh appearing<br>父之道成肉身显现于世<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p>" },
+        { title: "O Come All Ye Faithful — 齐来崇拜", lyrics: "<h2>O Come All Ye Faithful — 齐来崇拜</h2><p>O come all ye faithful, joyful and triumphant<br>齐来，宗主信徒，欢欣快乐歌唱<br>O come ye, O come ye to Bethlehem<br>齐来，齐来，往伯利恒去<br>Come and behold Him, born the King of angels<br>来朝见基督，天使之王降生<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p><p>True God of true God, Light of Light eternal<br>真神的真神，荣耀光明无尽<br>Lo, He abhors not the virgin’s womb<br>甘愿降生于童贞女腹<br>Son of the Father, begotten, not created<br>父之独生子，非受造而生<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p><p>Sing choirs of angels, sing in exultation<br>天上众天军齐来欢呼歌唱<br>Sing all ye citizens of heaven above<br>天堂万民同声颂扬<br>‘Glory to God, glory in the highest’<br>荣耀归真神，至高上帝当受赞美<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p><p>Yea, Lord we greet Thee, born this happy morning<br>救主，我们敬拜，今晨快乐迎祢<br>Jesus, to Thee be glory given<br>耶稣荣耀全归于祢<br>Word of the Father, now in flesh appearing<br>父之道成肉身显现于世<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>O come let us adore Him<br>齐来崇拜祂<br>Christ the Lord!<br>救主基督</p>" },
         { title: "Hark! The Herald Angels Sing — 听啊，天使高声唱", lyrics: "<h2>Hark! The Herald Angels Sing — 听啊，天使高声唱</h2><p>Hark! The herald angels sing<br>听啊！天使高声唱<br>glory to the newborn King<br>荣耀归于新生王<br>peace on earth and mercy mild<br>地上平安，恩惠慈爱<br>God and sinners reconciled<br>神与世人得以和好<br>Joyful all ye nations rise<br>万国欢乐齐来迎<br>join the triumph of the skies<br>同享天上荣耀欢庆<br>with the angelic host proclaim<br>与天使天军同声宣告<br>‘Christ is born in Bethlehem’<br>基督已在伯利恒降生<br>Hark! The herald angels sing<br>听啊！天使高声唱<br>glory to the newborn King<br>荣耀归于新生王</p><p>Christ, by highest heaven adored<br>基督受至高天堂爱戴<br>Christ, the everlasting Lord<br>基督永生之主宰<br>late in time behold Him come<br>末时来到显于世上<br>offspring of the virgin’s womb!<br>童贞女腹中的圣婴<br>Veiled in flesh the Godhead see<br>披着肉身看见真神<br>hail the incarnate Deity!<br>欢呼祂道成肉身<br>Pleased as man with men to dwell<br>甘作人身住在世间<br>Jesus, our Immanuel<br>耶稣，是我们以马内利<br>Hark! The herald angels sing<br>听啊！天使高声唱<br>glory to the newborn King<br>荣耀归于新生王</p><p>Mild He lays His glory by<br>祂谦卑舍下天上荣耀<br>born that man no more may die<br>降生为使世人不再死亡<br>born to raise the sons of earth<br>降生为使世人得以复活<br>born to give them second birth<br>降生为使人得重生<br>Hail the heaven-born Prince of Peace!<br>欢呼天上和平君王<br>Hail the Sun of Righteousness!<br>欢呼公义的日光<br>Light and life to all He brings<br>祂为万民带来光与生命<br>risen with healing in His wings<br>祂翅膀下有医治能力<br>Hark! The herald angels sing<br>听啊！天使高声唱<br>glory to the newborn King<br>荣耀归于新生王</p>" },
         { title: "Silent Night — 平安夜", lyrics: "<h2>Silent Night — 平安夜</h2><p>Silent night, holy night<br>平安夜，圣善夜<br>all is calm, all is bright<br>万暗中，光华射<br>round young virgin, mother and child<br>照着圣母也照着圣婴<br>holy infant so tender and mild<br>多少慈祥也多少天真<br>sleep in heavenly peace<br>天上光华照大地<br>sleep in heavenly peace<br>普世欢腾庆圣诞</p><p>Silent night, holy night<br>平安夜，圣善夜<br>shepherds quake at the sight<br>牧羊人，在旷野<br>glories stream from heaven afar<br>忽然看见了天上光华<br>heavenly hosts sing, ‘Alleluia’<br>听见天军在高声歌唱<br>Christ the Savior is born<br>救主耶稣今降生<br>Christ the Savior is born<br>救主耶稣今降生</p><p>Silent night, holy night<br>平安夜，圣善夜<br>wonderous star, lend your light<br>神圣光，普照万方<br>with the angels let us sing<br>同那天使唱“哈利路亚”<br>Alleluia to our King<br>荣耀归于天上君王<br>Christ our Savior is born<br>救主基督已降生<br>Christ our Savior is born<br>救主基督已降生</p>" },
         { title: "O Holy Night — 圣善夜", lyrics: "<h2>O Holy Night — 圣善夜</h2><p>O holy night, the stars are brightly shining<br>圣善夜群星光华灿烂<br>it is the night of our dear Saviour’s birth<br>此夜里亲爱救主降生<br>Long lay the world in sin and error pining<br>世人久陷罪中深受苦痛<br>till He appeared and the soul felt its worth<br>主临到灵魂方知其价值<br>A thrill of hope, the weary world rejoices<br>希望降临，使疲倦的世界欢欣<br>For yonder breaks a new and glorious morn<br>荣耀晨光将自天边破晓<br>Fall on your knees, O hear the angel voices<br>跪拜虔诚吧，聆听天使之声<br>O night divine, O night when Christ was born<br>神圣之夜，救主基督降生的夜<br>O night divine, O night, O night divine<br>神圣之夜，神圣，神圣之夜</p><p>Truly He taught us to love one another<br>祂真实教导我们彼此相爱<br>His law is love and His gospel is peace<br>祂的律法是爱，祂的福音带来和平<br>Chains shall He break, for the slave is our brother<br>祂要折断锁链，因奴仆也是弟兄<br>and in His name all oppression shall cease<br>奉祂之名，一切压迫都要止息<br>Sweet hymns of joy in grateful chorus raise we<br>让我们唱感恩之歌，齐声欢呼<br>Let all within us praise His holy name<br>全心全人都来赞美祂的圣名<br>Christ is the Lord, O praise His name forever<br>基督为主，祂的名当永远称颂<br>His power and glory evermore proclaim<br>祂权能荣耀永永远远传扬<br>His power and glory evermore proclaim<br>祂权能荣耀永永远远传扬</p>" },
@@ -301,15 +301,15 @@ export default function Home() {
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
         
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [touchStartY, setTouchStartY] = useState<number | null>(null);
-  const [touchEndY, setTouchEndY] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const touchEndY = useRef<number | null>(null);
         
-  const [transTouchStartX, setTransTouchStartX] = useState<number | null>(null);
-  const [transTouchEndX, setTransTouchEndX] = useState<number | null>(null);
-  const [transTouchStartY, setTransTouchStartY] = useState<number | null>(null);
-  const [transTouchEndY, setTransTouchEndY] = useState<number | null>(null);
+  const transTouchStartX = useRef<number | null>(null);
+  const transTouchStartY = useRef<number | null>(null);
+  const transTouchEndX = useRef<number | null>(null);
+  const transTouchEndY = useRef<number | null>(null);
         
   const minSwipeDistance = 40; // Minimum pixel distance to count as a swipe
   
@@ -598,94 +598,85 @@ export default function Home() {
     );
   };
   
-  // --- SWIPE HANDLERS (Song Pane) ---
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null); 
-    setTouchEndY(null); // Reset Y end
-    setTouchStart(e.targetTouches[0].clientX);
-    setTouchStartY(e.targetTouches[0].clientY); // Capture Y start
+    // Reset ends
+    touchEndX.current = null;
+    touchEndY.current = null;
+    // Capture starts
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchStartY.current = e.targetTouches[0].clientY;
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-    setTouchEndY(e.targetTouches[0].clientY); // Capture Y move
+    // Just update the Ref. No re-render happens here.
+    touchEndX.current = e.targetTouches[0].clientX;
+    touchEndY.current = e.targetTouches[0].clientY;
   };
 
   const onTouchEnd = () => {
-    // Ensure we have data for X AND Y
-    if (!touchStart || !touchEnd || !touchStartY || !touchEndY) return;
+    if (!touchStartX.current || !touchEndX.current || !touchStartY.current || !touchEndY.current) return;
     
-    const distanceX = touchStart - touchEnd;
-    const distanceY = touchStartY - touchEndY;
+    const distanceX = touchStartX.current - touchEndX.current;
+    const distanceY = touchStartY.current - touchEndY.current;
     
-    // LOGIC: Is the movement mostly Horizontal?
-    // If they moved 100px Down and 50px Left, they are scrolling (ignore swipe).
-    // If they moved 10px Down and 50px Left, they are swiping (trigger Next).
     const isHorizontal = Math.abs(distanceX) > Math.abs(distanceY);
 
     if (isHorizontal) {
         const isLeftSwipe = distanceX > minSwipeDistance;
         const isRightSwipe = distanceX < -minSwipeDistance;
 
-        // Swipe Left (Finger moves <--) = Go Next
         if (isLeftSwipe) {
           handleNext();
         }
-        // Swipe Right (Finger moves -->) = Go Prev
         if (isRightSwipe) {
           handlePrevious();
         }
     }
   };
 
-  // --- SMART TRANSLATION PANE HANDLERS ---
+  // --- OPTIMIZED SMART TRANSLATION PANE HANDLERS ---
   const onTransTouchStart = (e: React.TouchEvent) => {
-    // Reset ends
-    setTransTouchEndX(null);
-    setTransTouchEndY(null);
-    // Capture starts
-    setTransTouchStartX(e.targetTouches[0].clientX);
-    setTransTouchStartY(e.targetTouches[0].clientY);
+    transTouchEndX.current = null;
+    transTouchEndY.current = null;
+    transTouchStartX.current = e.targetTouches[0].clientX;
+    transTouchStartY.current = e.targetTouches[0].clientY;
   };
 
   const onTransTouchMove = (e: React.TouchEvent) => {
-    setTransTouchEndX(e.targetTouches[0].clientX);
-    setTransTouchEndY(e.targetTouches[0].clientY);
+    transTouchEndX.current = e.targetTouches[0].clientX;
+    transTouchEndY.current = e.targetTouches[0].clientY;
   };
 
   const onTransTouchEnd = () => {
-    // Ensure we have all coordinates
-    if (transTouchStartX === null || transTouchEndX === null || 
-        transTouchStartY === null || transTouchEndY === null) return;
+    if (transTouchStartX.current === null || transTouchEndX.current === null || 
+        transTouchStartY.current === null || transTouchEndY.current === null) return;
 
-    const distX = transTouchStartX - transTouchEndX;
-    const distY = transTouchStartY - transTouchEndY;
+    const distX = transTouchStartX.current - transTouchEndX.current;
+    const distY = transTouchStartY.current - transTouchEndY.current;
 
-    // PORTRAIT MODE (Vertical Stack)
     if (isPortrait) {
-        const isSwipeUp = distY > minSwipeDistance;     // Finger moves Bottom -> Top
-        const isSwipeDown = distY < -minSwipeDistance;  // Finger moves Top -> Bottom
+        const isSwipeUp = distY > minSwipeDistance;     
+        const isSwipeDown = distY < -minSwipeDistance;  
 
         if (isSwipeUp && !isTranslateMinimized) {
-            setIsTranslateMinimized(true); // Push up to close
+            setIsTranslateMinimized(true); 
             setIsFabMenuOpen(false);
         }
         if (isSwipeDown && isTranslateMinimized) {
-            setIsTranslateMinimized(false); // Pull down to open
+            setIsTranslateMinimized(false); 
             setIsFabMenuOpen(false);
         }
     } 
-    // LANDSCAPE MODE (Horizontal Side-by-Side)
     else {
-        const isSwipeLeft = distX > minSwipeDistance;    // Finger moves Right -> Left
-        const isSwipeRight = distX < -minSwipeDistance;  // Finger moves Left -> Right
+        const isSwipeLeft = distX > minSwipeDistance;    
+        const isSwipeRight = distX < -minSwipeDistance;  
 
         if (isSwipeLeft && !isTranslateMinimized) {
-            setIsTranslateMinimized(true); // Push left to close
+            setIsTranslateMinimized(true); 
             setIsFabMenuOpen(false);
         }
         if (isSwipeRight && isTranslateMinimized) {
-            setIsTranslateMinimized(false); // Pull right to open
+            setIsTranslateMinimized(false); 
             setIsFabMenuOpen(false);
         }
     }
