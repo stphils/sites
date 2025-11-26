@@ -300,6 +300,9 @@ export default function Home() {
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50; // Minimum pixel distance to count as a swipe
   
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
@@ -585,7 +588,33 @@ export default function Home() {
       </>
     );
   };
+  
+  // --- SWIPE HANDLERS ---
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null); // Reset end position
+    setTouchStart(e.targetTouches[0].clientX);
+  };
 
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    // Swipe Left (Finger moves <--) = Go Next
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    // Swipe Right (Finger moves -->) = Go Prev
+    if (isRightSwipe) {
+      handlePrevious();
+    }
+  };
 
   // --- 6. RENDER WITH JSX ---
 
@@ -653,7 +682,13 @@ export default function Home() {
             )}
         </div>
         {/* RIGHT PANE: Song Lyrics / Contact Iframe */}
-        <div className="split-pane" id="carols-pane">
+        <div 
+                className="split-pane" 
+                id="carols-pane"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+        >
           {showPrevTab && (
             <button
               key={`prev-${activeSongIndex}`}
