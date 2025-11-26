@@ -804,9 +804,6 @@ export default function Home() {
         <div 
                 className="split-pane" 
                 id="carols-pane"
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
         >
           {showPrevTab && (
             <button
@@ -870,6 +867,9 @@ export default function Home() {
                 id="song-lyrics"
                 ref={songContentRef}
                 dangerouslySetInnerHTML={{ __html: activeSong.lyrics }}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
           >
           </div>
         </div>
