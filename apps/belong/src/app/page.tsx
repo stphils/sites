@@ -811,7 +811,7 @@ export default function Home() {
                 </div>
                 
                 {/* Iframe Content */}
-                <div style={{ flex: 1, overflow: 'hidden' }}>
+                <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
                      <iframe 
                         src={CONTACT_IFRAME_SRC} 
                         style={{ width: '100%', height: '100%', border: 'none' }}
