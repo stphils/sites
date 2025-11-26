@@ -746,6 +746,7 @@ export default function Home() {
                 
                 {/* 1. Vertical Swipe Zone (Right Edge in Landscape, Bottom in Portrait) */}
                 <div 
+                    key={isPortrait ? "portrait-strip" : "landscape-strip"}
                     style={{
                         position: 'absolute',
                         top: 0,
