@@ -299,6 +299,7 @@ export default function Home() {
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   
   const songMenuRef = useRef<HTMLDivElement>(null);
   const fabContainerRef = useRef<HTMLDivElement>(null);
@@ -417,18 +418,10 @@ export default function Home() {
     setIsContactVisible(false);
   }, []);
 
-  //const handleContactClick = useCallback(() => {
-  //  setIsContactVisible(true);
-  //  setIsSongMenuOpen(false); 
-  //}, []);
   const handleContactClick = useCallback(() => {
-    setIsContactVisible(true);
-    setIsSongMenuOpen(false);
-    
-    // Open the external URL in a new tab
-    if (typeof window !== 'undefined') {
-      window.open(CONTACT_IFRAME_SRC, '_blank');
-    }
+    setIsContactModalOpen(true); // Open the modal
+    setIsSongMenuOpen(false);    // Close the song menu
+    setIsFabMenuOpen(false);     // Close the FAB menu
   }, []);
 
   const handleFabContactClick = useCallback(() => {
@@ -449,35 +442,17 @@ export default function Home() {
     }
   }, [isContactVisible, activeSongIndex]);
 
-  //const handleNext = useCallback(() => {
-  //  // If we are NOT on contact page
-  //  if (!isContactVisible) {
-  //    const totalSongs = currentLangData.songs.length;
-  //    
-  //    // If we are at the last song, show contact
-  //    if (activeSongIndex === totalSongs - 1) {
-  //      setIsContactVisible(true);
-  //    } else {
-  //      // Otherwise go to next song
-  //      setActiveSongIndex((prev) => prev + 1);
-  //    }
-  //  }
-  //}, [isContactVisible, activeSongIndex, currentLangData.songs.length]);
-
   const handleNext = useCallback(() => {
-    // If we are NOT on contact page
-    if (!isContactVisible) {
       const totalSongs = currentLangData.songs.length;
       
-      // If we are at the last song, trigger the Contact logic
+      // If we are at the last song, open the Modal
       if (activeSongIndex === totalSongs - 1) {
-        handleContactClick(); // Call the shared function to open tab + show view
+        handleContactClick(); 
       } else {
         // Otherwise go to next song
         setActiveSongIndex((prev) => prev + 1);
       }
-    }
-  }, [isContactVisible, activeSongIndex, currentLangData.songs.length, handleContactClick]);
+  }, [activeSongIndex, currentLangData.songs.length, handleContactClick]);
 
   // --- DERIVED STATE FOR TABS ---
   
@@ -737,22 +712,12 @@ export default function Home() {
             {renderSongMenuLinks(isSongMenuOpen)}
           </div>
           {/* MAIN CONTENT AREA (Now gets the full height of the pane) */}
-          {isContactVisible ? (
-            <div 
-               className={'song-content'} 
-               id="contact-internal-view"
-               // We reuse the song styling so it scrolls and looks consistent
-               dangerouslySetInnerHTML={{ __html: CONTACT_INTERNAL_HTML }}
-            >
-            </div>
-          ) : (
-            <div className={'song-content'} 
-                  id="song-lyrics"
-                  ref={songContentRef}
-                  dangerouslySetInnerHTML={{ __html: activeSong.lyrics }}
-            >
-            </div>
-          )}
+          <div className={'song-content'} 
+                id="song-lyrics"
+                ref={songContentRef}
+                dangerouslySetInnerHTML={{ __html: activeSong.lyrics }}
+          >
+          </div>
         </div>
       </div>
       
@@ -790,6 +755,71 @@ export default function Home() {
           onClick={() => setIsIdle(false)}
           onTouchStart={() => setIsIdle(false)}
         />
+      )}
+      {isContactModalOpen && (
+        <div 
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0,0,0,0.5)', // Dimmed background
+                zIndex: 2000, // High z-index to sit on top of everything
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+            onClick={() => setIsContactModalOpen(false)} // Close when clicking background
+        >
+            <div 
+                style={{
+                    backgroundColor: 'white',
+                    width: '90%',
+                    maxWidth: '600px',
+                    height: '80%',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+                }}
+                onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside the box
+            >
+                {/* Modal Header with Close Button */}
+                <div style={{
+                    padding: '10px',
+                    borderBottom: '1px solid #ddd',
+                    textAlign: 'right',
+                    backgroundColor: '#f9f9f9'
+                }}>
+                    <button 
+                        onClick={() => setIsContactModalOpen(false)}
+                        style={{
+                            border: 'none',
+                            background: 'transparent',
+                            fontSize: '2rem',
+                            lineHeight: '1rem',
+                            cursor: 'pointer',
+                            color: '#555'
+                        }}
+                        aria-label="Close Modal"
+                    >
+                        &times;
+                    </button>
+                </div>
+                
+                {/* Iframe Content */}
+                <div style={{ flex: 1, overflow: 'hidden' }}>
+                     <iframe 
+                        src={CONTACT_IFRAME_SRC} 
+                        style={{ width: '100%', height: '100%', border: 'none' }}
+                        title="Contact Form"
+                     />
+                </div>
+            </div>
+        </div>
       )}
     </main>
   );
