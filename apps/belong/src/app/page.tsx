@@ -724,7 +724,7 @@ export default function Home() {
                 <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
                       <iframe 
                         src={activeModalUrl} 
-                        style={{ width: '100%', height: '100%', border: 'none' }}
+                        style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
                         title="Form"
                       />
                 </div>
