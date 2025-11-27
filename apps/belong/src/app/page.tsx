@@ -27,7 +27,7 @@ export default function Home() {
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [activeModalUrl, setActiveModalUrl] = useState<string | null>(null);
         
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
@@ -129,6 +129,22 @@ export default function Home() {
       }, IDLE_TIMEOUT_MS);
     };
 
+    //For handling the modal forms!
+    const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      // Look for the closest parent with the trigger class
+      const trigger = target.closest('.modal-trigger');
+
+      if (trigger) {
+         e.preventDefault(); // Stop standard link behavior
+         const url = trigger.getAttribute('data-url'); // Read the URL from HTML
+         if (url) {
+           setActiveModalUrl(url); // Open the modal with this URL
+           setIsSongMenuOpen(false);
+         }
+      }
+    };
+    
     // Function to show the FABs and restart the timer
     const handleUserActivity = () => {
       // 1. Show FABs
@@ -176,7 +192,7 @@ export default function Home() {
   }, []);
 
   const handleContactClick = useCallback(() => {
-    setIsContactModalOpen(true); // Open the modal
+    setActiveModalUrl(CONTACT_IFRAME_SRC);
     setIsSongMenuOpen(false);    // Close the song menu
     setIsFabMenuOpen(false);     // Close the FAB menu
   }, []);
@@ -677,67 +693,40 @@ export default function Home() {
           onTouchStart={() => setIsIdle(false)}
         />
       )}
-      {isContactModalOpen && (
+      {/* Check activeModalUrl instead of the boolean */}
+      {activeModalUrl && (
         <div 
             style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'rgba(0,0,0,0.5)', // Dimmed background
-                zIndex: 2000, // High z-index to sit on top of everything
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+                backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 2000,
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
             }}
-            onClick={() => setIsContactModalOpen(false)} // Close when clicking background
+            /* Clicking the background sets URL to null, closing the modal */
+            onClick={() => setActiveModalUrl(null)} 
         >
             <div 
                 style={{
-                    backgroundColor: 'white',
-                    width: '90%',
-                    maxWidth: '600px',
-                    height: '80%',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+                    backgroundColor: 'white', width: '90%', maxWidth: '600px', height: '80%',
+                    borderRadius: '8px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
+                    position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
                 }}
-                onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside the box
+                onClick={(e) => e.stopPropagation()} 
             >
-                {/* Modal Header with Close Button */}
-                <div style={{
-                    padding: '10px',
-                    borderBottom: '1px solid #ddd',
-                    textAlign: 'right',
-                    backgroundColor: '#f9f9f9'
-                }}>
-                    <button 
-                        onClick={() => setIsContactModalOpen(false)}
-                        style={{
-                            border: 'none',
-                            background: 'transparent',
-                            fontSize: '2rem',
-                            lineHeight: '1rem',
-                            cursor: 'pointer',
-                            color: '#555'
-                        }}
-                        aria-label="Close Modal"
-                    >
+                {/* Header with Close Button */}
+                <div style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'right', backgroundColor: '#f9f9f9' }}>
+                    <button onClick={() => setActiveModalUrl(null)}
+                        style={{ border: 'none', background: 'transparent', fontSize: '2rem', lineHeight: '1rem', cursor: 'pointer', color: '#555' }}>
                         &times;
                     </button>
                 </div>
                 
                 {/* Iframe Content */}
                 <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
-                     <iframe 
-                        src={CONTACT_IFRAME_SRC} 
+                      <iframe 
+                        src={activeModalUrl} 
                         style={{ width: '100%', height: '100%', border: 'none' }}
-                        title="Contact Form"
-                     />
+                        title="Form"
+                      />
                 </div>
             </div>
         </div>
