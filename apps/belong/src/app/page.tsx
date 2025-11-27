@@ -561,17 +561,26 @@ export default function Home() {
  const renderSongMenuLinks = (isMenuOpen: boolean) => {
     return (
         <div className={`song-fab-menu ${isMenuOpen ? 'open' : ''}`}>
-        {currentLangData.songs.map((song, index) => (
+        {currentLangData.songs.map((song, index) => {
+          // --- LOGIC UPDATE START ---
+          // If show is false, do not render this button in the menu.
+          // The index remains correct for the onClick handler because 
+          // we are mapping over the original array.
+          if (song.show === false) return null;
+          // --- LOGIC UPDATE END ---
+
+          return (
             <button
-            key={song.title}
-            onClick={() => handleSongClick(index)}
-            className={`song-fab-link ${
+              key={index} // Use index as key to ensure uniqueness
+              onClick={() => handleSongClick(index)}
+              className={`song-fab-link ${
                 !isContactVisible && index === activeSongIndex ? 'active' : ''
-            }`}
-        >
-        {song.title}
-        </button>
-        ))}
+              }`}
+            >
+              {song.title}
+            </button>
+          );
+        })}
         {/* Contact Link in Song FAB Menu Dropdown */}
         <button
             key="contact-st-phils"
