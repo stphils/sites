@@ -569,7 +569,7 @@
     width: 100%;
     height: 6px; /* Height of the bar */
     z-index: 60; /* Above lyrics (z-20), below header/FABs */
-    pointer-events: none; /* CRITICAL: Allows clicks/swipes to pass through */
+    pointer-events: auto; /* CRITICAL: Allows clicks/swipes to pass through */
     
     /* Flex layout to create equal segments */
     display: flex;
@@ -597,6 +597,7 @@
     border-radius: 0 0 2px 2px; /* Rounded bottom corners */
     
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 /* --- Active State 1: SONGS (show: true) --- */
@@ -611,6 +612,17 @@
 .progress-segment.special.active {
     background-color: #3498db; 
     opacity: 0.9; 
+}
+
+.progress-segment:hover {
+    background-color: #bdc3c7; /* Light grey hover for unfinished segments */
+}
+/* Ensure active segments keep their color on hover */
+.progress-segment.active:hover {
+    background-color: #e74c3c; 
+}
+.progress-segment.special.active:hover {
+    background-color: #3498db; 
 }
 
 /* Parent container for the Song FAB. Must be positioned relative to #carols-pane. */
