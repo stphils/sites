@@ -596,10 +596,18 @@
     transition: background-color 0.3s ease;
 }
 
-/* Active (Finished/Current) State: Blue */
+/* --- Active State 1: SONGS (show: true) --- */
+/* Default active state matches the Red Song FAB */
 .progress-segment.active {
-    background-color: #3498db; 
+    background-color: #e74c3c; 
     opacity: 0.8; 
+}
+
+/* --- Active State 2: READINGS (show: false) --- */
+/* Special state overrides to Blue */
+.progress-segment.special.active {
+    background-color: #3498db; 
+    opacity: 0.9; 
 }
 
 /* Parent container for the Song FAB. Must be positioned relative to #carols-pane. */
