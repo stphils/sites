@@ -565,9 +565,10 @@ export default function Home() {
                    key={index} 
                    className={`progress-segment ${isActive ? 'active' : ''} ${isSpecial ? 'special' : ''}`}
                    onClick={(e) => {
-                       e.stopPropagation(); // Prevents triggering other page clicks
+                       e.stopPropagation(); 
                        handleSongClick(index);
                    }}
+                 />
                );
             })}
           </div>
