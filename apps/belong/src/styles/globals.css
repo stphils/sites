@@ -1053,3 +1053,30 @@
 .modal-trigger:hover {
     background-color: #004070;
 }
+
+/* Styling for buttons/links embedded in lyrics.json */
+.action-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: #005a9c; /* St Phils Blue */
+    color: white !important; /* Force white text for links */
+    border: none;
+    border-radius: 20px; /* Pill shape */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.action-button:hover {
+    background-color: #004070;
+    transform: translateY(-1px);
+}
+
+.action-button:active {
+    transform: translateY(1px);
+}
