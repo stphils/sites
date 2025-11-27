@@ -188,15 +188,30 @@ export default function Home() {
 
 
   // --- NAVIGATION LOGIC ---
-  //For handling the modal forms!
   const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    const trigger = target.closest('.action-button');
-    if (trigger) {
-         e.preventDefault();
-         const url = trigger.getAttribute('data-url');
+      const target = e.target as HTMLElement;
+      
+      // Check if the user clicked something with class "action-button" or "modal-trigger"
+      const trigger = target.closest('.action-button, .modal-trigger');
+
+      if (trigger) {
+         e.preventDefault(); 
+         
+         // Grab the URL from data-url OR href
+         const url = trigger.getAttribute('data-url') || trigger.getAttribute('href');
+         // Grab the target attribute (e.g. "_blank")
+         const targetAttr = trigger.getAttribute('target');
+         
          if (url) {
-           setActiveModalUrl(url); // Open the Modal
+           // 1. If the HTML says target="_blank", open in a new tab
+           if (targetAttr === '_blank') {
+             window.open(url, '_blank');
+           } 
+           // 2. Otherwise, try to open it in the App Modal
+           else {
+             setActiveModalUrl(url); 
+           }
+           
            setIsSongMenuOpen(false);
          }
       }
