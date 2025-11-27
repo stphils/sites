@@ -837,16 +837,18 @@ export default function Home() {
           {/* --- SEGMENTED PROGRESS BAR --- */}
           {/* 1. "idle-hide" class ensures it fades out with the other controls.*/}
           {/* 2. We map through ALL songs (including hidden ones) to create segments.*/}
-          
           <div className={`progress-container ${isIdle ? 'idle-hide' : ''}`}>
-            {currentLangData.songs.map((_, index) => {
-               // The segment is active if we are past it, currently on it, 
-               // OR if the Contact page is open (meaning we finished everything).
+            {currentLangData.songs.map((song, index) => {
+               // Logic: The segment is "active" if we are past it, on it, or finished.
                const isActive = isContactVisible || index <= activeSongIndex;
+               
+               // Logic: It is "special" (Reading/Blue) if show is false.
+               const isSpecial = song.show === false;
+
                return (
                  <div 
                    key={index} 
-                   className={`progress-segment ${isActive ? 'active' : ''}`}
+                   className={`progress-segment ${isActive ? 'active' : ''} ${isSpecial ? 'special' : ''}`}
                  />
                );
             })}
