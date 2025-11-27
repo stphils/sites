@@ -176,9 +176,10 @@ export default function Home() {
   }, []);
 
   const handleContactClick = useCallback(() => {
-    if (typeof window !== 'undefined') {
-        window.open(CONTACT_IFRAME_SRC, '_blank');
-    }
+    //if (typeof window !== 'undefined') {
+    //    window.open(CONTACT_IFRAME_SRC, '_blank');
+    //}
+    setActiveModalUrl(CONTACT_IFRAME_SRC);
     setIsSongMenuOpen(false);    
     setIsFabMenuOpen(false);     
   }, []);
