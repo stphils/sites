@@ -128,22 +128,6 @@ export default function Home() {
         }
       }, IDLE_TIMEOUT_MS);
     };
-
-    //For handling the modal forms!
-    const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      const target = e.target as HTMLElement;
-      // Look for the closest parent with the trigger class
-      const trigger = target.closest('.modal-trigger');
-
-      if (trigger) {
-         e.preventDefault(); // Stop standard link behavior
-         const url = trigger.getAttribute('data-url'); // Read the URL from HTML
-         if (url) {
-           setActiveModalUrl(url); // Open the modal with this URL
-           setIsSongMenuOpen(false);
-         }
-      }
-    };
     
     // Function to show the FABs and restart the timer
     const handleUserActivity = () => {
@@ -204,7 +188,22 @@ export default function Home() {
 
 
   // --- NAVIGATION LOGIC ---
+  //For handling the modal forms!
+  const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    // Look for the closest parent with the trigger class
+    const trigger = target.closest('.modal-trigger');
 
+    if (trigger) {
+       e.preventDefault(); // Stop standard link behavior
+       const url = trigger.getAttribute('data-url'); // Read the URL from HTML
+       if (url) {
+           setActiveModalUrl(url); // Open the modal with this URL
+           setIsSongMenuOpen(false);
+       }
+    }
+  };
+  
   const handlePrevious = useCallback(() => {
     if (isContactVisible) {
       // If on Contact page, go back to the last song
