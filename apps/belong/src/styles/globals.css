@@ -1033,3 +1033,23 @@
     display: contents; /* Removes wrapper influence on layout */
     pointer-events: none; /* Ensures it doesn't block clicks */
 }
+
+/* Styling for buttons embedded in lyrics.json */
+.modal-trigger {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #005a9c; /* St Phils Blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.modal-trigger:hover {
+    background-color: #004070;
+}
