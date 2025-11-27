@@ -834,6 +834,23 @@ export default function Home() {
                 className="split-pane" 
                 id="carols-pane"
         >
+          {/* --- SEGMENTED PROGRESS BAR --- */}
+          {/* 1. "idle-hide" class ensures it fades out with the other controls.*/}
+          {/* 2. We map through ALL songs (including hidden ones) to create segments.*/}
+          
+          <div className={`progress-container ${isIdle ? 'idle-hide' : ''}`}>
+            {currentLangData.songs.map((_, index) => {
+               // The segment is active if we are past it, currently on it, 
+               // OR if the Contact page is open (meaning we finished everything).
+               const isActive = isContactVisible || index <= activeSongIndex;
+               return (
+                 <div 
+                   key={index} 
+                   className={`progress-segment ${isActive ? 'active' : ''}`}
+                 />
+               );
+            })}
+          </div>
           {showPrevTab && (
             <button
               key={`prev-${activeSongIndex}`}
