@@ -176,9 +176,11 @@ export default function Home() {
   }, []);
 
   const handleContactClick = useCallback(() => {
-    setActiveModalUrl(CONTACT_IFRAME_SRC);
-    setIsSongMenuOpen(false);    // Close the song menu
-    setIsFabMenuOpen(false);     // Close the FAB menu
+    if (typeof window !== 'undefined') {
+        window.open(CONTACT_IFRAME_SRC, '_blank');
+    }
+    setIsSongMenuOpen(false);    
+    setIsFabMenuOpen(false);     
   }, []);
 
   const handleFabContactClick = useCallback(() => {
@@ -190,29 +192,26 @@ export default function Home() {
   // --- NAVIGATION LOGIC ---
   const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
       const target = e.target as HTMLElement;
-      
-      // Check if the user clicked something with class "action-button" or "modal-trigger"
+      // Find the button
       const trigger = target.closest('.action-button, .modal-trigger');
 
       if (trigger) {
          e.preventDefault(); 
-         
-         // Grab the URL from data-url OR href
-         const url = trigger.getAttribute('data-url') || trigger.getAttribute('href');
-         // Grab the target attribute (e.g. "_blank")
-         const targetAttr = trigger.getAttribute('target');
-         
-         if (url) {
-           // 1. If the HTML says target="_blank", open in a new tab
-           if (targetAttr === '_blank') {
-             window.open(url, '_blank');
-           } 
-           // 2. Otherwise, try to open it in the App Modal
-           else {
-             setActiveModalUrl(url); 
-           }
-           
-           setIsSongMenuOpen(false);
+
+         // Check if this button is the special "Contact" button
+         const key = trigger.getAttribute('data-key');
+
+         if (key === 'Contact') {
+             // DELEGATE: Do exactly what the main contact button does
+             handleContactClick();
+         } 
+         else {
+             // FALLBACK: If it's a different link, just open it in a new tab
+             const url = trigger.getAttribute('href') || trigger.getAttribute('data-url');
+             if (url) {
+                 window.open(url, '_blank');
+                 setIsSongMenuOpen(false);
+             }
          }
       }
   };
