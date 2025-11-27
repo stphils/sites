@@ -191,17 +191,15 @@ export default function Home() {
   //For handling the modal forms!
   const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    // Look for the closest parent with the trigger class
-    const trigger = target.closest('.modal-trigger');
-
+    const trigger = target.closest('.action-button');
     if (trigger) {
-       e.preventDefault(); // Stop standard link behavior
-       const url = trigger.getAttribute('data-url'); // Read the URL from HTML
-       if (url) {
-           setActiveModalUrl(url); // Open the modal with this URL
+         e.preventDefault();
+         const url = trigger.getAttribute('data-url');
+         if (url) {
+           setActiveModalUrl(url); // Open the Modal
            setIsSongMenuOpen(false);
-       }
-    }
+         }
+      }
   };
   
   const handlePrevious = useCallback(() => {
