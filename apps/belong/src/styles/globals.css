@@ -558,6 +558,49 @@
           -moz-osx-font-smoothing: grayscale;
         }
 
+/* --- Segmented Progress Bar --- */
+.progress-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px; /* Height of the bar */
+    z-index: 60; /* Above lyrics (z-20), below header/FABs */
+    pointer-events: none; /* CRITICAL: Allows clicks/swipes to pass through */
+    
+    /* Flex layout to create equal segments */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px; /* Space between segments */
+    padding: 0 4px; /* Slight padding from screen edges */
+
+    /* Fade Transition Logic */
+    opacity: 1; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+/* This allows the idle logic to hide the bar */
+.progress-container.idle-hide {
+    opacity: 0;
+}
+
+.progress-segment {
+    flex: 1; /* Forces all segments to be equal width */
+    height: 100%;
+    
+    /* Default (Unfinished) State: Faint Grey */
+    background-color: rgba(0, 0, 0, 0.05); 
+    border-radius: 0 0 2px 2px; /* Rounded bottom corners */
+    
+    transition: background-color 0.3s ease;
+}
+
+/* Active (Finished/Current) State: Blue */
+.progress-segment.active {
+    background-color: #3498db; 
+    opacity: 0.8; 
+}
 
 /* Parent container for the Song FAB. Must be positioned relative to #carols-pane. */
 .song-fab-container {
