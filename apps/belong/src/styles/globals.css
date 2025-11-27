@@ -159,7 +159,7 @@
             /* Update content padding to match the new FAB position  */
             #contact-iframe-container.visible,
             .song-content {
-                        padding-bottom: 56px !important;
+                        padding-bottom: 24px 16px 56px 16px !important;
             }
             .minimize-fab-wrapper {
                 display: contents !important;
@@ -359,9 +359,10 @@
             flex: 1; 
             touch-action: pan-y; /* Forces browser to release horizontal swipes to JS */
             overflow: auto;
-            padding: 24px;
-            padding-left: 16px !important;
-            padding-right: 16px !important;
+            box-sizing: border-box !important; 
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 24px 16px 76px 16px !important;
             padding-bottom: 76px; /* FAB height (56px) + FAB bottom offset (20px) = 76px */
             font-size: 1.1rem;
             line-height: 1.6;
