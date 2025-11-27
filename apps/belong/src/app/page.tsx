@@ -649,6 +649,7 @@ export default function Home() {
           <div className={'song-content'} 
                 id="song-lyrics"
                 ref={songContentRef}
+                onClick={handleContentClick}
                 dangerouslySetInnerHTML={{ __html: activeSong.lyrics }}
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
