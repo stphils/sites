@@ -1179,6 +1179,30 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     /* Border for dark mode definition */
     border: 1px solid var(--border-color); 
+    isolation: isolate; /* Creates a clean stacking context */
+}
+
+.modal-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* SIZE: This forces it to be 50% of the modal's width/height */
+    width: 50%;
+    height: 50%;
+    max-width: 200px; /* Safety cap so it doesn't get massive on big screens */
+    
+    /* APPEARANCE */
+    opacity: 0.1; /* Very faint */
+    pointer-events: none; /* Let clicks pass through */
+    
+    /* LAYERING: Send it to the back */
+    z-index: 0; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-header {
@@ -1186,6 +1210,12 @@
     border-bottom: 1px solid var(--border-color);
     text-align: right;
     background-color: var(--bg-surface-hover);
+}
+
+.modal-header, 
+.modal-box > div:last-child { 
+    position: relative;
+    z-index: 1; /* Sits higher than the watermark (0) */
 }
 
 .modal-close-btn {
