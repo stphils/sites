@@ -1215,3 +1215,13 @@
 .action-button:active {
     transform: translateY(1px);
 }
+
+@media (prefers-color-scheme: dark) {
+    .app-logo-watermark {
+        /* Option A: If logo is SVG/Image, turn it white */
+        filter: invert(1) brightness(0.8); 
+        
+        /* Option B: If that is too strong, just boost opacity */
+        /* opacity: 0.15; */ 
+    }
+}
