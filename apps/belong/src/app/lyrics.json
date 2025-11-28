@@ -7,7 +7,7 @@
       {
         "title": "Welcome ...",
         "show": true,
-        "lyrics": "<h2>Welcome to St Phils</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, \"The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas.\"<p>Maybe you've got questions about God or you're wondering what's the point of Christianity? Why not ask your questions and find answers at <a href=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</a>?</p><p>Want to get in touch?</p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Open Connect Form</button><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">Test Button</button></p>"
+        "lyrics": "<h2>Welcome to St Phils Eastwood</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, \"The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas.\"<p>Maybe you've got questions about God or you're wondering what's the point of Christianity? Why not ask your questions and find answers at <a href=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</a>?</p><p>Or maybe you'd like to join a course to explore the hope that Jesus offers to the world or ask your questions in person?</p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join the next course</button><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils Eastwood</button></p>"
       },
       {
         "title": "O Come All Ye Faithful",
@@ -73,6 +73,11 @@
         "title": "Joy to the World",
         "show": true,
         "lyrics": "<h2>Joy to the World</h2><p>Joy to the world! The Lord is come<br>let earth receive her king<br>Let every heart prepare him room<br>and heaven and nature sing<br>and heaven and nature sing<br>and heaven, and heaven and nature sing</p><p>Joy to the world! The Savior reigns<br>let men their song employ<br>while fields and floods, rocks, hills, and plains<br>repeat the sounding joy<br>repeat the sounding joy<br>repeat, repeat the sounding joy</p><p>No more let sin and sorrow grow<br>nor thorns infest the ground<br>He comes to make his blessing flow<br>far as the curse is found<br>far as the curse is found<br>far as, far as the curse is found</p><p>He rules the world with truth and grace<br>and makes the nations prove<br>the glories of his righteousness<br>and wonders of his love<br>and wonders of his love<br>and wonders, wonders of his love</p>"
+      },
+      {
+        "title": "Thanks for joining us",
+        "show": false,
+        "lyrics": "<h2>Thanks for joining us</h2><p>We're so glad you could join us this Christmas.  We pray that you have a blessed and joyful Christmas and we look forward to seeing you in the new year.</p><p>For more information:</p><p><a href=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</a>?</p><p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join the next course</button>>/p><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils Eastwood</button></p>"
       }
     ]
   },
