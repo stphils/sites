@@ -675,7 +675,7 @@
 /* --- Active State 1: SONGS (show: true) --- */
 /* Default active state matches the Red Song FAB */
 .progress-segment.active {
-    background-color: var(--accent-red) 
+    background-color: var(--accent-red);
     opacity: 0.8; 
 }
 
@@ -691,7 +691,7 @@
 }
 /* Ensure active segments keep their color on hover */
 .progress-segment.active:hover {
-    background-color: var(--accent-red) 
+    background-color: var(--accent-red);
 }
 .progress-segment.special.active:hover {
     background-color: #3498db; 
@@ -716,7 +716,7 @@
         border-radius: 50%; /* Make it round */
    
         /* Red styling */
-        background-color: var(--accent-red) /* Red color */
+        background-color: var(--accent-red); /* Red color */
         color: white;
         font-size: 1.5rem; /* Icon size */
         display: flex;
@@ -731,7 +731,7 @@
         line-height: 1; /* Centers the Material Icon */
     }
 
-    .song-fab-toggle: hover {
+    .song-fab-toggle:hover {
         background-color: #c0392b;
     }
 
@@ -742,7 +742,7 @@
 
     /* Rotate icon when menu is open */
     .song-fab-toggle.open::after {
-      transform: translateY(-50 % ) rotate(180 deg);
+      transform: translateY(-50% ) rotate(180 deg);
     }
 
     /* The song dropdown menu (Same style as the FAB menu items) */
@@ -783,7 +783,7 @@
         padding: 0 16px; /* ADDED */
         border-radius: 20px; /* ADDED */ 
         /* MODIFIED: Default colors for non-active songs */
-        background-color: var(--accent-red) /* Red color */
+        background-color: var(--accent-red); /* Red color */
         color: white;
         font-size: 0.95rem; /* Matches other pill buttons */
         font-weight: 600; /* Matches other pill buttons */
@@ -977,7 +977,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: var(--accent-red)
+    background-color: var(--accent-red);
     color: white;
     border: none;
     cursor: pointer;
