@@ -71,7 +71,7 @@
         --progress-unfinished: rgba(255, 255, 255, 0.15); /* Faint white for dark mode */
     }
     .app-logo-watermark {
-        filter: brightness(1.15); /* Makes the logo 15% brighter/lighter */
+        filter: brightness(1.3); /* Makes the logo 15% brighter/lighter */
     }
 }
  html, body, .app-shell {
