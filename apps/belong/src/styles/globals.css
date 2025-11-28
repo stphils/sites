@@ -252,7 +252,7 @@
         }
 
         .translation-expand-fab {
-             background-color: var(--accent-green) 
+             background-color: var(--accent-green);
              color: white;
              /* Dimensions: 100px wide, 100% height of the bar (50px in portrait) */
              width: 100px;
@@ -858,7 +858,7 @@
         justify-content: center;
         align-items: center;
         /* Ensure no interference from portrait styles */        
-        background-color: var(--accent-green) /* Green color */
+        background-color: var(--accent-green); /* Green color */
         color: white;
         font-size: 1.5rem;
         border: none;
