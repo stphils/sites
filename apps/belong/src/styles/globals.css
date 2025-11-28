@@ -70,6 +70,9 @@
         /* Progress Bar */
         --progress-unfinished: rgba(255, 255, 255, 0.15); /* Faint white for dark mode */
     }
+    .app-logo-watermark {
+        filter: brightness(1.15); /* Makes the logo 15% brighter/lighter */
+    }
 }
  html, body, .app-shell {
             margin: 0 !important;
@@ -1144,11 +1147,71 @@
     text-align: center;
 }
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background-color: var(--bg-modal); /* Uses your variable */
+    width: 90%;
+    max-width: 600px;
+    height: 80%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Border for dark mode definition */
+    border: 1px solid var(--border-color); 
+}
+
+.modal-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: right;
+    background-color: var(--bg-surface-hover);
+}
+
+.modal-close-btn {
+    border: none;
+    background: transparent;
+    font-size: 2rem;
+    line-height: 1rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
 .action-button:hover {
     background-color: #004070;
     transform: translateY(-1px);
 }
 
+.app-logo-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vmin;
+    height: 50vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.075;
+    pointer-events: none;
+    z-index: 10;
+    /* Allow transition for filter changes */
+    transition: filter 0.3s ease; 
+}
 .action-button:active {
     transform: translateY(1px);
 }
