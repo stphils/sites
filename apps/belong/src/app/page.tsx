@@ -712,7 +712,9 @@ export default function Home() {
                         &times;
                     </button>
                 </div>
-                
+                <div className="modal-watermark">
+                    <Logo />
+                </div>
                 {/* Iframe Content */}
                 <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
                       <iframe 
