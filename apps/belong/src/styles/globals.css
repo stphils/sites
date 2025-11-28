@@ -70,8 +70,14 @@
         /* Progress Bar */
         --progress-unfinished: rgba(255, 255, 255, 0.15); /* Faint white for dark mode */
     }
-    .app-logo-watermark {
-        filter: brightness(1.3); /* Makes the logo 15% brighter/lighter */
+    .app-logo-watermark, .modal-watermark {
+        filter: invert(1) brightness(0.8);
+        opacity: 0.15; 
+    }
+    /* This inverts the iframe colors: White bg becomes Black, Black text becomes White. */
+    /* hue-rotate(180deg) attempts to preserve original colors (like Blue buttons) instead of inverting them to Orange. */
+    .modal-box iframe {
+        filter: invert(1) hue-rotate(180deg);
     }
 }
  html, body, .app-shell {
