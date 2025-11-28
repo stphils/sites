@@ -1,6 +1,76 @@
 /*@tailwind base;*/
 /*@tailwind components;*/
 /*@tailwind utilities;*/
+
+:root {
+    /* Backgrounds */
+    --bg-app: #f9f9f9;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f0f0f0;
+    --bg-active: #e6f0f7;
+    --bg-minimized: #34495e;
+    --bg-minimized-darker: #2c3e50;
+    --bg-modal: #fff;
+
+    /* Text */
+    --text-main: #333333;
+    --text-secondary: #555555;
+    --text-inverse: #ffffff; /* Text on colored buttons */
+    
+    /* Brand & Accents */
+    --primary-blue: #005a9c;
+    --primary-blue-hover: #004070;
+    --accent-red: #e74c3c;
+    --accent-red-hover: #c0392b;
+    --accent-green: #27ae60;
+    --accent-green-hover: #2ecc71;
+    --accent-gold: #f39c12;
+
+    /* Borders & Dividers */
+    --border-color: #dddddd;
+    --border-color-light: #eeeeee;
+
+    /* Functional Colors */
+    --link-contact-bg: #f7e6e6;
+    --link-contact-text: #c0392b;
+    
+    /* Scrollbars & Progress */
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: #888;
+    --progress-unfinished: rgba(0, 0, 0, 0.05); /* Faint grey for light mode */
+}
+
+/* --- DARK MODE OVERRIDES --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Darker Backgrounds */
+        --bg-app: #121212;
+        --bg-surface: #1e1e1e;
+        --bg-surface-hover: #2c2c2c;
+        --bg-active: #1a2733; /* Dark blue-ish tint */
+        --bg-minimized: #202b38;
+        --bg-minimized-darker: #151d26;
+        --bg-modal: #2d2d2d;
+
+        /* Lighter Text */
+        --text-main: #e0e0e0;
+        --text-secondary: #b0b0b0;
+        
+        /* Adjusted Accents for Dark Mode Contrast */
+        --primary-blue: #4dabf5; /* Lighter blue for better visibility on dark */
+        --primary-blue-hover: #2196f3;
+        
+        --border-color: #333333;
+        --border-color-light: #333333;
+
+        /* Contact Link Dark Mode */
+        --link-contact-bg: #3e2020;
+        --link-contact-text: #ff8a80;
+
+        /* Progress Bar */
+        --progress-unfinished: rgba(255, 255, 255, 0.15); /* Faint white for dark mode */
+    }
+}
  html, body, .app-shell {
             margin: 0 !important;
             padding: 0 !important;
@@ -8,6 +78,8 @@
             width: 100%;
             overflow: hidden; /* Prevents whole page from scrolling */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
         }
 
         /* Make body a flex container to hold panes + footer */
@@ -45,7 +117,7 @@
             position: relative;
             /* Let the content inside the pane scroll if needed */
             overflow: auto; 
-            background-color: #f9f9f9;
+            background-color: var(--bg-app);
             height: 100%;
         }
 #translate-pane iframe {
@@ -77,7 +149,7 @@
             /* Default (landscape) constraint */
             min-width: 300px; 
             overflow-y: hidden; /* Hides vertical scrollbar */
-            border-right: 1px solid #ddd;
+            border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             position: relative;
@@ -129,7 +201,7 @@
                 /* Apply portrait constraint */
                 min-height: 200px; /* Protect this minimum height */
                 border-right: none;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid var(--border-color);
             }
          
             .split-container.minimized-portrait {
@@ -148,7 +220,7 @@
             /* Revert to original portrait size */
                         flex: 1;
                         min-height: 200px !important;
-                        border-bottom: 1px solid #ddd !important;
+                        border-bottom: 1px solid var(--border-color) !important;
             }
 
             /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
@@ -180,7 +252,7 @@
         }
 
         .translation-expand-fab {
-             background-color: #27ae60; 
+             background-color: var(--accent-green) 
              color: white;
              /* Dimensions: 100px wide, 100% height of the bar (50px in portrait) */
              width: 100px;
@@ -283,10 +355,10 @@
             padding: 6px 40px 6px 20px; /* Extra padding on right for icon */
             cursor: pointer;
             border: none;
-            background-color: #f9f9f9;
+            background-color: var(--bg-app);
             font-size: 1.1rem;
             font-weight: 600;
-            color: #005a9c;
+            color: var(--primary-blue);
             text-align: left;
             position: relative;
             transition: background-color 0.2s ease;
@@ -349,8 +421,8 @@
 
         /* Style for the *active* song in the list */
         .song-menu-link.active {
-            background-color: #e6f0f7;
-            color: #005a9c;
+            background-color: var(--bg-active);
+            color: var(--primary-blue);
             font-weight: 600;
         }
 
@@ -400,7 +472,7 @@
 
 /* You can also style the scrollbar track and thumb for desktop */
 .song-content::-webkit-scrollbar-thumb, #contact-iframe-container::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: var(--scrollbar-thumb);
     border-radius: 4px;
 }
 
@@ -532,7 +604,7 @@
     border-radius: 50%;
     
     /* Look and feel */
-    background-color: #005a9c; /* Blue color for main action */
+    background-color: var(--primary-blue); /* Blue color for main action */
     color: white;
     font-size: 2rem; /* Size of the '+' sign */
     line-height: 56px; /* Center the text vertically */
@@ -593,7 +665,7 @@
     height: 100%;
     
     /* Default (Unfinished) State: Faint Grey */
-    background-color: rgba(0, 0, 0, 0.05); 
+    background-color: var(--progress-unfinished); 
     border-radius: 0 0 2px 2px; /* Rounded bottom corners */
     
     transition: background-color 0.3s ease;
@@ -603,7 +675,7 @@
 /* --- Active State 1: SONGS (show: true) --- */
 /* Default active state matches the Red Song FAB */
 .progress-segment.active {
-    background-color: #e74c3c; 
+    background-color: var(--accent-red) 
     opacity: 0.8; 
 }
 
@@ -619,7 +691,7 @@
 }
 /* Ensure active segments keep their color on hover */
 .progress-segment.active:hover {
-    background-color: #e74c3c; 
+    background-color: var(--accent-red) 
 }
 .progress-segment.special.active:hover {
     background-color: #3498db; 
@@ -644,7 +716,7 @@
         border-radius: 50%; /* Make it round */
    
         /* Red styling */
-        background-color: #e74c3c; /* Red color */
+        background-color: var(--accent-red) /* Red color */
         color: white;
         font-size: 1.5rem; /* Icon size */
         display: flex;
@@ -711,7 +783,7 @@
         padding: 0 16px; /* ADDED */
         border-radius: 20px; /* ADDED */ 
         /* MODIFIED: Default colors for non-active songs */
-        background-color: #e74c3c; /* Red color */
+        background-color: var(--accent-red) /* Red color */
         color: white;
         font-size: 0.95rem; /* Matches other pill buttons */
         font-weight: 600; /* Matches other pill buttons */
@@ -786,7 +858,7 @@
         justify-content: center;
         align-items: center;
         /* Ensure no interference from portrait styles */        
-        background-color: #27ae60; /* Green color */
+        background-color: var(--accent-green) /* Green color */
         color: white;
         font-size: 1.5rem;
         border: none;
@@ -905,7 +977,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #e74c3c;
+    background-color: var(--accent-red)
     color: white;
     border: none;
     cursor: pointer;
@@ -1039,7 +1111,7 @@
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #005a9c; /* St Phils Blue */
+    background-color: var(--primary-blue); /* St Phils Blue */
     color: white;
     border: none;
     border-radius: 4px;
@@ -1059,7 +1131,7 @@
     display: inline-block;
     margin-top: 10px;
     padding: 12px 24px;
-    background-color: #005a9c; /* St Phils Blue */
+    background-color: var(--primary-blue); /* St Phils Blue */
     color: white !important; /* Force white text for links */
     border: none;
     border-radius: 20px; /* Pill shape */
