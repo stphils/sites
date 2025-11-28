@@ -627,22 +627,7 @@ export default function Home() {
               )}
             </button>
           )}
-          <div
-               style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '50vmin',  // Responsive size (50% of viewport smaller dimension)
-                    height: '50vmin',          
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    opacity: 0.075,         // Faded effect
-                    pointerEvents: 'none', // Allows clicks to pass through to the app
-                    zIndex: 10,            // Sits above content visually
-               }}
-          >          
+          <div className="app-logo-watermark">        
               <Logo />
           </div>
 
@@ -709,26 +694,21 @@ export default function Home() {
       {/* Check activeModalUrl instead of the boolean */}
       {activeModalUrl && (
         <div 
-            style={{
-                position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-                backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 2000,
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-            }}
+            className="modal-overlay"
             /* Clicking the background sets URL to null, closing the modal */
             onClick={() => setActiveModalUrl(null)} 
         >
             <div 
-                style={{
-                    backgroundColor: 'white', width: '90%', maxWidth: '600px', height: '80%',
-                    borderRadius: '8px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
-                    position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
-                }}
+                className="modal-box"
                 onClick={(e) => e.stopPropagation()} 
             >
                 {/* Header with Close Button */}
-                <div style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'right', backgroundColor: '#f9f9f9' }}>
-                    <button onClick={() => setActiveModalUrl(null)}
-                        style={{ border: 'none', background: 'transparent', fontSize: '2rem', lineHeight: '1rem', cursor: 'pointer', color: '#555' }}>
+                <div className="modal-header">
+                    <button 
+                        onClick={() => setActiveModalUrl(null)}
+                        className="modal-close-btn"
+                        aria-label="Close"
+                    >
                         &times;
                     </button>
                 </div>
