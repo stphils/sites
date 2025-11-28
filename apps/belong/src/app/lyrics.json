@@ -7,7 +7,7 @@
       {
         "title": "Welcome ...",
         "show": true,
-        "lyrics": "<h2>Welcome to St Phils Eastwood</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, \"The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas.\"<p>Maybe you've got questions about God or you're wondering what's the point of Christianity? Why not ask your questions and find answers at <button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p>Or maybe you'd like to join a course to explore the hope that Jesus offers to the world or ask your questions in person?</p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join the next course</button><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils Eastwood</button></p>"
+        "lyrics": "<h2>Welcome to St Phils Eastwood</h2>Thank you for joining us to celebrate Christmas together. Christmas is a season of great joy. It is when God showed His great love for us. It is when we celebrate the birth of Jesus Christ, God's son, born into our world. So, this birth brought great joy to the world. Angels, shepherds, and wise men all shared in this momentous event. They knew this was no ordinary baby. However, this baby's birth had a purpose: Billy Graham once said, \"The very purpose of Christ's coming into the world was that he might offer up his life as a sacrifice for the sins of the world. He came to die. That is the heart of Christmas.\"<p>Maybe you've got questions about God or you're wondering what's the point of Christianity? Why not ask your questions and find answers at <button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p>Or maybe you'd like to join a course to explore the hope that Jesus offers to the world or ask your questions in person?</p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join our next course</button><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils</button></p>"
       },
       {
         "title": "O Come All Ye Faithful",
@@ -77,7 +77,7 @@
       {
         "title": "Thanks for joining us",
         "show": false,
-        "lyrics": "<h2>Thanks for joining us</h2><p>We're so glad you could join us this Christmas.  We pray that you have a blessed and joyful Christmas and we look forward to seeing you in the new year.</p><p>For more information:</p><p><button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join the next course</button></p><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils Eastwood</button></p>"
+        "lyrics": "<h2>Thanks for joining us</h2><p>We're so glad you could join us this Christmas.  We pray that you have a blessed and joyful Christmas and we look forward to seeing you in the new year.</p><p>For more information:</p><p><button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join our next course</button></p><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils/</button></p>"
       }
     ]
   },
@@ -125,6 +125,11 @@
         "title": "Joy to the World - 普世欢腾",
         "show": true,
         "lyrics": "<h2>Joy to the World — 普世欢腾</h2><p>Joy to the world! The Lord is come<br>普世欢腾，救主下降<br>let earth receive her King<br>大地接她君王<br>Let every heart prepare Him room<br>愿众心为主预备地方<br>and heaven and nature sing<br>诸天万物歌唱<br>and heaven and nature sing<br>诸天万物歌唱<br>and heaven, and heaven and nature sing<br>诸天，诸天万物歌唱</p><p>Joy to the world! The Savior reigns<br>普世欢腾，主治万方<br>let men their songs employ<br>万民守主法则<br>while fields and floods, rocks, hills, and plains<br>田野江河，山石与平原<br>repeat the sounding joy<br>重复主恩浩荡<br>repeat the sounding joy<br>重复主恩浩荡<br>repeat, repeat the sounding joy<br>重复，重复主恩浩荡</p><p>No more let sins and sorrows grow<br>罪恶忧愁不再生长<br>nor thorns infest the ground<br>地上不再受伤<br>He comes to make His blessings flow<br>主来使万民得祂恩惠<br>far as the curse is found<br>直到远方万邦<br>far as the curse is found<br>直到远方万邦<br>far as, far as the curse is found<br>直到，直到远方万邦</p><p>He rules the world with truth and grace<br>主以真理恩慈统治<br>and makes the nations prove<br>使万国得证明<br>the glories of His righteousness<br>主之公义，无比的荣耀<br>and wonders of His love<br>主爱无穷无尽<br>and wonders of His love<br>主爱无穷无尽<br>and wonders, wonders of His love<br>主爱，主爱无穷无尽</p>"
+      },
+      {
+        "title": "Thanks for joining us",
+        "show": false,
+        "lyrics": "<h2>Thanks for joining us</h2><p>We're so glad you could join us this Christmas.  We pray that you have a blessed and joyful Christmas and we look forward to seeing you in the new year.</p><p>For more information:</p><p><button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join our next course</button></p><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils/</button></p>"
       }
     ]
   },
@@ -172,6 +177,11 @@
         "title": "普世歡騰",
         "show": true,
         "lyrics": "<h2>普世歡騰</h2><p>普世歡騰，救主降臨！<br>全地接祂為王；<br>萬心為主預備地方，<br>宇宙萬物歌唱，<br>宇宙萬物歌唱，<br>宇宙，宇宙萬物歌唱。</p><p>大地歡騰，主治萬方！<br>萬民高聲頌揚；<br>田野，江河，平原，山崗，<br>響應歌聲嘹亮，<br>響應歌聲嘹亮，<br>響應，響應歌聲嘹亮。</p><p>世上一切罪惡憂傷，<br>從此不再生長；<br>普世咒詛變為恩典，<br>主愛澤及四方，<br>主愛澤及四方，<br>主愛，主愛澤及四方。</p><p>主以真理，恩治萬方，<br>要在萬國民中，<br>彰顯上主公義榮光，<br>主愛奇妙豐盛，<br>主愛奇妙豐盛，<br>主愛，主愛奇妙豐盛。</p>"
+      },
+      {
+        "title": "Thanks for joining us",
+        "show": false,
+        "lyrics": "<h2>Thanks for joining us</h2><p>We're so glad you could join us this Christmas.  We pray that you have a blessed and joyful Christmas and we look forward to seeing you in the new year.</p><p>For more information:</p><p><button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join our next course</button></p><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils/</button></p>"
       }
     ]
   },
@@ -219,6 +229,11 @@
         "title": "Joy to the World - 기쁘다 구주 오셨네",
         "show": true,
         "lyrics": "<h2>Joy to the World - 기쁘다 구주 오셨네</h2><p>Joy to the world! The Lord is come<br>기쁘다 구주 오셨네<br>let earth receive her king<br>만백성 맞으라<br>Let every heart prepare him room<br>온 마음 열어 환영해<br>and heaven and nature sing<br>온 천하 만물 기뻐하라<br>and heaven and nature sing<br>온 천하 만물 기뻐하라<br>and heaven, and heaven and nature sing<br>온 천하 만물 기뻐하라</p><p>Joy to the world! The Savior reigns<br>기쁘다 구주 오셨네<br>let men their song employ<br>즐거운 노래하세<br>while fields and floods, rocks, hills, and plains<br>들판과 산과 계곡도<br>repeat the sounding joy<br>기쁜 소식 전하라<br>repeat the sounding joy<br>기쁜 소식 전하라<br>repeat, repeat the sounding joy<br>기쁜 소식 전하라</p><p>No more let sin and sorrow grow<br>죄 많은 세상 오시어<br>nor thorns infest the ground<br>근심을 없애시고<br>He comes to make his blessing flow<br>너희도 마음 받아서<br>far as the curse is found<br>이 기쁜 소식 전하여라<br>far as the curse is found<br>이 기쁜 소식 전하여라<br>far as, far as the curse is found<br>이 기쁜 소식 전하여라</p><p>He rules the world with truth and grace<br>주 예수 세상 다스려<br>and makes the nations prove<br>참 평화 주시네<br>the glories of his righteousness<br>의롭고 선하신 뜻이<br>and wonders of his love<br>만백성 증거하리<br>and wonders of his love<br>만백성 증거하리<br>and wonders, wonders of his love<br>만백성 증거하리</p>"
+      },
+      {
+        "title": "Thanks for joining us",
+        "show": false,
+        "lyrics": "<h2>Thanks for joining us</h2><p>We're so glad you could join us this Christmas.  We pray that you have a blessed and joyful Christmas and we look forward to seeing you in the new year.</p><p>For more information:</p><p><button target=\"_blank\" class=\"action-button\" data-url=\"https://christianity.net.au\" target=\"_newtab\">Christianity.net.au</button></p><p><button target=\"_blank\" class=\"action-button\" data-key=\"Contact\">Join our next course</button></p><p><button target=\"_blank\" class=\"action-button\" data-url=\"http://stphils.org.au\">More information about St Phils/</button></p>"
       }
     ]
   }
