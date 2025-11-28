@@ -695,17 +695,6 @@
     opacity: 0.9; 
 }
 
-.progress-segment:hover {
-    background-color: #bdc3c7; /* Light grey hover for unfinished segments */
-}
-/* Ensure active segments keep their color on hover */
-.progress-segment.active:hover {
-    background-color: var(--accent-red);
-}
-.progress-segment.special.active:hover {
-    background-color: #3498db; 
-}
-
 /* Parent container for the Song FAB. Must be positioned relative to #carols-pane. */
 .song-fab-container {
         position: absolute;
