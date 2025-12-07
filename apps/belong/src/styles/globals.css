@@ -97,7 +97,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    height: 100vh;
+    height: 100vh; /* Fallback */
+    height: 100dvh; /* FIX: Use dynamic height to respect mobile address bars */
     width: 100vw;
 }
 .app-shell {
