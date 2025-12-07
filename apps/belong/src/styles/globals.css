@@ -256,7 +256,7 @@ body {
     /* --- MINIMIZE FAB WRAPPER (LANDSCAPE) --- */
     /* Stacks buttons Horizontally: Open on Left, Close on Right */
     .minimize-fab-wrapper {
-         flex-direction: row-reverse;             
+         flex-direction: row;             
     }
 
     /* RESET positioning so buttons flow in the flex wrapper */
