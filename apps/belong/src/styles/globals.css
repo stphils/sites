@@ -162,6 +162,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            transition: flex 0.3s ease;
         }
 
         /* This pane gets 2/3 of the space */
@@ -177,6 +178,16 @@
            min-height: 0;
            overflow: hidden;
            position: relative;
+           transition: flex 0.3s ease;
+        }
+
+        /* 2. Expanded State (Translate is 2/3, Carols is 1/3) */
+        /* This applies when the class 'expanded' is on the split-container or pane */
+        .split-container.expanded #translate-pane {
+                flex: 2 !important; /* Grow to 2/3 */
+        }
+        .split-container.expanded #carols-pane {
+                flex: 1 !important; /* Shrink to 1/3 */
         }
 
 
@@ -184,18 +195,22 @@
          * This media query applies when the height is greater than the width.
          */
         @media (orientation: portrait) {
+            .minimize-fab-wrapper {            
+                flex-direction: column; /* Stack Top to Bottom */
+            }
             /* --- FORCE REDRAW IN PORTRAIT MODE --- */
             /* This overrides all JS classes and wrapper logic to ensure the button appears */
             .minimize-fab {
-                position: absolute !important;
-                bottom: 20px !important;
-                right: 20px !important;
+                position: relative !important;
+                bottom: auto !important;
+                right: auto !important;
                 /* Reset any Landscape/Fixed properties */
                 top: auto !important;
                 left: auto !important;
                 transform: none !important;
                 margin: 0 !important;                
                 opacity: 1; /* Ensure it's not hidden by transition glitches */
+                flex-shrink: 0; /* Don't squash */
                 pointer-events: auto !important;
             }
             .split-container {
@@ -244,6 +259,20 @@
             }
             .minimize-fab-wrapper {
                 display: contents !important;
+            }
+        }
+        @media (orientation: landscape) {
+            .minimize-fab-wrapper {
+                /* Use row-reverse so the 1st DOM element (Close) is on the Right (Edge), and the 2nd DOM element (Expand) is on the Left (Inner). */
+                 flex-direction: row-reverse;             
+            }
+
+            /* The .rotate-fab class logic in your existing CSS applies specific fixed positioning logic (`left: calc(...)`).  WE NEED TO OVERRIDE THIS because the Wrapper now handles the position.*/
+            .minimize-fab.rotate-fab {
+                        position: relative !important;
+                        left: auto !important;
+                        right: auto !important;
+                        bottom: auto !important;
             }
         }
 
@@ -844,9 +873,10 @@
     /* The new green FAB for minimizing the translate pane */
     .minimize-fab {
         /*position: absolute;*/
-        /*bottom: 20px;*/
-        /*right: 20px;*/
-        /*top: auto;*/
+        bottom: auto;
+        right: auto;
+        top: auto;
+        position:relative;
         left: auto;
         z-index: 100;
         width: 48px;
@@ -863,6 +893,7 @@
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
+        flex-shrink: 0; /* Don't squash */
         pointer-events: auto;
     }
 
@@ -957,10 +988,11 @@
     bottom: 20px;
     right: 20px;
     z-index: 100;
-    width: 48px;
-    height: 48px;
-    /* Ensure the empty corners of the wrapper don't block clicks */
-    pointer-events: none;
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 15px; /* Space between the two buttons */
+    pointer-events: none; /* Wrapper doesn't block, buttons do */
 }
 
 /* --- Navigation Tabs (Previous / Next) --- */
@@ -1098,10 +1130,11 @@
     bottom: 20px;
     right: 20px;
     z-index: 100;
-    width: 48px;
-    height: 48px;
-    display: contents; /* Removes wrapper influence on layout */
-    pointer-events: none; /* Ensures it doesn't block clicks */
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 15px; /* Space between the two buttons */
+    pointer-events: none; /* Wrapper doesn't block, buttons do */
 }
 
 /* Styling for buttons embedded in lyrics.json */
