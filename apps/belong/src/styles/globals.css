@@ -108,6 +108,26 @@ body {
         overflow: hidden;
 }
 
+/* --- Iframe Idle Blocker --- */
+/* Sits over iframes when idle to capture the 'wake up' tap 
+   so it doesn't interact with the iframe content immediately. */
+.iframe-idle-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    /* z-40 is high enough to cover the iframe (z-0) 
+       but lower than swipe gestures (z-50) or FABs (z-100) */
+    z-index: 40; 
+    display: none; 
+}
+
+.iframe-idle-blocker.active {
+    display: block;
+}
+
 /* The main container */
 .split-container {
     flex: 1; /* This makes it take all available space */
