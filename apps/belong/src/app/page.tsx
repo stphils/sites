@@ -27,6 +27,7 @@ export default function Home() {
   const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
   const [isContactVisible, setIsContactVisible] = useState(false);
   const [isTranslateMinimized, setIsTranslateMinimized] = useState(false);
+  const [isTranslateMaximized, setIsTranslateMaximized] = useState(false); 
   const [activeModalUrl, setActiveModalUrl] = useState<string | null>(null);
         
   const touchStartX = useRef<number | null>(null);
@@ -253,8 +254,21 @@ export default function Home() {
     : "Next";
         
   const toggleTranslateMinimize = useCallback(() => {
-    setIsTranslateMinimized(prev => !prev);
-    setIsFabMenuOpen(false); // Close the main FAB menu when toggling
+    setIsTranslateMinimized(prev => {
+        // If we are currently open and about to minimize, 
+        // reset the Maximized state so next time it opens to 1/3 (default)
+        if (!prev) { 
+            setIsTranslateMaximized(false);
+        }
+        return !prev;
+    });
+    setIsFabMenuOpen(false); 
+  }, []);
+
+  const handleMaximizeClick = useCallback((e: React.MouseEvent) => {
+      e.stopPropagation();
+      setIsTranslateMaximized(true);
+      setIsFabMenuOpen(false);
   }, []);
 
   const toggleNativeFullscreen = useCallback(() => {
@@ -467,12 +481,14 @@ export default function Home() {
   // --- 6. RENDER WITH JSX ---
 
   // Add dynamic class names based on state
-  const translatePaneClass = isTranslateMinimized ? 'split-pane minimized' : 'split-pane';
-  const carolsPaneClass = isTranslateMinimized ? 'split-pane maximized' : 'split-pane';
+  const translatePaneClass = `split-pane ${isTranslateMinimized ? 'minimized' : ''} ${isTranslateMaximized ? 'expanded' : ''}`;
+  const carolsPaneClass = `split-pane ${isTranslateMinimized ? 'maximized' : ''} ${isTranslateMaximized ? 'shrunk' : ''}`;
   // Add class to the split-container for portrait mode to handle minimization properly
-  const splitContainerClass = isTranslateMinimized && isPortrait
-    ? 'split-container minimized-portrait'
-    : 'split-container';
+  const splitContainerClass = [
+      'split-container',
+      isTranslateMinimized && isPortrait ? 'minimized-portrait' : '',
+      isTranslateMaximized ? 'expanded' : '' // NEW class
+  ].join(' ');
 
   const appShellClass = 'app-shell';
 
@@ -480,6 +496,10 @@ export default function Home() {
   // We want the 'maximize' icon ('fullscreen') when we are NOT fullscreen (i.e., windowed)
   const fullscreenIcon = isNativeFullscreen ? 'close_fullscreen' : 'fullscreen';
   console.log(JSON.stringify(allLyrics, null, 2));
+
+  
+
+  
   return (
      <main className={appShellClass} ref={mainRef}>
         <button
@@ -492,48 +512,64 @@ export default function Home() {
             </span>
         </button>
         <div className={splitContainerClass} ref={splitContainerRef}>
+            
             {/* LEFT PANE: Translator Iframe */}
-        {/* LEFT PANE: Translator Iframe */}
-        <div 
-            className={translatePaneClass} 
-            id="translate-pane" 
-            onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}
-            // REMOVE TOUCH HANDLERS FROM HERE (They are blocked by iframe)
-        >
-            {isTranslateMinimized ? (
-                <div className="minimized-placeholder-bar">
-                    {/* ... (Existing minimized content remains exactly the same) ... */}
-                    <span className="translation-placeholder">
-                        {currentLangData.serviceLabel}
-                    </span>
-                    <button
+            <div 
+                className={translatePaneClass} 
+                id="translate-pane" 
+                onClick={isTranslateMinimized ? toggleTranslateMinimize : undefined}
+            >
+                {isTranslateMinimized ? (
+                    <div className="minimized-placeholder-bar">
+                        {/* ... (Content inside minimized bar remains unchanged) ... */}
+                        <span className="translation-placeholder">
+                            {currentLangData.serviceLabel}
+                        </span>
+                        <button
                                 className="translation-expand-fab" 
                                 aria-label="Expand Translation Panel"
                                 onClick={(e) => {                                 
                                         e.stopPropagation(); 
                                         toggleTranslateMinimize();
                                 }}
-                    >
-                    <span className="material-symbols-outlined">expand_more</span>
-                    </button>
-                </div>
-            ) : (
-                <>
-                <div className="minimize-fab-wrapper"> 
-                    <button
-                        className={`minimize-fab ${isTranslateMinimized || isIdle ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
-                        id="minimize-fab-button"
-                        onClick={(e) => {
-                            e.stopPropagation(); 
-                            toggleTranslateMinimize();
-                        }}
-                    >
-                        <span className="material-symbols-outlined">expand_less</span>
-                    </button>
-                </div>
-                
-                <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
+                        >
+                        <span className="material-symbols-outlined">expand_more</span>
+                        </button>
+                    </div>
+                ) : (
+                    <>
+                    {/* --- UPDATED BUTTON WRAPPER --- */}
+                    <div className="minimize-fab-wrapper"> 
+                        {/* 1. Existing Close/Minimize Button */}
+                        <button
+                            className={`minimize-fab ${isIdle ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
+                            id="minimize-fab-button"
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                toggleTranslateMinimize();
+                            }}
+                            aria-label="Minimize Translation"
+                        >
+                            {/* Uses expand_less (Chevron Up) */}
+                            <span className="material-symbols-outlined">expand_less</span>
+                        </button>
 
+                        {/* 2. NEW Expand/Maximize Button 
+                            - Only shows if NOT maximized (Scenario b & d)
+                            - Uses expand_more (Chevron Down) for 180deg rotation relative to Close
+                        */}
+                        {!isTranslateMaximized && (
+                            <button
+                                className={`minimize-fab secondary ${isIdle ? 'hidden' : ''} ${!isPortrait ? 'rotate-fab' : ''}`}
+                                onClick={handleMaximizeClick}
+                                aria-label="Expand Translation to 2/3"
+                            >
+                                <span className="material-symbols-outlined">expand_more</span>
+                            </button>
+                        )}
+                    </div>
+                    
+                    <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
                 {/* --- INVISIBLE SWIPE OVERLAYS --- */}
                 {/* These sit ON TOP of the iframe to capture gestures */}
                 
