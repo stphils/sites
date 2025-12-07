@@ -568,7 +568,11 @@ export default function Home() {
                             </button>
                         )}
                     </div>
-                    
+                    <div 
+                        className={`iframe-idle-blocker ${isIdle ? 'active' : ''}`}
+                        onClick={() => setIsIdle(false)} 
+                        onTouchStart={() => setIsIdle(false)}
+                    ></div>                    
                     <iframe src={currentLangData.translateUrl} title="Translate Page"></iframe>
                 {/* --- INVISIBLE SWIPE OVERLAYS --- */}
                 {/* These sit ON TOP of the iframe to capture gestures */}
@@ -711,22 +715,7 @@ export default function Home() {
           <span className="material-symbols-outlined">language</span>
         </button>
       </div>
-      {isIdle && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 900, /* Sits above iframes (z-20) but below FABs (z-1000) */
-            cursor: 'pointer',
-            backgroundColor: 'transparent' 
-          }}
-          onClick={() => setIsIdle(false)}
-          onTouchStart={() => setIsIdle(false)}
-        />
-      )}
+     
       {/* Check activeModalUrl instead of the boolean */}
       {activeModalUrl && (
         <div 
@@ -738,6 +727,11 @@ export default function Home() {
                 className="modal-box"
                 onClick={(e) => e.stopPropagation()} 
             >
+                <div 
+                              className={`iframe-idle-blocker ${isIdle ? 'active' : ''}`}
+                              onClick={() => setIsIdle(false)} 
+                              onTouchStart={() => setIsIdle(false)}
+                ></div>
                 {/* Header with Close Button */}
                 <div className="modal-header">
                     <button 
