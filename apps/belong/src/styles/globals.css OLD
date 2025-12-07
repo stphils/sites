@@ -1,0 +1,1252 @@
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+:root {
+    /* Backgrounds */
+    --bg-app: #f9f9f9;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f0f0f0;
+    --bg-active: #e6f0f7;
+    --bg-minimized: #34495e;
+    --bg-minimized-darker: #2c3e50;
+    --bg-modal: #fff;
+
+    /* Text */
+    --text-main: #333333;
+    --text-secondary: #555555;
+    --text-inverse: #ffffff; /* Text on colored buttons */
+    
+    /* Brand & Accents */
+    --primary-blue: #005a9c;
+    --primary-blue-hover: #004070;
+    --accent-red: #e74c3c;
+    --accent-red-hover: #c0392b;
+    --accent-green: #27ae60;
+    --accent-green-hover: #2ecc71;
+    --accent-gold: #f39c12;
+
+    /* Borders & Dividers */
+    --border-color: #dddddd;
+    --border-color-light: #eeeeee;
+
+    /* Functional Colors */
+    --link-contact-bg: #f7e6e6;
+    --link-contact-text: #c0392b;
+    
+    /* Scrollbars & Progress */
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: #888;
+    --progress-unfinished: rgba(0, 0, 0, 0.05); /* Faint grey for light mode */
+}
+
+/* --- DARK MODE OVERRIDES --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Darker Backgrounds */
+        --bg-app: #121212;
+        --bg-surface: #1e1e1e;
+        --bg-surface-hover: #2c2c2c;
+        --bg-active: #1a2733; /* Dark blue-ish tint */
+        --bg-minimized: #202b38;
+        --bg-minimized-darker: #151d26;
+        --bg-modal: #2d2d2d;
+
+        /* Lighter Text */
+        --text-main: #e0e0e0;
+        --text-secondary: #b0b0b0;
+        
+        /* Adjusted Accents for Dark Mode Contrast */
+        --primary-blue: #4dabf5; /* Lighter blue for better visibility on dark */
+        --primary-blue-hover: #2196f3;
+        
+        --border-color: #333333;
+        --border-color-light: #333333;
+
+        /* Contact Link Dark Mode */
+        --link-contact-bg: #3e2020;
+        --link-contact-text: #ff8a80;
+
+        /* Progress Bar */
+        --progress-unfinished: rgba(255, 255, 255, 0.15); /* Faint white for dark mode */
+    }
+    .app-logo-watermark, .modal-watermark {
+        filter: invert(1) brightness(0.8);
+        opacity: 0.15; 
+    }
+    /* This inverts the iframe colors: White bg becomes Black, Black text becomes White. */
+    /* hue-rotate(180deg) attempts to preserve original colors (like Blue buttons) instead of inverting them to Orange. */
+    .modal-box iframe {
+        filter: invert(1) hue-rotate(180deg);
+    }
+}
+ html, body, .app-shell {
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevents whole page from scrolling */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+        }
+
+        /* Make body a flex container to hold panes + footer */
+        body {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        .app-shell {
+                flex: 1; /* Must GROW to fill space below the body */
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                overflow: hidden;
+        }
+
+        /* The main container */
+        .split-container {
+            flex: 1; /* This makes it take all available space */
+            min-height: 0;
+            display: flex;
+            width: 100%;
+            overflow: hidden; /* Prevents resizing issues */
+            
+            /* * DEFAULT: Landscape Mode (Left/Right) 
+             * This will apply to desktop browsers and landscape devices.
+             */
+            flex-direction: row; 
+        }
+
+        /* Styling for each content pane */
+        .split-pane {
+            position: relative;
+            /* Let the content inside the pane scroll if needed */
+            overflow: auto; 
+            background-color: var(--bg-app);
+            height: 100%;
+        }
+#translate-pane iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#contact-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+        /*.split-pane iframe {*/
+        /*    width: 100%;*/
+        /*    height: 100%;*/
+        /*    border: none;*/
+        /*}*/
+
+        /* --- Sizing --- */
+
+        /* This pane gets 1/3 of the space */
+        #translate-pane {
+            z-index: 10;
+            flex: 1; /* 1 part */
+            /* Default (landscape) constraint */
+            min-width: 300px; 
+            overflow-y: hidden; /* Hides vertical scrollbar */
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* This pane gets 2/3 of the space */
+        #carols-pane {
+            z-index: 20;
+            flex: 2; /* 2 parts */
+            /* The overflow:auto is already set on .split-pane, 
+               which will make the song lyrics scrollable */
+
+            /* FIX 2: Make the pane itself a column flex container */
+           display: flex;
+           flex-direction: column;
+           min-height: 0;
+           overflow: hidden;
+           position: relative;
+        }
+
+
+        /* * OVERRIDE: Portrait Mode (Top/Bottom) 
+         * This media query applies when the height is greater than the width.
+         */
+        @media (orientation: portrait) {
+            /* --- FORCE REDRAW IN PORTRAIT MODE --- */
+            /* This overrides all JS classes and wrapper logic to ensure the button appears */
+            .minimize-fab {
+                position: absolute !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                /* Reset any Landscape/Fixed properties */
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                margin: 0 !important;                
+                opacity: 1; /* Ensure it's not hidden by transition glitches */
+                pointer-events: auto !important;
+            }
+            .split-container {
+                flex-direction: column; /* Stack top-to-bottom */
+            }
+
+            #translate-pane {
+                z-index: 10;
+                /* Reset landscape constraint */
+                flex:1;
+                min-width: 0; 
+                /* Apply portrait constraint */
+                min-height: 200px; /* Protect this minimum height */
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+         
+            .split-container.minimized-portrait {
+                        flex-direction: column; /* Ensure correct column stacking */
+            }
+            .split-container.minimized-portrait .split-pane#translate-pane.minimized {
+                        height: 50px !important; /* Small bar height for portrait */
+                        min-height: 50px !important; /* Lock the height */
+                        width: 100% !important; /* Full width */
+                        border-bottom: none !important;
+                        /* Need to reset min-width from the main media query */
+                        min-width: 0 !important;
+            }
+
+            .split-container.minimized-portrait #translate-pane:not(.minimized) {
+            /* Revert to original portrait size */
+                        flex: 1;
+                        min-height: 200px !important;
+                        border-bottom: 1px solid var(--border-color) !important;
+            }
+
+            /* Increase the bottom offset for the main Language FAB to clear a ~56px button */
+            .fab-container {
+                        bottom: 20px !important; 
+            }
+
+            /* Update content padding to match the new FAB position  */
+            #contact-iframe-container.visible,
+            .song-content {
+                        padding-bottom: 24px 32px 56px 32px !important;
+            }
+            .minimize-fab-wrapper {
+                display: contents !important;
+            }
+        }
+
+        /* Text for minimized bar */
+        .translation-placeholder {
+                color: white;
+                font-size: 1rem;
+                font-weight: 600;
+                flex-grow: 1;
+                text-align: left !important; /* Adjust text to the left */
+                max-width: calc(100% - 100px); /* 100% minus the fixed width of the green button */
+                white-space: nowrap; /* Prevent wrapping which might confuse the max-width calculation */
+                overflow: hidden; /* Hide any overflowing text */
+                text-overflow: ellipsis; /* Optional: adds "..." if text is too long */
+        }
+
+        .translation-expand-fab {
+             background-color: var(--accent-green);
+             color: white;
+             /* Dimensions: 100px wide, 100% height of the bar (50px in portrait) */
+             width: 100px;
+             height: 100%;
+             border: none;
+             cursor: pointer;
+             /* Align icon inside the button */
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             transition: background-color 0.2s ease;
+             border-radius: 0;
+             z-index: 10;
+         }
+        .minimized-placeholder-bar {
+            flex: 1; 
+            box-sizing: border-box;
+            /* Set the container to occupy all space in the minimized pane */
+            width: 100%;
+            height: 100%;
+            /* Use Flexbox to align text left and button right */
+            display: flex; 
+            justify-content: space-between; /* Pushes text and button apart */
+            align-items: center;
+            /* Add padding for text/button clearance from the edges */
+            padding: 0 0 0 20px; /* Only needs left padding, right space is taken by the FAB */
+
+            max-width: 100%; /* Important for overflow context */
+            overflow: hidden; /* Hides horizontal overflow within this bar */
+        }
+       .translation-expand-fab:hover {
+             background-color: #2ecc71; /* Lighter green on hover */
+       }
+
+       /* Style the icon inside the button */
+       .translation-expand-fab .material-symbols-outlined {
+             font-size: 30px; 
+             /* If in landscape mode, the text is rotated -90deg, so rotate the icon +90deg so it points UP (for expand_less) or DOWN (for expand_more) */
+             /* Since we are using expand_more (down chevron), we might need to adjust rotation if in landscape. */
+             /* For a standard down arrow (expand_more), no rotation is typically needed */
+             transform: none; 
+        }
+
+        /* --- Landscape Mode Overrides (for the Minimized Bar) --- */
+        /* Re-style the minimized placeholder bar for the vertical layout in landscape */
+        .split-container:not(.minimized-portrait) .minimized-placeholder-bar {
+             flex-direction: column; /* Stack text and button vertically */        
+             height: 100%; /* Take full height */
+             width: 100%; /* Take full width */
+             padding: 20px 0 0 0; /* Add top padding */
+             justify-content: center;
+        }
+
+        /* Re-style the text for the vertical minimized bar */
+        .split-container:not(.minimized-portrait) .translation-placeholder {
+             transform: rotate(-90deg);
+             text-align: center;
+             flex-grow: 0; /* Don't grow to force the button to the bottom */
+             width: 400px;
+             max-width: none;
+             margin-bottom: 20px;
+             white-space: nowrap; /* Prevent wrapping which might confuse the max-width calculation */
+             overflow: hidden; /* Hide any overflowing text */
+             text-overflow: ellipsis; /* Optional: adds "..." if text is too long */
+        }
+
+        /* Re-style the expand FAB for the vertical minimized bar */
+        .split-container:not(.minimized-portrait) .translation-expand-fab {
+             height: 100px; /* 100px high in the vertical bar */
+             width: 100%; /* Full width */
+             margin-top: auto; /* Push it to the bottom */
+             transform: rotate(270deg);
+             margin-bottom: 25px;
+        }
+
+        /* Maximized Carols Pane - Shared Styles */
+        .split-pane.maximized {
+                flex: 1 !important; /* Take up all remaining space */
+        }
+
+        /* --- STYLES FOR SONGBOOK --- */
+
+        /* Container for the song menu */
+        .song-nav {
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+            border-bottom: 1px solid #ccc;
+            /* Sticky menu to the top of the pane */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        /* The main button that shows the current song */
+        .song-menu-toggle {
+            display: block;
+            width: 100%;
+            padding: 6px 40px 6px 20px; /* Extra padding on right for icon */
+            cursor: pointer;
+            border: none;
+            background-color: var(--bg-app);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-align: left;
+            position: relative;
+            transition: background-color 0.2s ease;
+        }
+
+        .song-menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* The 'v' icon on the dropdown button */
+        .song-menu-toggle::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8em;
+            color: #555;
+            transition: transform 0.3s ease;
+        }
+
+        /* Rotate the icon when the menu is open */
+        .song-menu-toggle.open::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        /* The collapsible dropdown list */
+        .song-menu-dropdown {
+            /* This creates the "concertina" effect */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        /* The "open" class is added by JS to expand the menu */
+        .song-menu-dropdown.open {
+            max-height: 60vh; /* Just needs to be taller than the content */
+            overflow-y: auto; /* Add scroll if list is very long */
+        }
+
+        /* The individual song links inside the menu */
+        .song-menu-link {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+            color: #333;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .song-menu-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for the *active* song in the list */
+        .song-menu-link.active {
+            background-color: var(--bg-active);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Container for the song lyrics */
+        .song-content {
+            flex: 1; 
+            touch-action: pan-y; /* Forces browser to release horizontal swipes to JS */
+            overflow: auto;
+            box-sizing: border-box !important; 
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 24px 32px 76px 32px !important;
+            padding-bottom: 76px; /* FAB height (56px) + FAB bottom offset (20px) = 76px */
+            font-size: 1.1rem;
+            line-height: 1.6;
+            /* This is ESSENTIAL for preserving newlines from the JS string */
+            white-space: pre-wrap;
+            /* 1. Disable text highlighting so swipes don't get stuck selecting text */
+            -webkit-user-select: none;
+            user-select: none;
+            /* 2. Tell browser to handle vertical scrolls but pass horizontal swipes to JS */
+            touch-action: pan-y; 
+            /* 3. Ensure smooth scrolling */
+            -webkit-overflow-scrolling: touch;
+        }
+        .song-content * {
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        /* Hide the song content area */
+.song-content.hidden {
+    display: none;
+}
+
+.song-content, #contact-iframe-container {
+    /* Existing styles... */
+    overflow-y: scroll; /* Ensures scrollbar is always 'available', though hidden by OS on mobile */
+}
+
+/* This targets WebKit (Chrome/Safari) to make scrollbars thinner */
+.song-content::-webkit-scrollbar, #contact-iframe-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* You can also style the scrollbar track and thumb for desktop */
+.song-content::-webkit-scrollbar-thumb, #contact-iframe-container::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+/* Style for the Contact Iframe container */
+#contact-iframe-container {
+    flex: 1;
+    width: 100%;
+    display: none; /* Hidden by default */
+    overflow: auto;
+    padding-bottom: 76px; /* FAB height (56px) + FAB bottom offset (20px) = 76px */
+}
+
+#contact-iframe-container.visible {
+    display: flex; /* FIX: Use flex to make the iframe fill the container */
+    flex-direction: column;
+}
+
+#contact-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* New style for the Contact link in the dropdown */
+.song-menu-link.contact-link {
+    background-color: #f7e6e6; /* Light red/pink to distinguish from songs */
+    color: #c0392b;
+    font-weight: 600;
+}
+
+        /* This is the correct CSS for "roll upwards" */
+        .fab-menu {
+           pointer-events: none;
+         /* ADD: Absolute positioning relative to fab-container */
+    position: absolute;
+    bottom: 0; /* Anchor to the bottom edge of the container */
+    right: 0; /* Anchor to the right edge of the container */
+    
+    /* Retain upward flow and alignment */
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 10px;
+    
+    /* CRITICAL FIX: Push the menu content up above the toggle button */
+    margin-bottom: 76px; /* 56px (Toggle height) + 20px (bottom padding) */
+    }
+
+/* Ensure the toggle button is aligned to the bottom right of the container */
+#fab-toggle-button {
+    position: absolute; /* Anchor button within the fixed container */
+    bottom: 0;
+    right: 0;
+}
+
+        .fab-item {
+            pointer-events: auto;
+            /* Pill-shape style */
+            height: 40px;
+            width: auto;
+            padding: 0 16px;
+            border-radius: 20px;
+            
+            /* Shared styles */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            
+            /* Animation styles */
+            transform: scale(0);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            /* This is the correct CSS for "roll upwards" */
+            transform-origin: bottom right; /* Animate from the bottom right */
+        }
+
+        .fab-item.lang {
+                writing-mode: horizontal-tb !important; /* Forces horizontal text */
+                text-orientation: mixed !important;
+        }
+
+        .fab-item:hover {
+            background-color: #2980b9;
+        }
+
+        /* Special style for the 'Contact' button */
+        .fab-item.contact {
+            background-color: #95a5a6;
+            /* UPDATED: Make it a circle for the icon */
+            width: 40px; /* Match height */
+            padding: 0; /* Remove text padding */
+        }
+        .fab-item.contact:hover {
+            background-color: #7f8c8d;
+        }
+
+        /* This controls the "roll out" animation */
+        .fab-container.open .fab-item {
+            transform: scale(1);
+        }
+
+        /* Staggered animation delay */
+        /* This order is correct for 'column-reverse' layout */
+        /* The item closest to the '+' (nth-child(4)) animates first */
+        .fab-container.open .fab-item:nth-child(1) { transition-delay: 0.15s; } /* Farthest (top) */
+        .fab-container.open .fab-item:nth-child(2) { transition-delay: 0.10s; }
+        .fab-container.open .fab-item:nth-child(3) { transition-delay: 0.05s; }
+        .fab-container.open .fab-item:nth-child(4) { transition-delay: 0.0s; }  /* Closest (bottom) */
+        
+        .fab-container {
+    /* --- ADD THESE STYLES TO FIX THE POSITIONING --- */
+    position: fixed;
+    bottom: 20px; /* Adjust this value for desired bottom offset */
+    right: 20px; /* Adjust this value for desired right offset */
+    /* Ensure it is on top of other content */
+    z-index: 1000; 
+}
+
+.fab-toggle {
+    /* Style to make it a large, circular button */
+    width: 56px; 
+    height: 56px;
+    border-radius: 50%;
+    
+    /* Look and feel */
+    background-color: var(--primary-blue); /* Blue color for main action */
+    color: white;
+    font-size: 2rem; /* Size of the '+' sign */
+    line-height: 56px; /* Center the text vertically */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+        /* ADDED: CSS for Google Material Symbols */
+        .material-symbols-outlined {
+          font-family: 'Material Symbols Outlined';
+          font-weight: normal;
+          font-style: normal;
+          font-size: 24px;  /* Default icon size */
+          line-height: 1;
+          letter-spacing: normal;
+          text-transform: none;
+          display: inline-block;
+          white-space: nowrap;
+          word-wrap: normal;
+          direction: ltr;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+/* --- Segmented Progress Bar --- */
+.progress-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px; /* Height of the bar */
+    z-index: 60; /* Above lyrics (z-20), below header/FABs */
+    pointer-events: auto; /* CRITICAL: Allows clicks/swipes to pass through */
+    
+    /* Flex layout to create equal segments */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px; /* Space between segments */
+    padding: 0 4px; /* Slight padding from screen edges */
+
+    /* Fade Transition Logic */
+    opacity: 1; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+/* This allows the idle logic to hide the bar */
+.progress-container.idle-hide {
+    opacity: 0;
+}
+
+.progress-segment {
+    flex: 1; /* Forces all segments to be equal width */
+    height: 100%;
+    
+    /* Default (Unfinished) State: Faint Grey */
+    background-color: var(--progress-unfinished); 
+    border-radius: 0 0 2px 2px; /* Rounded bottom corners */
+    
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* --- Active State 1: SONGS (show: true) --- */
+/* Default active state matches the Red Song FAB */
+.progress-segment.active {
+    background-color: var(--accent-red);
+    opacity: 0.8; 
+}
+
+/* --- Active State 2: READINGS (show: false) --- */
+/* Special state overrides to Blue */
+.progress-segment.special.active {
+    background-color: #3498db; 
+    opacity: 0.9; 
+}
+
+/* Parent container for the Song FAB. Must be positioned relative to #carols-pane. */
+.song-fab-container {
+        position: absolute;
+        top: 20px; /* Offset from the top of the carols pane */
+        right: 20px; /* Offset from the right of the carols pane */
+        z-index: 99; /* Below the main FAB, but above content */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    /* The toggle button (Red pill shape with "Songs" label) */
+    .song-fab-toggle {
+        width: 56px; /* Match main FAB size */
+        height: 56px; /* Match main FAB size */
+        padding: 0; /* Remove padding */
+        border-radius: 50%; /* Make it round */
+   
+        /* Red styling */
+        background-color: var(--accent-red); /* Red color */
+        color: white;
+        font-size: 1.5rem; /* Icon size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Larger shadow for visual lift */
+        /* UPDATED: Added transform and box-shadow to transition */
+        transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease; 
+        /* Icon container setting */
+        line-height: 1; /* Centers the Material Icon */
+    }
+
+    .song-fab-toggle:hover {
+        background-color: #c0392b;
+    }
+
+    .song-fab-toggle:active {
+        transform: scale(0.95); /* Shrink slightly on press */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow shrinks on press */
+    }
+
+    /* Rotate icon when menu is open */
+    .song-fab-toggle.open::after {
+      transform: translateY(-50% ) rotate(180 deg);
+    }
+
+    /* The song dropdown menu (Same style as the FAB menu items) */
+    .song-fab-menu {
+        /* Menu drops DOWN, so it should sit above the button */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        /* Start hidden and transition */
+        max-height: 0; 
+        opacity: 0;
+        overflow: hidden; /* Crucial to clip content when max-height is 0 */
+        transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out;
+
+        gap: 4px;
+     
+        background-color: transparent; /* ADDED: Make the container background transparent */
+        box-shadow: none; /* ADDED: Ensure no shadow */
+        border-radius: 0; /* ADDED: Remove container corner rounding */
+        z-index: 10;
+        min-width: 180px;
+    }
+
+    .song-fab-menu.open {
+        max-height: 500px; /* A value greater than the expected menu height */
+        opacity: 1;
+        /* Optional: Add a slight transform for a 'pop' effect if desired */
+        transform: translateY(-5px); 
+    }
+ 
+
+    /* Individual song links/buttons inside the Song FAB menu */
+    .song-fab-link {
+        height: 40px; /* ADDED */
+        width: auto; /* ADDED */
+        min-width: 180px; /* ADDED */
+        padding: 0 16px; /* ADDED */
+        border-radius: 20px; /* ADDED */ 
+        /* MODIFIED: Default colors for non-active songs */
+        background-color: var(--accent-red); /* Red color */
+        color: white;
+        font-size: 0.95rem; /* Matches other pill buttons */
+        font-weight: 600; /* Matches other pill buttons */
+        border: none;
+        /* Ensure alignment for the pill shape */
+        display: flex; /* ADDED */
+        align-items: center; /* ADDED */
+        justify-content: flex-end; /* ADDED */
+
+        cursor: pointer;
+
+        /* MODIFIED: Combined transition */
+        transition: background-color 0.1s ease, opacity 0.3s ease-out, transform 0.3s ease-out;
+        /* ANIMATION STYLES (Keep These) */
+        opacity: 0;
+        transform: translateY(-10px);    
+    }
+
+    .song-fab-menu.open .song-fab-link {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .song-fab-menu.open .song-fab-link:nth-child(1) { transition-delay: 0.02s; }
+    .song-fab-menu.open .song-fab-link:nth-child(2) { transition-delay: 0.04s; }
+    .song-fab-menu.open .song-fab-link:nth-child(3) { transition-delay: 0.08s; }
+    .song-fab-menu.open .song-fab-link:nth-child(4) { transition-delay: 0.1s; }
+    .song-fab-menu.open .song-fab-link:nth-child(5) { transition-delay: 0.12s; }
+    .song-fab-menu.open .song-fab-link:nth-child(6) { transition-delay: 0.14s; }
+    .song-fab-menu.open .song-fab-link:nth-child(7) { transition-delay: 0.16s; }
+    .song-fab-menu.open .song-fab-link:nth-child(8) { transition-delay: 0.18s; }
+    .song-fab-menu.open .song-fab-link:nth-child(9) { transition-delay: 0.2s; }
+
+
+    .song-fab-link:hover {
+        background-color: #c0392b;
+    }
+    .song-fab-link:active {
+        transform: scale(0.98); /* Slight shrink on press */
+    }
+
+    .song-fab-link.active {
+        background-color: #f39c12; /* Orange/Gold color for active state */
+        color: white;
+        font-weight: 700;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .song-fab-link.contact-link {
+        background-color: #f7e6e6;
+        color: #c0392b;
+        font-weight: 600;
+    }
+    .fab-lang-text {
+        writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            white-space: nowrap; /* Prevents text from wrapping vertically */
+            display: block; /* Ensures the writing mode applies to the content block */
+    }
+    /* The new green FAB for minimizing the translate pane */
+    .minimize-fab {
+        /*position: absolute;*/
+        /*bottom: 20px;*/
+        /*right: 20px;*/
+        /*top: auto;*/
+        left: auto;
+        z-index: 100;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Ensure no interference from portrait styles */        
+        background-color: var(--accent-green); /* Green color */
+        color: white;
+        font-size: 1.5rem;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s;
+        pointer-events: auto;
+    }
+
+    .minimize-fab.rotate-fab {
+        position: fixed !important; /* Fixed to solve the scrolling bug */
+        bottom: 20px !important;
+        right: calc(66.666% + 20px) !important; 
+        left: auto !important; /* Ensure left is auto */
+        top: auto !important; /* Ensure top is auto */
+    }
+    
+    .app-shell.windowed .minimize-fab.rotate-fab {
+        left: calc(36.666vw - 68px) !important;
+        right: auto !important;
+    }
+
+    .minimize-fab:hover {
+        background-color: #2ecc71;
+    }
+
+    .minimize-fab.hidden {
+        opacity: 0;
+        pointer-events: none; /* Disable clicks when hidden */
+    }
+
+    /* Minimized Translation Pane - Shared Styles */
+    .split-pane.minimized {
+        /* Override flex for minimized state */
+        flex: 0 0 auto !important; /* Prevents it from growing/shrinking */
+        background-color: #34495e !important; /* Dark bar color */
+        cursor: pointer;
+        border: none !important;
+        display: flex !important; /* Important for centering text */
+        justify-content: center;
+        align-items: center;
+        transition: flex-basis 0.3s ease, width 0.3s ease, height 0.3s ease;
+        overflow: hidden !important;
+    }
+
+    /* Minimized Translation Pane - Landscape (Horizontal) Mode */
+    /* Default flex-direction is row, so this minimizes width */
+    .split-container .split-pane#translate-pane.minimized {
+        width: 50px; /* Small bar width for landscape */
+        min-width: 50px !important; /* Lock the width */
+        height: 100% !important; /* Full height */
+        border-right: none !important;
+        flex-direction: column !important;
+    }
+
+    /* Base rotation for the icon to handle landscape mode */
+    .minimize-fab .material-symbols-outlined {
+        /* Initial state (Portrait): no rotation (icon points up) */
+        transform: rotate(0deg);
+        transition: transform 0.3s ease; /* Smooth rotation transition */
+        display: block; /* Ensures rotation works correctly */
+    }
+
+    /* This class is added by JS in Landscape mode */
+    .minimize-fab.rotate-fab .material-symbols-outlined {
+        /* Landscape: Rotate 90 degrees anticlockwise (icon points left) */
+        transform: rotate(-90deg);
+    }
+
+    .fullscreen-fab {
+        /* Positioning: Top Right, fixed to viewport */
+        position: fixed;
+        top: 20px; /* Offset from top */
+        left: 20px; /* Offset from right */
+        z-index: 1001; /* Ensure it is above ALL other content (main FAB is 1000) */
+
+        /* Style: Charcoal, Circular, Transparent */
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+
+        /* Charcoal color with 10% opacity: rgba(30, 30, 30, 0.9) - or a standard dark gray */
+        background-color: rgba(52, 58, 64, 0.9); /* #343a40 is a dark charcoal, 0.9 for 10% transparency */
+        color: white; /* White icon/text */
+        font-size: 1.5rem; /* Icon size */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        transition: background-color 0.2s ease;
+    }
+
+.minimize-fab-wrapper {
+    /* PINS THE FAB TO THE BOTTOM-RIGHT OF THE RELATIVE PARENT (#translate-pane) */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    /* Ensure the empty corners of the wrapper don't block clicks */
+    pointer-events: none;
+}
+
+/* --- Navigation Tabs (Previous / Next) --- */
+@keyframes flashFade {
+    0%   { opacity: 0; }
+    30%  { opacity: 1; }   
+    100% { opacity: 0.5; } 
+}
+
+/* 2. Base Tab Style */
+.nav-tab {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--accent-red);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 50;
+    
+    min-width: 30px;
+    padding: 20px 8px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+    /* NUCLEAR FIX FOR STACKING: */
+    /* Start completely invisible. Only the animation makes it visible. */
+    opacity: 0; 
+    
+    /* Run animation and HOLD (forwards) the final 0.5 value */
+    animation: flashFade 2s ease-out forwards;
+
+    /* Only transition background/transform. Never transition opacity here to avoid conflicts. */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* 3. Hover State */
+.nav-tab:hover {
+    background-color: #c0392b;
+    /* !important is required to override the 'forwards' state of the animation */
+    opacity: 1 !important; 
+}
+
+/* 4. Positioning */
+.nav-tab.prev {
+    left: 16px;
+    border-radius: 0 8px 8px 0;
+}
+
+.nav-tab.next {
+    right: 16px;
+    border-radius: 8px 0 0 8px;
+}
+
+/* 5. Text Rotation */
+.nav-tab-text {
+    display: block;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: rotate(-90deg);
+}
+
+/* 6. Idle State */
+.nav-tab.idle-hide {
+    animation: none !important;
+    /* Override animation and hover to hide */
+    opacity: 0 !important;
+    pointer-events: none;
+    /* We only want to transition opacity when fading OUT to idle */
+    transition: opacity 0.5s ease-in-out; 
+}
+
+/* --- FAB Idle/Invisibility Styling --- */
+/* This style applies to all FAB elements to prepare for the transition */
+.fab-container,
+.song-fab-container,
+.fullscreen-fab,
+.minimize-fab {
+    /* Add opacity transition for smooth fading */
+    transition: transform 0.3s ease, background-color 0.2s ease, opacity 0.3s ease-in-out; 
+    /* The existing transition for the main FAB already includes transform, let's ensure opacity is covered. The key is that the transition property must be on the element itself, not just the idle-hide class. */
+}
+
+
+/* Class to apply when the user is idle */
+.idle-hide {
+    opacity: 0 !important; /* Make it invisible */
+    pointer-events: none !important; /* Crucial: Prevents clicks on the invisible element */
+}
+    .fullscreen-fab:hover {
+        /* Slightly darker on hover */
+        background-color: rgba(30, 30, 30, 0.95);
+    }
+
+    /* When .app-shell is in fullscreen mode, we need to apply constraints */
+    .app-shell.fullscreen {
+        /* By default, app-shell is 100%/100% and overflow: hidden.     
+        This class is added by JS to define the 'windowed' view's size. */
+        /* If the app is launched within an iframe (e.g., Sanity.io Studio), this    
+        will define its 'windowed' state when it's NOT fullscreen.
+        Since the requirement is to toggle the *main app shell*, we assume
+        the parent container provides the space, and this defines the inner view. */
+    }
+
+    /* The .app-shell starts as 100%/100% (which is 'windowed' relative to the browser, 
+       but 'fullscreen' relative to its container in Sanity). 
+       We will treat the default state (no class) as FULLSCREEN (occupies all available space)
+       and apply the 'windowed' styles when the `windowed` class is *added*. */
+
+    .app-shell.windowed {    
+         /* A good default 'windowed' size for an embedded app */
+        width: 80vw;
+        height: 80vh;
+        max-width: 1200px;
+        max-height: 800px;
+        position: fixed; /* Fix the app shell in the center of the screen */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        border-radius: 8px; /* Optional: adds a nice window look */
+        /* Ensure only the internal content scrolls, not the window itself */
+        overflow: hidden; 
+    }
+
+.minimize-fab-wrapper { 
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    display: contents; /* Removes wrapper influence on layout */
+    pointer-events: none; /* Ensures it doesn't block clicks */
+}
+
+/* Styling for buttons embedded in lyrics.json */
+.modal-trigger {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--primary-blue); /* St Phils Blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.modal-trigger:hover {
+    background-color: #004070;
+}
+
+/* Styling for buttons/links embedded in lyrics.json */
+.action-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: var(--primary-blue); /* St Phils Blue */
+    color: white !important; /* Force white text for links */
+    border: none;
+    border-radius: 20px; /* Pill shape */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background-color: var(--bg-modal); /* Uses your variable */
+    width: 90%;
+    max-width: 600px;
+    height: 80%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Border for dark mode definition */
+    border: 1px solid var(--border-color); 
+    isolation: isolate; /* Creates a clean stacking context */
+}
+
+.modal-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* SIZE: This forces it to be 50% of the modal's width/height */
+    width: 50%;
+    height: 50%;
+    max-width: 200px; /* Safety cap so it doesn't get massive on big screens */
+    
+    /* APPEARANCE */
+    opacity: 0.1; /* Very faint */
+    pointer-events: none; /* Let clicks pass through */
+    
+    /* LAYERING: Send it to the back */
+    z-index: 0; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: right;
+    background-color: var(--bg-surface-hover);
+}
+
+.modal-header, 
+.modal-box > div:last-child { 
+    position: relative;
+    z-index: 1; /* Sits higher than the watermark (0) */
+}
+
+.modal-close-btn {
+    border: none;
+    background: transparent;
+    font-size: 2rem;
+    line-height: 1rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.action-button:hover {
+    background-color: #004070;
+    transform: translateY(-1px);
+}
+
+.app-logo-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vmin;
+    height: 50vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.075;
+    pointer-events: none;
+    z-index: 10;
+    /* Allow transition for filter changes */
+    transition: filter 0.3s ease; 
+}
+.action-button:active {
+    transform: translateY(1px);
+}
+
+@media (prefers-color-scheme: dark) {
+    .app-logo-watermark {
+        /* Option A: If logo is SVG/Image, turn it white */
+        filter: invert(1) brightness(0.8); 
+        
+        /* Option B: If that is too strong, just boost opacity */
+        /* opacity: 0.15; */ 
+    }
+}
