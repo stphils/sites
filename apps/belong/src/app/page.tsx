@@ -451,28 +451,31 @@ export default function Home() {
     const distY = transTouchStartY.current - transTouchEndY.current;
 
     if (isPortrait) {
-        const isSwipeUp = distY > minSwipeDistance;     
+        const isSwipeUp = distY > minSwipeDistance;
         const isSwipeDown = distY < -minSwipeDistance;  
 
         if (isSwipeUp && !isTranslateMinimized) {
-            setIsTranslateMinimized(true); 
+            setIsTranslateMinimized(true);
+            setIsTranslateMaximized(false); // <--- ADD THIS LINE
             setIsFabMenuOpen(false);
         }
         if (isSwipeDown && isTranslateMinimized) {
-            setIsTranslateMinimized(false); 
+            setIsTranslateMinimized(false);
+            // Optional: You can choose to leave maximized as-is or default to false here
             setIsFabMenuOpen(false);
         }
     } 
     else {
-        const isSwipeLeft = distX > minSwipeDistance;    
+        const isSwipeLeft = distX > minSwipeDistance;
         const isSwipeRight = distX < -minSwipeDistance;  
 
         if (isSwipeLeft && !isTranslateMinimized) {
-            setIsTranslateMinimized(true); 
+            setIsTranslateMinimized(true);
+            setIsTranslateMaximized(false); // <--- ADD THIS LINE
             setIsFabMenuOpen(false);
         }
         if (isSwipeRight && isTranslateMinimized) {
-            setIsTranslateMinimized(false); 
+            setIsTranslateMinimized(false);
             setIsFabMenuOpen(false);
         }
     }
