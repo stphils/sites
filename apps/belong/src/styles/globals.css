@@ -734,6 +734,7 @@ body {
 
 /* Parent container for the Song FAB. Must be positioned relative to #carols-pane. */
 .song-fab-container {
+        display: none !important;
         position: absolute;
         top: 20px; /* Offset from the top of the carols pane */
         right: 20px; /* Offset from the right of the carols pane */
