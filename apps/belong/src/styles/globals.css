@@ -1009,6 +1009,14 @@ body {
     background-color: rgba(30, 30, 30, 0.95);
 }
 
+/* --- iOS OVERRIDE --- */
+/* iOS Safari (iPhones/iPads) does not support the Fullscreen API for HTML elements.
+   This feature query detects iOS and hides the button to prevent confusion. */
+@supports (-webkit-touch-callout: none) {
+    .fullscreen-fab {
+        display: none !important;
+    }
+
 /* When .app-shell is in fullscreen mode, we need to apply constraints */
 .app-shell.fullscreen {
     /* By default, app-shell is 100%/100% and overflow: hidden.     
